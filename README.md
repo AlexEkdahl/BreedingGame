@@ -8,4 +8,3 @@ The workspace contains one folder, where:
 
 - `src`: the folder to maintain sources
 
-
