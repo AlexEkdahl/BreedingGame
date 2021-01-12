@@ -7,5 +7,5 @@ Welcome to what will become the game "Farmers Race" which is the first project a
 The workspace contains one folder, where:
 
 - `src`: the folder to maintain sources
-- `Game`: main package
+
 
