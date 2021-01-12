@@ -1,7 +1,7 @@
 package Game;
 
 import Game.FoodClasses.*;
-import Game.DragonClasses.*;
+import Game.PokemonClasses.*;
 
 public class Game {
 

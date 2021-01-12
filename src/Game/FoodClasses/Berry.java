@@ -1,9 +1,9 @@
 package Game.FoodClasses;
 
 
-public class Fruit extends Food {
+public class Berry extends Food {
 
-   public Fruit(){
+   public Berry(){
       price = 10;
    }
 
