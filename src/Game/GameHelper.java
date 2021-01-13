@@ -34,4 +34,13 @@ public class GameHelper {
 
 
 
+   
+
+   public static boolean rightGenderFormat(String gender){
+
+      
+
+   }
+
+
 }
