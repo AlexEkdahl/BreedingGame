@@ -1,6 +1,9 @@
 package Game.PokemonClasses;
 
+import java.util.Scanner;
+
 import Game.FoodClasses.*;
+import Game.*;
 
 
 public abstract class Pokemon {
@@ -14,20 +17,24 @@ public abstract class Pokemon {
    protected Gender gender;
    protected int health = 100;
    protected boolean isSick = false;
+   
    protected int maxOffspring;
    protected Food[] canEatFood;
-
    protected int age = 0;
    protected int maxAge;
    protected int price;
 
-   public int numberOfBreeds = 0;
 
-   public Pokemon(int age, String name, String gender) {
+   static Scanner input = new Scanner(System.in);
+
+
+   public void setName(String name) {
       this.name = name;
-      setGender(gender);
    }
 
+   public String getName(){
+      return name;
+   }
 
    public int getPrice() {
       return price;
@@ -37,17 +44,25 @@ public abstract class Pokemon {
       
    }
 
-   public void setGender(String gender) {
-      if (gender.equalsIgnoreCase("female")){
+   public boolean isAlive(){
+      return (age < maxAge && health > 0);
+   }
+
+   public void setGender(int n) {
+      if (n == 1){
          this.gender = Gender.FEMALE;
       } else {
          this.gender = Gender.MALE;
       }
    }
-   
-   public boolean isAlive(){
-      return (age < maxAge && health > 0);
+
+   public String getBreed(){
+      return this.getClass().getSimpleName();
    }
+
+
+   
+
 
 
 
