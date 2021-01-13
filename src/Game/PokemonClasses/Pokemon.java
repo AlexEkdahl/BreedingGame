@@ -15,7 +15,7 @@ public abstract class Pokemon {
    protected String name;
    protected Gender gender;
    protected int health = 100;
-   protected boolean sick = false;
+   protected boolean isSick = false;
    protected int maxOffspring;
    protected Food[] canEatFood;
 
@@ -30,7 +30,7 @@ public abstract class Pokemon {
       this.age = age;
       this.owner = owner;
       setGender(gender);
-      owner.addDragon(this);
+      owner.addPokemon(this);
    }
 
    public void eat(){
@@ -44,10 +44,10 @@ public abstract class Pokemon {
          this.gender = Gender.MALE;
       }
    }
-   /*
+   
    public boolean isAlive(){
       return (age < maxAge && health > 0);
-   }*/
+   }
 
 
 
