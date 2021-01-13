@@ -3,7 +3,7 @@ package Game.FoodClasses;
 
 public class PokePuff extends Food {
 
-   public PokePuff(){
+   public PokePuff() {
       price = 20;
    }
 

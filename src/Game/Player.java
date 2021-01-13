@@ -16,9 +16,17 @@ public class Player {
       this.money = money;
    }
 
+   public int getMoney() {
+      return money;
+   }
+   public void setMoney(int money) {
+      this.money = money;
+   }
+
    public void addPokemon(Pokemon newPokemon){
       playerPokemon.add(newPokemon);
    }
+
 
    
 }

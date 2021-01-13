@@ -5,7 +5,7 @@ import java.io.IOException;
 public class Menu {
 
    public static void mainMenu() {
-      System.out.println("\n- - - - Welcome to THE POKEMON BREEDERS RACE - - - -");
+      System.out.println("====== Welcome to THE POKEMON BREEDERS RACE ======");
       System.out.println("MAIN MENU");
       System.out.println("[1] New game");
       System.out.println("[2] How to play");

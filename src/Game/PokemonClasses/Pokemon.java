@@ -1,6 +1,5 @@
 package Game.PokemonClasses;
 
-import Game.*;
 import Game.FoodClasses.*;
 
 
@@ -11,7 +10,6 @@ public abstract class Pokemon {
       MALE
   }
    
-   protected Player owner;
    protected String name;
    protected Gender gender;
    protected int health = 100;
@@ -19,18 +17,20 @@ public abstract class Pokemon {
    protected int maxOffspring;
    protected Food[] canEatFood;
 
-   protected int age;
+   protected int age = 0;
    protected int maxAge;
    protected int price;
 
    public int numberOfBreeds = 0;
 
-   public Pokemon(String name, int age, String gender, Player owner){
+   public Pokemon(int age, String name, String gender) {
       this.name = name;
-      this.age = age;
-      this.owner = owner;
       setGender(gender);
-      owner.addPokemon(this);
+   }
+
+
+   public int getPrice() {
+      return price;
    }
 
    public void eat(){

@@ -1,7 +1,7 @@
 package Game.PokemonClasses;
 
 
-public class Ratata extends Pokemon {
+public class Ditto extends Pokemon {
 
    
 
