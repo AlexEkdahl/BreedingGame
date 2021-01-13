@@ -58,13 +58,5 @@ public abstract class Pokemon {
    public String getBreed(){
       return this.getClass().getSimpleName();
    }
-
-
-   
-
-
-
-
-   
    
 }

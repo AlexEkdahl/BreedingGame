@@ -65,12 +65,19 @@ public class Store {
          }
       }
    }
-
+   //!
    public void buyPokemon(Pokemon pokemon) {
       if (enoughMoney(pokemon, costumer)) {
          System.out.println("Would you like to buy a " + pokemon.getBreed() + "for " + pokemon.getPrice());
          System.out.println("[y / n]");
          if (GameHelper.validateYesOrNo(GameHelper.input.nextLine())){
+            switch (pokemon.getBreed()){
+               case "Bulbasur" : pokemon = new Bulbasur(); break;
+               case "Charmander": pokemon = new Charmander(); break;
+               case "Squirtle": pokemon = new Squirtle(); break;
+               case "Ditto": pokemon = new Ditto(); break;
+               case "Pikachu": pokemon = new Pikachu(); break;
+            }
             costumer.createAndAdd(pokemon);
             costumer.handlePurchase(pokemon.getPrice());
          } else {
@@ -85,11 +92,9 @@ public class Store {
       if (enoughMoney(food, costumer)) {
          // TODO ask how many kg to buy
          int kg = 0;
-         //TODO Dont know how i will display the food yet 
          if(true){
             costumer.addFood(food, kg);
          }
-
       } else {
          System.out.println("Not enough money");
       }
