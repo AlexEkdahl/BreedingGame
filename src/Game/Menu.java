@@ -32,6 +32,7 @@ public class Menu {
       System.out.println("POKEMON AGE");
       System.out.println("POKEMON HEALTH");
       System.out.println("POKEMON GENDER");
+      System.out.println("\n".repeat(3));
    }
 
 

@@ -16,4 +16,8 @@ public abstract class Food {
       this.price = price;
    }
 
+   public String getType(){
+      return this.getClass().getSimpleName();
+   }
+
 }
