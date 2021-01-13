@@ -1,5 +1,7 @@
 package Game.PokemonClasses;
 
+import java.util.Scanner;
+
 import Game.FoodClasses.*;
 
 
@@ -28,6 +30,16 @@ public abstract class Pokemon {
       setGender(gender);
    }
 
+   static Scanner input = new Scanner(System.in);
+
+
+   public void setName(String name) {
+      this.name = name;
+   }
+
+   public String getName(){
+      return name;
+   }
 
    public int getPrice() {
       return price;
@@ -37,6 +49,10 @@ public abstract class Pokemon {
       
    }
 
+   public boolean isAlive(){
+      return (age < maxAge && health > 0);
+   }
+
    public void setGender(String gender) {
       if (gender.equalsIgnoreCase("female")){
          this.gender = Gender.FEMALE;
@@ -44,10 +60,10 @@ public abstract class Pokemon {
          this.gender = Gender.MALE;
       }
    }
+
+
    
-   public boolean isAlive(){
-      return (age < maxAge && health > 0);
-   }
+
 
 
 

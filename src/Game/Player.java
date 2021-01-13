@@ -2,6 +2,7 @@ package Game;
 
 import java.util.*;
 
+import Game.FoodClasses.Food;
 import Game.PokemonClasses.*;
 
 public class Player {
@@ -16,6 +17,8 @@ public class Player {
       this.money = money;
    }
 
+
+
    public int getMoney() {
       return money;
    }
@@ -26,6 +29,22 @@ public class Player {
    public void addPokemon(Pokemon newPokemon){
       playerPokemon.add(newPokemon);
    }
+
+   public void createAndAdd(Pokemon pokemon){
+      System.out.println("Nickname for your " + pokemon.getClass().getSimpleName() + ": ");
+      pokemon.setName(GameHelper.input.nextLine());
+      System.out.println("Gender of your " + pokemon.getClass().getSimpleName());
+      System.out.println("[1] female / [2] male");
+      pokemon.setGender("MALE"); //! EDIT LATER
+      playerPokemon.add(pokemon);
+   }
+
+   public void addFood(Food food, int quantity){
+      //TODO look at this
+      
+   }
+
+
 
 
    
