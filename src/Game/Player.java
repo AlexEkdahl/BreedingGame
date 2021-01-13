@@ -30,7 +30,6 @@ public class Player {
       playerPokemon.add(newPokemon);
    }
 
-
    public void createAndAdd(Pokemon pokemon){
       System.out.println("Nickname for your " + pokemon.getClass().getSimpleName() + ": ");
       pokemon.setName(GameHelper.input.nextLine());

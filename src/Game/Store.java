@@ -2,8 +2,7 @@ package Game;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.Scanner;
-import java.util.function.Consumer;
+
 
 import Game.PokemonClasses.*;
 import Game.FoodClasses.*;

@@ -1,9 +1,9 @@
 package Game.PokemonClasses;
 
-import java.util.Scanner;
+
 
 import Game.FoodClasses.*;
-import Game.*;
+
 
 
 public abstract class Pokemon {
@@ -25,7 +25,6 @@ public abstract class Pokemon {
    protected int price;
 
 
-   static Scanner input = new Scanner(System.in);
 
 
    public void setName(String name) {

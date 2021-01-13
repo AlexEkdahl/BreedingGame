@@ -1,7 +1,5 @@
 package Game;
 
-import java.util.Scanner;
-
 import Game.PokemonClasses.Pikachu;
 
 public class Main {
