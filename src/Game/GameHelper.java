@@ -14,17 +14,18 @@ public class GameHelper {
       return (answer.equalsIgnoreCase("y") ? true : false);
    }
 
-   // To make sure user choice is in range of what the menu is 
+   // To make sure user choice is in range of what the menu/question is 
    public static int getInt(String s, int max, int min) {
       int returnInt;
       do {
          try {
-            returnInt = Integer.parseInt(input.nextLine());
+            returnInt = Integer.parseInt(s);
             if (returnInt > max || returnInt < min) {
                System.out.println("Please enter a number between " + min + "-" + max);
             }
          } catch (Exception e) {
             System.out.println("Please enter an integer!");
+            s = input.nextLine();
             returnInt = -1;
          }
       } while (returnInt == -1 || returnInt > max || returnInt < min);

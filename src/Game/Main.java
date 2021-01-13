@@ -1,21 +1,26 @@
 package Game;
 
-import Game.PokemonClasses.Pikachu;
 
 public class Main {
     public static void main(String[] args) throws Exception {
+
+        // just for debugging methods
         Menu.mainMenu();
 
-        System.out.println("Round: 1");
-        System.out.println("\t".repeat(5) +"[ ]".repeat(5));
-        System.out.println("\t".repeat(5) +"[ ]" + "\t" + "    [ ]");
-        System.out.println("\t".repeat(5) +"[ ]" + "\t" + "    [ ]");
-        System.out.println("\t".repeat(5) +"[X]" + "\t" + "    [ ]");
-        System.out.println("\t".repeat(5) +"[ ]".repeat(5));
+        System.out.println("How many players: ");
+        System.out.println("1");
+        System.out.println("Name: ");
+        String name = GameHelper.input.nextLine();
+        System.out.println("How many monetaassss: ");
+        int money = 1000;
+        Player player1 = new Player(name, money);
 
-        Pikachu pika = new Pikachu();
-        System.out.println(pika.getPrice());
-
+        Store store = new Store(player1, true);
+        Menu.clearScreen();
+        Menu.playerDisplay();
+        store.displayPokemon();
+            
+        
         
 
 

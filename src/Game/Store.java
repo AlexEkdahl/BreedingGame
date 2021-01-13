@@ -7,7 +7,7 @@ import java.util.Map;
 import Game.PokemonClasses.*;
 import Game.FoodClasses.*;
 
-public abstract class Store {
+public class Store {
 
    LinkedHashMap<String, Pokemon> pokemonShelf;
    LinkedHashMap<String, Food> foodShelf;
@@ -40,26 +40,29 @@ public abstract class Store {
    }
 
    public void displayPokemon() {
-      String pokemonBreed = "";
+      int n = 0;
       for (Map.Entry<String, Pokemon> entry : pokemonShelf.entrySet()) {
          if (costumer.getMoney() < entry.getValue().getPrice()) {
-            pokemonBreed = entry.getKey() + "[too expensive]";
+            System.out.println("[" + n + "]" + entry.getKey() + "\t" + entry.getValue().getPrice() + "\t\t[to expensive]");
+            n++;
          } else {
-            pokemonBreed = entry.getKey();
+            System.out.println("[" + n + "]" + entry.getKey() + "\t" + entry.getValue().getPrice());
+            n++;
          }
-         System.out.println(pokemonBreed + " " + entry.getValue().getPrice());
       }
    }
 
    public void displayFood() {
-      String foodName = "";
+
+      int n = 1;
       for (Map.Entry<String, Food> entry : foodShelf.entrySet()) {
          if (costumer.getMoney() < entry.getValue().getPrice()) {
-            foodName = entry.getKey() + "[too expensive]";
+            System.out.println("[" + n + "]" + entry.getKey() + " " + entry.getValue().getPrice() + "\t\t [too expensive]");
+            n++;
          } else {
-            foodName = entry.getKey();
+            System.out.println("[" + n + "]" + entry.getKey() + " " + entry.getValue().getPrice());
+            n++;
          }
-         System.out.println(foodName + " " + entry.getValue().getPrice());
       }
    }
 
@@ -69,6 +72,7 @@ public abstract class Store {
          System.out.println("[y / n]");
          if (GameHelper.validateYesOrNo(GameHelper.input.nextLine())){
             costumer.createAndAdd(pokemon);
+            costumer.handlePurchase(pokemon.getPrice());
          } else {
             displayPokemon();
          }
@@ -76,10 +80,16 @@ public abstract class Store {
          System.out.println("Not enough money");
       }
    }
-
+   //!
    public void buyFood(Food food) {
       if (enoughMoney(food, costumer)) {
-         // TODO make method
+         // TODO ask how many kg to buy
+         int kg = 0;
+         //TODO Dont know how i will display the food yet 
+         if(true){
+            costumer.addFood(food, kg);
+         }
+
       } else {
          System.out.println("Not enough money");
       }
