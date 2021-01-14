@@ -26,16 +26,18 @@ public class Main {
         Pokemon ditto = new Ditto();
         ditto.setGender(1);
         ditto.setName("Hej");
-
+        
         player1.addPokemon(pika);
         player1.addPokemon(pika3);
         player1.addPokemon(ditto);
+        pika.loveMakeing(player1, pika3);
 
-        Breeding breed = new Breeding(player1);
+       /* Breeding breed = new Breeding(player1);
         breed.printPokemon();
         System.out.println("What pokemon do you want to breed?");
         String in = GameHelper.input.nextLine();
         int int1 = GameHelper.getInt(in, 1, player1.getPlayerPokemon().size());
+        breed.setPokemon1(player1.getPlayerPokemon().get(int1-1));
         System.out.println();
         System.out.println();
         breed.printPokemon(true, player1.getPlayerPokemon().get(int1-1));

@@ -41,6 +41,8 @@ public class Player {
    }
 
    // creates pokemon to playerPokemon
+   //TODO rename since it also add pokemon to playerPokemon
+   //TODO this just renames already created pokemon? 
    public void createPokemon(Pokemon pokemon) {
       System.out.println("Nickname for your " + pokemon.getBreed() + ": ");
       pokemon.setName(GameHelper.input.nextLine());
@@ -51,6 +53,7 @@ public class Player {
       pokemon.setGender(GameHelper.getInt(GameHelper.input.nextLine(), 1, 2));
       addPokemon(pokemon);
    }
+
 
    // if playerFood already contains that food, add up quantity
    public void addFood(Food food, int quantity) {

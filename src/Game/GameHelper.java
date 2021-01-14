@@ -34,4 +34,12 @@ public class GameHelper {
       return returnInt;
    }
 
+   public static void waitMilliSeconds(int ms) {
+      try {
+         Thread.sleep(ms);
+      } catch (InterruptedException e) {
+         e.printStackTrace();
+      }
+   }
+
 }

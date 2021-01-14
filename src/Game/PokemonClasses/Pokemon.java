@@ -1,7 +1,7 @@
 package Game.PokemonClasses;
 
-
-
+import Game.GameHelper;
+import Game.Player;
 import Game.FoodClasses.*;
 import java.util.*;
 
@@ -79,6 +79,35 @@ public abstract class Pokemon {
       }
       return s.trim();
    }
+   //TODO should argument be a player?
+   public void loveMakeing(Player owner, Pokemon mate){
+      if (Math.random() > 0.5){
+         int offsprings = (int) (Math.random() * this.maxOffspring + 1);
+         for (int i = 0; i < offsprings; i++){
+            System.out.print(i+1+".");
+            GameHelper.waitMilliSeconds(700);
+            System.out.print(".");
+            GameHelper.waitMilliSeconds(700);
+            System.out.print(".");
+            GameHelper.waitMilliSeconds(700);
+         }
+         System.out.print(" " + offsprings + " new " + mate.getBreed() + "!");
+         System.out.println(" Congratulations, " + this.name + " and " + mate.getName() + " successfully mated");
+         for (int j = 0; j < offsprings; j++){
+            switch(this.getBreed()){
+               case "Pikachu" -> owner.createPokemon(new Pikachu());
+               case "Bulbasur" -> owner.createPokemon(new Bulbasur());
+               case "Charmander" -> owner.createPokemon(new Charmander());
+               case "Squirtle" -> owner.createPokemon(new Squirtle());
+               case "Ditto" -> owner.createPokemon(new Ditto());
+            }
+         }
+      } else {
+         System.out.println("NOPE");
+      }
+   }
+
+
 
 
    
