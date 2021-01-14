@@ -65,7 +65,6 @@ public class Store {
    }
 
    public void displayFood() {
-
       int n = 1;
       for (Map.Entry<String, Food> entry : foodShelf.entrySet()) {
          if (costumer.getMoney() < entry.getValue().getPrice()) {
@@ -81,7 +80,9 @@ public class Store {
 
    public void buyPokemon(Pokemon pokemon) {
       if (enoughMoney(pokemon, costumer)) {
-         System.out.println("Would you like to buy a " + pokemon.getBreed() + "for " + pokemon.getPrice());
+         System.out.println("Would you like to buy a " + pokemon.getBreed() + " for " + pokemon.getPrice());
+         System.out.println("===== info =====");
+         System.out.println(pokemon.toString(true));
          System.out.println("[y / n]");
          if (GameHelper.validateString(GameHelper.input.nextLine())) {
             costumer.createPokemon(pokemon);

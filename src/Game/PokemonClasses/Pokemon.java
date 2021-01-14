@@ -3,6 +3,7 @@ package Game.PokemonClasses;
 
 
 import Game.FoodClasses.*;
+import java.util.*;
 
 
 
@@ -64,7 +65,22 @@ public abstract class Pokemon {
    }
 
    public String toString(){
-      return getBreed() + "" + name + ", age: " + age + gender + " and health: " + health + ". Can generate max " + maxOffspring + "offsprings";
+      return getBreed() + "" + name + ", age: " + age + " " +gender + " and health: " + health + ". Generate max " + maxOffspring + " offsprings";
    }
+
+   public String toString(boolean forShop){
+      return getBreed() + ", can generate max " + maxOffspring + " offsprings and eat: " + foodToString();
+   }
+
+   public String foodToString(){
+      String s = "";
+      for (Food food: canEatFood){
+         s = s + food.getClass().getSimpleName() + ", ";
+      }
+      return s.trim();
+   }
+
+
+   
    
 }

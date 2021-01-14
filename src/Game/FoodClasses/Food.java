@@ -1,5 +1,6 @@
 package Game.FoodClasses;
 
+
 public abstract class Food {
 
    protected int price;
