@@ -69,8 +69,8 @@ public class Store {
       int n = 1;
       for (Map.Entry<String, Food> entry : foodShelf.entrySet()) {
          if (costumer.getMoney() < entry.getValue().getPrice()) {
-            System.out
-                  .println("[" + n + "]" + entry.getKey() + "\t" + entry.getValue().getPrice() + "\t\t [too expensive]");
+            System.out.println(
+                  "[" + n + "]" + entry.getKey() + "\t" + entry.getValue().getPrice() + "\t\t [too expensive]");
             n++;
          } else {
             System.out.println("[" + n + "]" + entry.getKey() + "\t" + entry.getValue().getPrice());
@@ -102,10 +102,11 @@ public class Store {
    }
 
    // ! Refactoring later, messy code unnecessary if statements
+   // TODO Maybe add an int containing what you got in food instead
    public void buyFood(Food food) {
       System.out.println("Max item you can buy: " + maxFood(food));
       System.out.println("How much: ");
-      //TODO if 0 go back to store
+      // TODO if 0 go back to store
       String quantity = GameHelper.input.nextLine();
       int number = GameHelper.getInt(quantity, 1, maxFood(food));
       if (enoughMoney(food, number, costumer)) {

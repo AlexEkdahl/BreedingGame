@@ -1,6 +1,6 @@
 package Game;
 
-import Game.PokemonClasses.Pikachu;
+import Game.PokemonClasses.*;
 
 public class Main {
     public static void main(String[] args) throws Exception {
@@ -15,6 +15,8 @@ public class Main {
         System.out.println("How many monetaassss: ");
         int money = 1000;
         Player player1 = new Player(name, money);
+        Pokemon pika = new Pikachu();
+        System.out.println(pika.toString());
         while (true) {
             Store store = new Store(player1, true);
             //Menu.clearScreen();

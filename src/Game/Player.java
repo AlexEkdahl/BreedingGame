@@ -10,6 +10,8 @@ public class Player {
    private String name;
    private int money;
    private ArrayList<Pokemon> playerPokemon;
+   //Food only contains one value, price. Therefore we store it as String and Price
+   // TODO might change to arrayList with just food
    private LinkedHashMap<String, Integer> playerFood;
 
    public Player(String name, int money) {
@@ -18,6 +20,8 @@ public class Player {
       this.playerPokemon = new ArrayList<>();
       this.playerFood = new LinkedHashMap<>();
    }
+
+
 
    public ArrayList<Pokemon> getPlayerPokemon() {
       return playerPokemon;

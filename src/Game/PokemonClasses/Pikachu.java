@@ -1,11 +1,15 @@
 package Game.PokemonClasses;
 
+import Game.FoodClasses.*;
 
 public class Pikachu extends Pokemon {
    
-   //Just for debugging
+
    public Pikachu(){
       price = 500;
+      maxAge = 20;
+      maxOffspring = 1;
+      canEatFood = new Food[] { new Berry(), new PokeBlock(), new RareCandy() };
    }
 
 

@@ -39,6 +39,10 @@ public abstract class Pokemon {
       return price;
    }
 
+   public Gender getGender() {
+      return gender;
+   }
+
    public void eat(){
       
    }
@@ -57,6 +61,10 @@ public abstract class Pokemon {
 
    public String getBreed(){
       return this.getClass().getSimpleName();
+   }
+
+   public String toString(){
+      return getBreed() + "" + name + ", age: " + age + gender + " and health: " + health + ". Can generate max " + maxOffspring + "offsprings";
    }
    
 }
