@@ -15,6 +15,12 @@ public class Player {
    public Player(String name, int money) {
       this.name = name;
       this.money = money;
+      this.playerPokemon = new ArrayList<>();
+      this.playerFood = new LinkedHashMap<>();
+   }
+
+   public ArrayList<Pokemon> getPlayerPokemon() {
+      return playerPokemon;
    }
 
    public int getMoney() {
@@ -25,21 +31,21 @@ public class Player {
       this.money = money;
    }
 
-   // Dont know yet if this is needed
+
    public void addPokemon(Pokemon newPokemon) {
       playerPokemon.add(newPokemon);
    }
 
-   // creates and add pokemon to playerPokemon
-   public void createAndAdd(Pokemon pokemon) {
+   // creates pokemon to playerPokemon
+   public void createPokemon(Pokemon pokemon) {
       System.out.println("Nickname for your " + pokemon.getBreed() + ": ");
       pokemon.setName(GameHelper.input.nextLine());
 
       System.out.println("What is " + pokemon.getName() + " gender?");
       System.out.println("[1] female / [2] male");
 
-      pokemon.setGender(GameHelper.getInt(GameHelper.input.nextLine(), 2, 1));
-      playerPokemon.add(pokemon);
+      pokemon.setGender(GameHelper.getInt(GameHelper.input.nextLine(), 1, 2));
+      addPokemon(pokemon);
    }
 
    // if playerFood already contains that food, add up quantity
@@ -54,5 +60,13 @@ public class Player {
    public void handlePurchase(int itemCost){
       money -= itemCost;
    }
+   //debugging
+   public void print(){
+      for (Pokemon pokemon : playerPokemon){
+         System.out.println(pokemon.getName());
+     }
+   }
+
+
 
 }

@@ -5,7 +5,7 @@ public class Pikachu extends Pokemon {
    
    //Just for debugging
    public Pikachu(){
-      price = 2000;
+      price = 500;
    }
 
 
