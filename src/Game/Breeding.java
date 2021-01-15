@@ -23,7 +23,7 @@ public class Breeding {
       } else {
          int i = 1;
          for (Pokemon pokemon : pokemonList) {
-            System.out.println("[" + i + "]" + pokemon.toString());
+            System.out.println("[" + i + "]" + pokemon.toString(false));
             i++;
          }
       }
@@ -34,7 +34,7 @@ public class Breeding {
       if (findSuitableMate(pokemon)) {
          int i = 1;
          for (Pokemon pokemonMate : pokemonList) {
-            System.out.println("[" + i + "]" + pokemonMate.toString());
+            System.out.println("[" + i + "]" + pokemonMate.toString(false));
             i++;
          }
       } else {

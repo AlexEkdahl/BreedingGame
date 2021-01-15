@@ -43,15 +43,18 @@ public class Player {
 
    // creates pokemon to playerPokemon
    //TODO rename since it also add pokemon to playerPokemon
-   //TODO this just renames already created pokemon? 
-   public void createPokemon(Pokemon pokemon) {
+
+   public void createPokemon(Pokemon pokemon, boolean offspring) {
+      if (offspring){
+         pokemon.setGender(Math.random() > 0.5 ? 1 : 2);
+         System.out.println("You got a " + pokemon.getGenderString() + " " + pokemon.getBreed());
+      } else {
+         System.out.println("What is " + pokemon.getName() + " gender?");
+         System.out.println("[1] female / [2] male");
+         pokemon.setGender(GameHelper.getInt(true, 1, 2));
+      }
       System.out.println("Nickname for your " + pokemon.getBreed() + ": ");
       pokemon.setName(GameHelper.input.nextLine());
-
-      System.out.println("What is " + pokemon.getName() + " gender?");
-      System.out.println("[1] female / [2] male");
-
-      pokemon.setGender(GameHelper.getInt(GameHelper.input.nextLine(), 1, 2));
       addPokemon(pokemon);
    }
 
