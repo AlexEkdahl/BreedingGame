@@ -5,7 +5,14 @@ import java.util.ArrayList;
 
 public class Menu {
 
-   public static void mainMenu() {
+   Game game;
+
+   public void setGame(Game game) {
+      this.game = game;
+   }
+
+   public void mainMenu() {
+      GameHelper.clearScreen();
       System.out.println("====== Welcome to THE POKEMON BREEDERS RACE ======");
       System.out.println("MAIN MENU");
       System.out.println("[1] New game");
@@ -16,7 +23,7 @@ public class Menu {
       mainMenuChoice(GameHelper.getInt(true, 0, 2));
    }
 
-   public static void gameMenu() {
+   public void gameMenu() {
       System.out.println("\n GAME MENU");
       System.out.println("[1] Buy Pokemon");
       System.out.println("[2] Buy food");
@@ -24,9 +31,12 @@ public class Menu {
       System.out.println("[4] Breed Pokemon");
       System.out.println("\n[9] -Save Game- ");
       System.out.println("[0] - Finish round");
-   }
+      gameMenuChoice(GameHelper.getInt(true, 0, 4, 9));
 
-   public static void playerDisplay() {
+   }
+   //TODO
+   public void playerDisplay() {
+      GameHelper.clearScreen();
       System.out.println("PLAYERNAME");
       System.out.println("WWALLET");
       System.out.println("ROUND");
@@ -39,22 +49,25 @@ public class Menu {
       System.out.println("\n".repeat(3));
    }
 
-   public static void howToPlay() {
+   public void howToPlay() {
+      GameHelper.clearScreen();
       System.out
             .println("===== HOW TO PLAY =====\n" + "* This is a turn based game were players take tuns on setting up\n"
                   + "* their Pokemon for success. Players choose from buying or selling\n"
                   + "* Pokemon, buying food or try to breed. Each Pokemon have a different\n"
                   + "* value. When the last turn is finished the players automatically sell\n"
                   + "* their Pokemon and the winner is the one with most money left.");
+      GameHelper.waitMilliSeconds(8000);
       mainMenu();
    }
 
-   public static void exitGame() {
+   public void exitGame() {
       System.out.println("Bye bye");
       System.exit(0);
    }
 
-   public static void newGameMenu() {
+   //TODO refactor
+   public void newGameMenu() {
       ArrayList<Player> players = new ArrayList<>();
       int numOfPlayers;
       int numOfRounds;
@@ -64,19 +77,21 @@ public class Menu {
       System.out.println("How many rounds: ");
       numOfRounds = GameHelper.getInt(true, 5, 35);
       System.out.println("Starting money: ");
-      startingMoney = GameHelper.getInt(true, 100, 1000);
       System.out.println("[EASY][MEDIUM][HARD]");
       System.out.println("[$$$][$$][$]");
+      startingMoney = GameHelper.getInt(true, 100, 1000);
 
-      for (int i = 0; i < numOfPlayers; i++) {
-         System.out.println("Player 1 name: ");
+      for (int i = 1; i <= numOfPlayers; i++) {
+         System.out.printf("Player %d name:\n",i);
          players.add(new Player(GameHelper.input.nextLine(), startingMoney));
       }
 
-      // TODO transfer variables to game and create game :)
+      game.setNumOfRounds(numOfRounds);
+      game.setPlayers(players);
+      game.setStartingMoney(startingMoney);
    }
 
-   public static void mainMenuChoice(int choice) {
+   public void mainMenuChoice(int choice) {
       switch (choice) {
          case 1 -> newGameMenu();
          case 2 -> howToPlay();
@@ -85,15 +100,19 @@ public class Menu {
       }
    }
 
-   public static void clearScreen() {
-      try {
-         if (System.getProperty("os.name").contains("Windows")) {
-            new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
-         } else {
-            System.out.print("\033\143");
-         }
-      } catch (IOException | InterruptedException ex) {
+   //!
+   public void gameMenuChoice(int choice){
+      switch (choice){
+         case 1 -> //go to store pokemon
+         case 2 -> //go to store food
+         case 3 -> //feed pokemon
+         case 4 -> //feed pokemon
+         case 9 -> //save game
+         case 0 -> //finish round
       }
+
    }
+
+
 
 }

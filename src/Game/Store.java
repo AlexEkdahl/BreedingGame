@@ -76,7 +76,7 @@ public class Store {
          System.out.println(pokemon.toString(true));
          System.out.println("[y / n]");
          if (GameHelper.validateString(GameHelper.input.nextLine())) {
-            costumer.createPokemon(pokemon);
+            costumer.createPokemon(pokemon, false);
             costumer.handlePurchase(pokemon.getPrice());
             // TODO go back to store
          } else {
@@ -89,14 +89,13 @@ public class Store {
       }
    }
 
+   // ! Fix that you could get stuck if u have no money
    // ! Refactoring later, messy code unnecessary if statements
-   // TODO Maybe add an int containing what you got in food instead
    public void buyFood(Food food) {
       System.out.println("Max item you can buy: " + maxFood(food));
       System.out.println("How much: ");
       // TODO if 0 go back to store
-      String quantity = GameHelper.input.nextLine();
-      int number = GameHelper.getInt(quantity, 1, maxFood(food));
+      int number = GameHelper.getInt(true, 1, maxFood(food));
       if (enoughMoney(food, number, costumer)) {
          costumer.addFood(food, number);
          // TODO go back to store
@@ -151,5 +150,14 @@ public class Store {
 
    public int maxFood(Food food) {
       return costumer.getMoney() / food.getPrice();
+   }
+
+   // !
+   public int cheepestPokemon(){
+      int lowestPrice = 0;
+      for (Map.Entry<String, Pokemon> entry : pokemonShelf.entrySet()){
+         lowestPrice = (entry.getValue().getPrice() < lowestPrice ? : entry.getValue().getPrice() : lowestPrice);
+      }
+
    }
 }
