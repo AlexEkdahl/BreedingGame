@@ -6,6 +6,7 @@ public class Main {
     public static void main(String[] args) throws Exception {
 
         // just for debugging methods
+        Menu.clearScreen();
         Menu.mainMenu();
 
         System.out.println("How many players: ");
@@ -26,25 +27,32 @@ public class Main {
         Pokemon ditto = new Ditto();
         ditto.setGender(1);
         ditto.setName("Hej");
+        Pokemon ditto1 = new Ditto();
+        ditto1.setGender(2);
+        ditto1.setName("Hej1");
         
         player1.addPokemon(pika);
         player1.addPokemon(pika3);
         player1.addPokemon(ditto);
-        pika.loveMakeing(player1, pika3);
+        player1.addPokemon(ditto1);
 
-       /* Breeding breed = new Breeding(player1);
-        breed.printPokemon();
+        ditto.loveMakeing(player1, ditto1);
+
+        Breeding breed = new Breeding(player1);
+        breed.printAvailablePokemon();
+
         System.out.println("What pokemon do you want to breed?");
         String in = GameHelper.input.nextLine();
         int int1 = GameHelper.getInt(in, 1, player1.getPlayerPokemon().size());
+
         breed.setPokemon1(player1.getPlayerPokemon().get(int1-1));
         System.out.println();
         System.out.println();
-        breed.printPokemon(true, player1.getPlayerPokemon().get(int1-1));
-        /*
+        breed.printSuitableMate(true, player1.getPlayerPokemon().get(int1-1));
+
 
         while (true) {
-            Store store = new Store(player1, true);
+            Store store = new Store(player1);
             Menu.clearScreen();
             Menu.playerDisplay();
             store.displayPokemon();
@@ -52,13 +60,14 @@ public class Main {
             store.buyPokemon(store.pokemonToBuy(GameHelper.getInt(GameHelper.input.nextLine(), 1, 5)));
             player1.print();
             System.out.println();
-            Store storeFood = new Store(player1, false);
+            Store storeFood = new Store(player1);
+            Menu.clearScreen();
             Menu.playerDisplay();
             storeFood.displayFood();
             System.out.println("which food: ");
             store.buyFood(store.foodToBuy(GameHelper.getInt(GameHelper.input.nextLine(), 1, 4)));
 
         }
-        */
+
     }
 }

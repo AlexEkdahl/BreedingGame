@@ -7,10 +7,11 @@ import Game.PokemonClasses.*;
 
 public class Player {
 
+   private Game game;
    private String name;
    private int money;
    private ArrayList<Pokemon> playerPokemon;
-   //Food only contains one value, price. Therefore we store it as String and Price
+   //Food only contains one value, price. Therefore we store it as String and quantity
    // TODO might change to arrayList with just food
    private LinkedHashMap<String, Integer> playerFood;
 

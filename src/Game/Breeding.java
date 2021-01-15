@@ -15,7 +15,7 @@ public class Breeding {
       this.pokemonList = player.getPlayerPokemon();
    }
 
-   public void printPokemon() {
+   public void printAvailablePokemon() {
       if ((pokemonList.isEmpty())) {
          System.out.println("You have no Pokemon");
       } else if (pokemonList.size() == 1) {
@@ -29,19 +29,29 @@ public class Breeding {
       }
    }
 
-   // TODO add if there is no suitable spouse
-   public void printPokemon(boolean findMate, Pokemon pokemon) {
-      int i = 1;
+   //containing list of suitable mates for selected pokemon
+   public void printSuitableMate(boolean findMate, Pokemon pokemon) {
+      if (findSuitableMate(pokemon)) {
+         int i = 1;
+         for (Pokemon pokemonMate : pokemonList) {
+            System.out.println("[" + i + "]" + pokemonMate.toString());
+            i++;
+         }
+      } else {
+         System.out.println("No matching partner");
+         // TODO go back to menu
+      }
+
+   }
+
+   public boolean findSuitableMate(Pokemon pokemon) {
       for (Pokemon pokemonMate : pokemonList) {
-         if (pokemonMate != pokemon) {
-            if (pokemonMate.getClass() == pokemon.getClass()) {
-               if (pokemonMate.getGender() != pokemon.getGender()) {
-                  System.out.println("[" + i + "]" + pokemonMate.toString());
-                  i++;
-               }
-            }
+         if (pokemonMate != pokemon && pokemonMate.getClass() == pokemon.getClass()
+               && pokemonMate.getGender() != pokemon.getGender()) {
+            return true;
          }
       }
+      return false;
    }
 
    public void setPokemon1(Pokemon pokemon) {
@@ -52,9 +62,5 @@ public class Breeding {
       this.pokemon2 = pokemonMate;
    }
 
-
-   public void pokemonChoice() {
-
-   }
 
 }

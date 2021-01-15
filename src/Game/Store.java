@@ -12,18 +12,16 @@ public class Store {
    LinkedHashMap<String, Food> foodShelf;
    Player costumer;
 
-   public Store(Player costumer, boolean isPokeshop) {
+   public Store(Player costumer) {
       this.costumer = costumer;
-      if (isPokeshop) {
-         pokemonShelf = new LinkedHashMap<>();
-         fillPokeShelf(pokemonShelf);
-      } else {
-         foodShelf = new LinkedHashMap<>();
-         fillFoodShelf(foodShelf);
-      }
+      pokemonShelf = new LinkedHashMap<>();
+      foodShelf = new LinkedHashMap<>();
    }
 
-   public void fillPokeShelf(LinkedHashMap<String, Pokemon> pokemonShelf) {
+   public void fillPokeShelf() {
+      if (pokemonShelf != null) {
+         pokemonShelf.clear();
+      }
       pokemonShelf.put("Bulbasur", new Bulbasur());
       pokemonShelf.put("Charmander", new Charmander());
       pokemonShelf.put("Squirtle", new Squirtle());
@@ -31,26 +29,18 @@ public class Store {
       pokemonShelf.put("Ditto", new Ditto());
    }
 
-   public void clearPokeShelf() {
-      if (pokemonShelf != null) {
-         pokemonShelf.clear();
+   public void fillFoodShelf() {
+      if (foodShelf != null) {
+         foodShelf.clear();
       }
-   }
-
-   public void fillFoodShelf(LinkedHashMap<String, Food> foodShelf) {
       foodShelf.put("Berry", new Berry());
       foodShelf.put("PokéBlock", new PokeBlock());
       foodShelf.put("PokéPuff", new PokePuff());
       foodShelf.put("Rare Candy", new RareCandy());
    }
 
-   public void clearFoodShelf() {
-      if (foodShelf != null) {
-         foodShelf.clear();
-      }
-   }
-
    public void displayPokemon() {
+      fillPokeShelf();
       int n = 1;
       for (Map.Entry<String, Pokemon> entry : pokemonShelf.entrySet()) {
          if (costumer.getMoney() < entry.getValue().getPrice()) {
@@ -65,6 +55,7 @@ public class Store {
    }
 
    public void displayFood() {
+      fillFoodShelf();
       int n = 1;
       for (Map.Entry<String, Food> entry : foodShelf.entrySet()) {
          if (costumer.getMoney() < entry.getValue().getPrice()) {
@@ -87,13 +78,9 @@ public class Store {
          if (GameHelper.validateString(GameHelper.input.nextLine())) {
             costumer.createPokemon(pokemon);
             costumer.handlePurchase(pokemon.getPrice());
-            clearPokeShelf();
-            fillPokeShelf(pokemonShelf);
             // TODO go back to store
-
          } else {
             // TODO go back to store
-
          }
       } else {
          // TODO go back to store
@@ -112,7 +99,6 @@ public class Store {
       int number = GameHelper.getInt(quantity, 1, maxFood(food));
       if (enoughMoney(food, number, costumer)) {
          costumer.addFood(food, number);
-         clearFoodShelf();
          // TODO go back to store
       } else {
          // TODO go back to store
@@ -126,7 +112,6 @@ public class Store {
    }
 
    public boolean enoughMoney(Food food, int quantity, Player costumer) {
-
       return (costumer.getMoney() >= (food.getPrice() * quantity)) ? true : false;
    }
 

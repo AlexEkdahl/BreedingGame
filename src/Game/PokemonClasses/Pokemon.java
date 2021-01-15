@@ -65,7 +65,7 @@ public abstract class Pokemon {
    }
 
    public String toString(){
-      return getBreed() + "" + name + ", age: " + age + " " +gender + " and health: " + health + ". Generate max " + maxOffspring + " offsprings";
+      return getBreed() + " " + name + ", age: " + age + " " +gender + " and health: " + health + ". Generate max " + maxOffspring + " offsprings";
    }
 
    public String toString(boolean forShop){
@@ -77,12 +77,12 @@ public abstract class Pokemon {
       for (Food food: canEatFood){
          s = s + food.getClass().getSimpleName() + ", ";
       }
-      return s.trim();
+      return s.trim().replaceFirst(".$","");
    }
-   //TODO should argument be a player?
+   //TODO should one argument be a player?
    public void loveMakeing(Player owner, Pokemon mate){
       if (Math.random() > 0.5){
-         int offsprings = (int) (Math.random() * this.maxOffspring + 1);
+         int offsprings = (int) (Math.random() * this.maxOffspring) + 1;
          for (int i = 0; i < offsprings; i++){
             System.out.print(i+1+".");
             GameHelper.waitMilliSeconds(700);
