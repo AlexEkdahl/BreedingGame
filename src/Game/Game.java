@@ -12,6 +12,8 @@ public class Game {
    Menu menu = new Menu();
    Store store = new Store();
    Breed breed = new Breed();
+   Feed feed = new Feed();
+
 
    private int numOfRounds;
    private int startingMoney;
@@ -26,8 +28,11 @@ public class Game {
       menu.setGame(this);
       store.setGame(this);
       breed.setGame(this);
+      feed.setGame(this);
       
       menu.mainMenu();
+
+      //TODO method to change player and round++
       currentPlayer = players.get(0);
       menu.gameMenu(currentPlayer);
 

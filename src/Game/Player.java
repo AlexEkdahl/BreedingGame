@@ -11,9 +11,6 @@ public class Player {
    private String name;
    private int money;
    private ArrayList<Pokemon> playerPokemon;
-   // Food only contains one value, price. Therefore we store it as String and
-   // quantity
-   // TODO might change to arrayList with just food
    private LinkedHashMap<Food, Integer> playerFood;
 
    public Player(String name, int money) {
@@ -73,7 +70,6 @@ public class Player {
       money -= itemCost;
    }
 
-   // debugging
    public void printPokemonList() {
       int i = 1;
       for (Pokemon pokemon : playerPokemon) {
@@ -82,15 +78,32 @@ public class Player {
       }
    }
 
+   public LinkedHashMap<Food, Integer> getPlayerFood() {
+      return playerFood;
+   }
+
+   public void printPlayerFood() {
+      int n = 1;
+      for (Map.Entry<Food, Integer> entry : playerFood.entrySet()) {
+         System.out.println("[" + n + "]" + entry.getKey().getType() + "\t" + entry.getValue());
+         n++;
+      }
+   }
+
    public Pokemon getPokemon(int index) {
       return playerPokemon.get(index);
    }
 
+   //!
    public void feedPokemon(int index) {
       System.out.println("Choose food to feed: ");
-
       getPokemon(index - 1);
+   }
 
+   public void sellPokemon(int index){
+      System.out.println("You got " + playerPokemon.get(index).getValue() + " for selling " + getPokemon(index).getName());
+      money += playerPokemon.get(index).getValue();
+      playerPokemon.remove(index);
 
    }
 

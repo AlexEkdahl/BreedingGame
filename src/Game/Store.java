@@ -8,25 +8,21 @@ import Game.FoodClasses.*;
 
 public class Store {
 
-   Game game;
-   Menu menu;
+   private Game game;
+
    private LinkedHashMap<String, Pokemon> pokemonShelf = new LinkedHashMap<>();
    private LinkedHashMap<String, Food> foodShelf = new LinkedHashMap<>();
 
    public Store() {
-
+      
    }
-
+   
    public void buyYourPokemon(Player costumer) {
       displayPokemon(costumer);
    }
-
+   
    public void setGame(Game game) {
       this.game = game;
-   }
-
-   public void setMenu(Menu menu) {
-      this.menu = menu;
    }
 
    private void fillPokeShelf() {
@@ -153,6 +149,25 @@ public class Store {
 
    public int maxFood(Food food, Player customer) {
       return customer.getMoney() / food.getPrice();
+   }
+
+   public void sellPokemon(Player customer){
+      game.menu.playerDisplay(customer);
+      System.out.println("====== Sell your POKEMON ======");
+      customer.printPokemonList();
+      System.out.println("[0] Exit to game menu");
+      int index = GameHelper.getInt(true, 0, customer.getPlayerPokemon().size());
+      if (index == 0) {
+         game.menu.gameMenu(customer);
+      }
+      System.out.println("Do you want to sell " + customer.getPokemon(index-1).getName() + " ?");
+      System.out.println("[y / n]");
+         if (GameHelper.validateString(GameHelper.input.nextLine())) {
+            customer.sellPokemon(index -1);
+         } else {
+            sellPokemon(customer);
+         }
+
    }
 
 }

@@ -1,5 +1,7 @@
 package Game.PokemonClasses;
 
+import java.util.*;
+
 import Game.GameHelper;
 import Game.Player;
 import Game.FoodClasses.*;
@@ -16,6 +18,7 @@ public abstract class Pokemon {
    protected boolean isSick = false;
 
    protected int maxOffspring;
+   protected Set<Food> canEat;
    protected Food[] canEatFood;
    protected int age = 0;
    protected int maxAge;
@@ -39,6 +42,14 @@ public abstract class Pokemon {
 
    public String getGenderString() {
       return this.gender.toString().toLowerCase();
+   }
+
+   public Food[] getCanEatFood() {
+      return canEatFood;
+   }
+
+   public int getValue(){
+      return (price * health) / 100;
    }
 
    public void eat() {

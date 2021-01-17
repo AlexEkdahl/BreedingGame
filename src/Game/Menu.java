@@ -31,9 +31,11 @@ public class Menu {
       System.out.println("[2] Buy food");
       System.out.println("[3] Feed Pokemon");
       System.out.println("[4] Breed Pokemon");
+      System.out.println("[5] Sell Pokemon");
+      System.out.println("[6] Sell Pokemon");
       System.out.println("\n[9] -Save Game- ");
       System.out.println("[0] - Finish round");
-      gameMenuChoice(GameHelper.getInt(true, 0, 4, 9), player);
+      gameMenuChoice(GameHelper.getInt(true, 0, 6, 9), player);
    }
 
    // TODO
@@ -121,9 +123,9 @@ public class Menu {
       switch (choice) {
          case 1 -> game.store.displayPokemon(player);
          case 2 -> game.store.displayFood(player);
-         case 3 -> feedPokemon(player);
-         // case 3 -> //sell pokemon
+         case 3 -> game.feed.feedPokemon(player);
          case 4 -> game.breed.printAvailablePokemon(player);
+         case 5 -> game.store.sellPokemon(player);
          // case 9 -> //save game
          // case 0 -> //finish round
       }
