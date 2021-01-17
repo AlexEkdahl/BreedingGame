@@ -8,17 +8,28 @@ import Game.FoodClasses.*;
 
 public class Store {
 
-   LinkedHashMap<String, Pokemon> pokemonShelf;
-   LinkedHashMap<String, Food> foodShelf;
-   Player costumer;
+   Game game;
+   Menu menu;
+   private LinkedHashMap<String, Pokemon> pokemonShelf = new LinkedHashMap<>();
+   private LinkedHashMap<String, Food> foodShelf = new LinkedHashMap<>();
 
-   public Store(Player costumer) {
-      this.costumer = costumer;
-      pokemonShelf = new LinkedHashMap<>();
-      foodShelf = new LinkedHashMap<>();
+   public Store() {
+
    }
 
-   public void fillPokeShelf() {
+   public void buyYourPokemon(Player costumer) {
+      displayPokemon(costumer);
+   }
+
+   public void setGame(Game game) {
+      this.game = game;
+   }
+
+   public void setMenu(Menu menu) {
+      this.menu = menu;
+   }
+
+   private void fillPokeShelf() {
       if (pokemonShelf != null) {
          pokemonShelf.clear();
       }
@@ -29,7 +40,7 @@ public class Store {
       pokemonShelf.put("Ditto", new Ditto());
    }
 
-   public void fillFoodShelf() {
+   private void fillFoodShelf() {
       if (foodShelf != null) {
          foodShelf.clear();
       }
@@ -39,11 +50,14 @@ public class Store {
       foodShelf.put("Rare Candy", new RareCandy());
    }
 
-   public void displayPokemon() {
+   public void displayPokemon(Player customer) {
+      GameHelper.clearScreen();
+      game.menu.playerDisplay(customer);
       fillPokeShelf();
       int n = 1;
+      System.out.println("===== Pokemon Shop =====\n");
       for (Map.Entry<String, Pokemon> entry : pokemonShelf.entrySet()) {
-         if (costumer.getMoney() < entry.getValue().getPrice()) {
+         if (customer.getMoney() < entry.getValue().getPrice()) {
             System.out
                   .println("[" + n + "]" + entry.getKey() + "\t" + entry.getValue().getPrice() + "\t\t[to expensive]");
             n++;
@@ -52,13 +66,18 @@ public class Store {
             n++;
          }
       }
+      System.out.println("\n[0] Exit shop");
+      pokemonToBuy(GameHelper.getInt(true, 0, 5), customer);
    }
 
-   public void displayFood() {
+   public void displayFood(Player customer) {
+      GameHelper.clearScreen();
+      game.menu.playerDisplay(customer);
       fillFoodShelf();
       int n = 1;
+      System.out.println("===== PokeFood Shop =====\n");
       for (Map.Entry<String, Food> entry : foodShelf.entrySet()) {
-         if (costumer.getMoney() < entry.getValue().getPrice()) {
+         if (customer.getMoney() < entry.getValue().getPrice()) {
             System.out.println(
                   "[" + n + "]" + entry.getKey() + "\t" + entry.getValue().getPrice() + "\t\t [too expensive]");
             n++;
@@ -67,42 +86,39 @@ public class Store {
             n++;
          }
       }
+      System.out.println("\n[0] Exit shop");
+      foodToBuy(GameHelper.getInt(true, 0, 5), customer);
    }
 
-   public void buyPokemon(Pokemon pokemon) {
-      if (enoughMoney(pokemon, costumer)) {
+   public void buyPokemon(Pokemon pokemon, Player customer) {
+      if (enoughMoney(pokemon, customer)) {
          System.out.println("Would you like to buy a " + pokemon.getBreed() + " for " + pokemon.getPrice());
          System.out.println("===== info =====");
          System.out.println(pokemon.toString(true));
          System.out.println("[y / n]");
          if (GameHelper.validateString(GameHelper.input.nextLine())) {
-            costumer.createPokemon(pokemon, false);
-            costumer.handlePurchase(pokemon.getPrice());
-            // TODO go back to store
+            customer.createPokemon(pokemon, false);
+            customer.handlePurchase(pokemon.getPrice());
+            displayPokemon(customer);
          } else {
-            // TODO go back to store
+            displayPokemon(customer);
          }
       } else {
-         // TODO go back to store
          System.out.println("Not enough money");
-         displayPokemon();
+         displayPokemon(customer);
       }
    }
 
-   // ! Fix that you could get stuck if u have no money
-   // ! Refactoring later, messy code unnecessary if statements
-   public void buyFood(Food food) {
-      System.out.println("Max item you can buy: " + maxFood(food));
+   public void buyFood(Food food, Player customer) {
+      System.out.println("Max item you can buy: " + maxFood(food, customer));
       System.out.println("How much: ");
-      // TODO if 0 go back to store
-      int number = GameHelper.getInt(true, 1, maxFood(food));
-      if (enoughMoney(food, number, costumer)) {
-         costumer.addFood(food, number);
-         // TODO go back to store
+      int number = GameHelper.getInt(true, 1, maxFood(food, customer));
+      if (number == 0) {
+         displayFood(customer);
       } else {
-         // TODO go back to store
-         System.out.println("Not enough money");
-         displayFood();
+         customer.addFood(food, number);
+         customer.handlePurchase((food.getPrice() * number));
+         displayFood(customer);
       }
    }
 
@@ -114,50 +130,29 @@ public class Store {
       return (costumer.getMoney() >= (food.getPrice() * quantity)) ? true : false;
    }
 
-   public Pokemon pokemonToBuy(int number) {
-      // needed a reachable return statement
-      Pokemon pokemon = new Ditto();
+   public void pokemonToBuy(int number, Player customer) {
       switch (number) {
-         case 1:
-            return new Bulbasur();
-         case 2:
-            return new Charmander();
-         case 3:
-            return new Squirtle();
-         case 4:
-            return new Pikachu();
-         case 5:
-            return new Ditto();
+         case 0 -> game.menu.gameMenu(customer);
+         case 1 -> buyPokemon(new Bulbasur(), customer);
+         case 2 -> buyPokemon(new Charmander(), customer);
+         case 3 -> buyPokemon(new Squirtle(), customer);
+         case 4 -> buyPokemon(new Pikachu(), customer);
+         case 5 -> buyPokemon(new Ditto(), customer);
       }
-      return pokemon;
    }
 
-   public Food foodToBuy(int number) {
-      // needed a reachable return statement
-      Food food = new Berry();
+   public void foodToBuy(int number, Player customer) {
       switch (number) {
-         case 1:
-            return new Berry();
-         case 2:
-            return new PokeBlock();
-         case 3:
-            return new PokePuff();
-         case 4:
-            return new RareCandy();
+         case 0 -> game.menu.gameMenu(customer);
+         case 1 -> buyFood(new Berry(), customer);
+         case 2 -> buyFood(new PokeBlock(), customer);
+         case 3 -> buyFood(new PokePuff(), customer);
+         case 4 -> buyFood(new RareCandy(), customer);
       }
-      return food;
    }
 
-   public int maxFood(Food food) {
-      return costumer.getMoney() / food.getPrice();
+   public int maxFood(Food food, Player customer) {
+      return customer.getMoney() / food.getPrice();
    }
 
-   // !
-   public int cheepestPokemon(){
-      int lowestPrice = 0;
-      for (Map.Entry<String, Pokemon> entry : pokemonShelf.entrySet()){
-         lowestPrice = (entry.getValue().getPrice() < lowestPrice ? : entry.getValue().getPrice() : lowestPrice);
-      }
-
-   }
 }

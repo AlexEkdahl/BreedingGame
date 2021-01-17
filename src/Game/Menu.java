@@ -1,7 +1,8 @@
 package Game;
 
-import java.io.IOException;
 import java.util.ArrayList;
+
+import Game.PokemonClasses.Pokemon;
 
 public class Menu {
 
@@ -23,30 +24,47 @@ public class Menu {
       mainMenuChoice(GameHelper.getInt(true, 0, 2));
    }
 
-   public void gameMenu() {
-      System.out.println("\n GAME MENU");
+   public void gameMenu(Player player) {
+      playerDisplay(player);
+      System.out.println("\tGAME MENU");
       System.out.println("[1] Buy Pokemon");
       System.out.println("[2] Buy food");
       System.out.println("[3] Feed Pokemon");
       System.out.println("[4] Breed Pokemon");
       System.out.println("\n[9] -Save Game- ");
       System.out.println("[0] - Finish round");
-      gameMenuChoice(GameHelper.getInt(true, 0, 4, 9));
-
+      gameMenuChoice(GameHelper.getInt(true, 0, 4, 9), player);
    }
-   //TODO
-   public void playerDisplay() {
+
+   // TODO
+   public void playerDisplay(Player player) {
       GameHelper.clearScreen();
-      System.out.println("PLAYERNAME");
-      System.out.println("WWALLET");
-      System.out.println("ROUND");
+      System.out.println(player.getName());
+      System.out.println("Money: " + player.getMoney());
+      System.out.println("Round: ");
       System.out.println();
-      System.out.println("POKEMON NAME");
-      System.out.println("POKEMON BREED");
+      System.out.println("POKEMON");
       System.out.println("POKEMON AGE");
       System.out.println("POKEMON HEALTH");
-      System.out.println("POKEMON GENDER");
+      System.out.println();
+
       System.out.println("\n".repeat(3));
+   }
+
+   public void feedPokemon(Player player) {
+      playerDisplay(player);
+      int choice = 0;
+      System.out.println("===== Feed your Pokemon =====");
+      player.printPokemonList();
+      System.out.println("\n[0] Exit to game menu");
+      choice = GameHelper.getInt(true, 0, player.getPlayerPokemon().size());
+      if (choice == 0) {
+         gameMenu(player);
+      } else {
+         playerDisplay(player);
+         player.feedPokemon(choice);
+      }
+
    }
 
    public void howToPlay() {
@@ -66,7 +84,7 @@ public class Menu {
       System.exit(0);
    }
 
-   //TODO refactor
+   // TODO refactor
    public void newGameMenu() {
       ArrayList<Player> players = new ArrayList<>();
       int numOfPlayers;
@@ -82,13 +100,11 @@ public class Menu {
       startingMoney = GameHelper.getInt(true, 100, 1000);
 
       for (int i = 1; i <= numOfPlayers; i++) {
-         System.out.printf("Player %d name:\n",i);
+         System.out.printf("Player %d name:\n", i);
          players.add(new Player(GameHelper.input.nextLine(), startingMoney));
       }
-
       game.setNumOfRounds(numOfRounds);
       game.setPlayers(players);
-      game.setStartingMoney(startingMoney);
    }
 
    public void mainMenuChoice(int choice) {
@@ -100,19 +116,18 @@ public class Menu {
       }
    }
 
-   //!
-   public void gameMenuChoice(int choice){
-      switch (choice){
-         case 1 -> //go to store pokemon
-         case 2 -> //go to store food
-         case 3 -> //feed pokemon
-         case 4 -> //feed pokemon
-         case 9 -> //save game
-         case 0 -> //finish round
+   // !
+   public void gameMenuChoice(int choice, Player player) {
+      switch (choice) {
+         case 1 -> game.store.displayPokemon(player);
+         case 2 -> game.store.displayFood(player);
+         case 3 -> feedPokemon(player);
+         // case 3 -> //sell pokemon
+         case 4 -> game.breed.printAvailablePokemon(player);
+         // case 9 -> //save game
+         // case 0 -> //finish round
       }
 
    }
-
-
 
 }

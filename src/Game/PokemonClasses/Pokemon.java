@@ -65,7 +65,7 @@ public abstract class Pokemon {
       if (forShop) {
          return getBreed() + ", can generate max " + maxOffspring + " offsprings and eat: " + foodToString();
       }
-      return getBreed() + " " + name + ", age: " + age + " " + gender + " and health: " + health + ". Generate max "
+      return getBreed() + " named " + name + ", age: " + age + " " + gender + " and health: " + health + ". Generate max "
             + maxOffspring + " offsprings";
    }
 
@@ -77,7 +77,6 @@ public abstract class Pokemon {
       return s.trim().replaceFirst(".$", "");
    }
 
-   // TODO should one argument be a player?
    public void loveMakeing(Player owner, Pokemon mate) {
       if (Math.random() > 0.5) {
          int offsprings = (int) (Math.random() * this.maxOffspring) + 1;

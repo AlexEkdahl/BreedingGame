@@ -9,6 +9,7 @@ public class GameHelper {
    public static Scanner input = new Scanner(System.in);
 
    public static boolean validateString(String answer) {
+      System.out.print("Enter here: ");
       if (!answer.equalsIgnoreCase("y") && !answer.equalsIgnoreCase("n")) {
          System.out.println("[y / n]");
          answer = input.nextLine();
@@ -19,8 +20,9 @@ public class GameHelper {
 
    // To make sure user choice is in range of what the menu/question is
    public static int getInt(boolean useScanner, int min, int max) {
+
       int returnInt = 0;
-      System.out.print("% ");
+      System.out.print("Enter here: ");
       String s = GameHelper.input.nextLine();
       if (useScanner) {
          do {
@@ -41,7 +43,7 @@ public class GameHelper {
    // Overloaded get Int
    public static int getInt(boolean useScanner, int min, int max, int save) {
       int returnInt = 0;
-      System.out.print("% ");
+      System.out.println("Enter here: ");
       String s = GameHelper.input.nextLine();
       if (useScanner) {
          do {
