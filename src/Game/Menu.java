@@ -165,28 +165,19 @@ public class Menu {
       if (player.canBreed()) {
          System.out.println("You made your choice of breeding this round");
          GameHelper.inputEnter();
-         // !
-         //gameMenu(player);
+
       } else if (player.canBuyFood()) {
          System.out.println("You made your choice, you can only buy food this round");
          GameHelper.inputEnter();
-         // !
-         //gameMenu(player);
       } else if (player.canBuyPokemon()) {
          System.out.println("You made your choice, you can only buy Pokemon this round");
          GameHelper.inputEnter();
-         // !
-         //gameMenu(player);
       } else if (player.canSellPokemon()) {
          System.out.println("You made your choice, you can only sell Pokemon this round");
          GameHelper.inputEnter();
-         // !
-         //gameMenu(player);
       } else if (player.canFeedPokemon()) {
          System.out.println("You made your choice, you can only feed your Pokemon this round");
          GameHelper.inputEnter();
-         // !
-         //gameMenu(player);
       }
    }
 
