@@ -25,9 +25,10 @@ public class Breed {
             System.out.println("[" + i + "]" + pokemon.toString(false));
             i++;
          }
-         System.out.println("\n[0] Exit to game menu");
-         System.out.println("Select your first Pokemon");
-         printSuitableMate(getPokemon(GameHelper.getInt(0, player.getPlayerPokemon().size()), player), player);
+         System.out.println("\n[0] Exit to game menu" + "\nSelect your first Pokemon");
+         int choice = GameHelper.getInt(0, player.getPlayerPokemon().size());
+         if (choice != 0)
+            printSuitableMate(getPokemon(choice, player), player);
       } else {
          System.out.println("You dont have enough Pokemon");
          GameHelper.inputEnter();
@@ -38,7 +39,7 @@ public class Breed {
    public void printSuitableMate(Pokemon pokemon, Player player) {
       GameHelper.clearScreen();
       game.menu.playerDisplay(player);
-      System.out.println("===== Breeding =====");
+      System.out.println("===== Select your partner =====");
       if (findSuitableMate(pokemon, player)) {
          ArrayList<Pokemon> tempMate = getMate(pokemon, player);
          int i = 1;
@@ -47,15 +48,16 @@ public class Breed {
             i++;
          }
          System.out.println("\n[0] Exit to game menu");
-         System.out.println("Available partners");
-         System.out.println("Select your partner");
-         if (Math.random() > 0.5) {
-            pokemon.loveMakeing(player, getMate(GameHelper.getInt(1, tempMate.size()), tempMate));
-            player.accessShops(false);
-         } else {
-            System.out.println("Unsuccessful breeding");
-            player.accessShops(false);
-            GameHelper.inputEnter();
+         int choice = GameHelper.getInt(0, tempMate.size());
+         if (choice != 0) {
+            if (Math.random() > 0.5) {
+               pokemon.loveMakeing(player, getMate(choice, tempMate));
+               player.accessShops(false);
+            } else {
+               System.out.println("Unsuccessful breeding");
+               player.accessShops(false);
+               GameHelper.inputEnter();
+            }
          }
       } else {
          System.out.println("No matching partner");
@@ -86,10 +88,6 @@ public class Breed {
    }
 
    private Pokemon getPokemon(int index, Player player) {
-      if (index == 0) {
-         // !
-         // game.menu.gameMenu(player);
-      }
       return player.getPlayerPokemon().get(index - 1);
    }
 

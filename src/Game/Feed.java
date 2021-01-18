@@ -40,17 +40,16 @@ public class Feed {
 
          } else {
             System.out.println("You have no suitable food for " + player.getPokemon(pokeIndex - 1).getName());
-            GameHelper.waitMilliSeconds(2000);
-            feedPokemon(player);
+            GameHelper.inputEnter();
          }
       }
 
    }
-
+   //TODO läspå
    // From my understandings it would have been better to use a Set of food,
    // reference Array is bad
    private boolean rightFood(Pokemon pokemon, Food targetFood) {
-      return Arrays.asList(pokemon.getCanEatFood()).getClass().contains(targetFood).getClass());
+      return Arrays.asList(pokemon.getCanEatFood()).getClass().contains(targetFood);
    }
 
    // Only print food this pokemon can eat that the player got

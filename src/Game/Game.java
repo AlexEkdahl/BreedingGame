@@ -1,8 +1,7 @@
 package Game;
 
 import java.util.ArrayList;
-
-import Game.PokemonClasses.Pikachu;
+import Game.PokemonClasses.*;
 
 public class Game {
 
@@ -59,6 +58,7 @@ public class Game {
    }
 
    public void changePlayer() {
+      GameHelper.clearScreen();
       System.out.println("Next player");
       GameHelper.inputEnter();
       // If the player is last in turn, then start over with player 1
@@ -66,6 +66,7 @@ public class Game {
          currentPlayer = players.get(0);
          currentPlayer.accessShops(true);
          currentPlayer.setRoundDone(false);
+         reducePokemonHealth();
          round++;
       } else {
          currentPlayer = players.get(players.indexOf(currentPlayer) + 1);
@@ -73,5 +74,23 @@ public class Game {
          currentPlayer.setRoundDone(false);
       }
    }
+
+   private void pokemonAgeing(){
+      for (Player player: players){
+         for(Pokemon pokemon: player.getPlayerPokemon()){
+            pokemon.aging();
+         }
+      }
+   }
+
+   private void reducePokemonHealth(){
+      for (Player player: players){
+         for(Pokemon pokemon: player.getPlayerPokemon()){
+            pokemon.reduceHealth();
+         }
+      }
+   }
+
+
 
 }

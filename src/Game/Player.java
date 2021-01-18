@@ -95,13 +95,12 @@ public class Player {
    }
 
    // creates pokemon to playerPokemon
-   // TODO rename since it also add pokemon to playerPokemon
-
    public void createPokemon(Pokemon pokemon, boolean offspring) {
       if (offspring) {
          game.menu.playerDisplay(this);
          pokemon.setGender(Math.random() > 0.5 ? 1 : 2);
          System.out.println("You got a " + pokemon.getGenderString() + " " + pokemon.getBreed());
+         GameHelper.waitMilliSeconds(1000);
       } else {
          game.menu.playerDisplay(this);
          System.out.println("What is " + pokemon.getBreed() + " gender?");

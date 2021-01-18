@@ -2,6 +2,8 @@ package Game;
 
 import java.util.ArrayList;
 
+import Game.PokemonClasses.Pokemon;
+
 public class Menu {
 
    Game game;
@@ -42,7 +44,7 @@ public class Menu {
       System.out.println("Money: " + player.getMoney());
       System.out.println("Round: " + game.getRound());
       System.out.println();
-      System.out.println("Number of Pokemon: " + player.getPlayerPokemon().size());
+      pokeDisplay(player);
       // System.out.println("POKEMON AGE");
       // System.out.println("POKEMON HEALTH");
       // System.out.println();
@@ -125,7 +127,6 @@ public class Menu {
                choiceMade(player);
             }
             break;
-
          case 2:
             if (player.canBuyFood()) {
                game.store.displayFood(player);
@@ -165,7 +166,6 @@ public class Menu {
       if (player.canBreed()) {
          System.out.println("You made your choice of breeding this round");
          GameHelper.inputEnter();
-
       } else if (player.canBuyFood()) {
          System.out.println("You made your choice, you can only buy food this round");
          GameHelper.inputEnter();
@@ -178,6 +178,15 @@ public class Menu {
       } else if (player.canFeedPokemon()) {
          System.out.println("You made your choice, you can only feed your Pokemon this round");
          GameHelper.inputEnter();
+      } else {
+         System.out.println("You made your choice, you can only try or succeed breeding your Pokemon once per round");
+         GameHelper.inputEnter();
+      }
+   }
+
+   private void pokeDisplay(Player player){
+      for (Pokemon pokemon : player.getPlayerPokemon()){
+         System.out.println(pokemon.getName() + "\tage: " + pokemon.getAge() + "\thealth: " + pokemon.getHealth());
       }
    }
 

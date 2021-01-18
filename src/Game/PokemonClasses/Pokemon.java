@@ -52,6 +52,21 @@ public abstract class Pokemon {
       return (price * health) / 100;
    }
 
+   public void reduceHealth() {
+      this.health -= (int) (Math.random() * 15) + 10;
+   }
+
+   public int getAge() {
+      return age;
+   }
+   public void aging() {
+      this.age++;
+   }
+
+   public int getHealth() {
+      return health;
+   }
+
    public void eat() {
 
    }
