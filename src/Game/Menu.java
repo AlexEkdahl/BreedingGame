@@ -32,11 +32,7 @@ public class Menu {
       System.out.println("[5] Sell Pokemon");
       System.out.println("\n[9] -Save Game- ");
       System.out.println("[0] - Finish round");
-<<<<<<< HEAD
       gameMenuChoice(GameHelper.getInt(0, 5), player);
-=======
-      gameMenuChoice(GameHelper.getInt(true, 0, 5), player);
->>>>>>> c275e31fb1b4581bd7f05fb8ced306b2309046ec
    }
 
    // TODO
@@ -78,7 +74,7 @@ public class Menu {
                   + "* Pokemon, buying food or try to breed. Each Pokemon have a different\n"
                   + "* value. When the last turn is finished the players automatically sell\n"
                   + "* their Pokemon and the winner is the one with most money left.");
-      GameHelper.waitMilliSeconds(8000);
+      GameHelper.inputEnter();
       mainMenu();
    }
 
@@ -162,27 +158,27 @@ public class Menu {
    private void choiceMade(Player player) {
       if (player.canBreed()) {
          System.out.println("You made your choice of breeding this round");
-         GameHelper.waitMilliSeconds(3000);
+         GameHelper.inputEnter();
          //!
          gameMenu(player);
       } else if (player.canBuyFood()) {
          System.out.println("You made your choice, you can only buy food this round");
-         GameHelper.waitMilliSeconds(3000);
+         GameHelper.inputEnter();
          //!
          gameMenu(player);
       } else if (player.canBuyPokemon()) {
          System.out.println("You made your choice, you can only buy Pokemon this round");
-         GameHelper.waitMilliSeconds(3000);
+         GameHelper.inputEnter();
          //!
          gameMenu(player);
       } else if (player.canSellPokemon()) {
          System.out.println("You made your choice, you can only sell Pokemon this round");
-         GameHelper.waitMilliSeconds(3000);
+         GameHelper.inputEnter();
          //!
          gameMenu(player);
       } else if (player.canFeedPokemon()) {
          System.out.println("You made your choice, you can only feed your Pokemon this round");
-         GameHelper.waitMilliSeconds(3000);
+         GameHelper.inputEnter();
          //!
          gameMenu(player);
       }

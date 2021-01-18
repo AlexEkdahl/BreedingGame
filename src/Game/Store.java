@@ -110,11 +110,7 @@ public class Store {
          game.menu.accessThisStore("buyFood", customer);
          System.out.println("Max item you can buy: " + maxFood(food, customer));
          System.out.println("How much: ");
-<<<<<<< HEAD
          int number = GameHelper.getInt(1, maxFood(food, customer));
-=======
-         int number = GameHelper.getInt(true, 1, maxFood(food, customer));
->>>>>>> c275e31fb1b4581bd7f05fb8ced306b2309046ec
          if (number == 0) {
             //!
             displayFood(customer);
@@ -170,11 +166,7 @@ public class Store {
       System.out.println("====== Sell your POKEMON ======");
       customer.printPokemonList();
       System.out.println("\n[0] Exit to game menu");
-<<<<<<< HEAD
       int index = GameHelper.getInt(0, customer.getPlayerPokemon().size());
-=======
-      int index = GameHelper.getInt(true, 0, customer.getPlayerPokemon().size());
->>>>>>> c275e31fb1b4581bd7f05fb8ced306b2309046ec
       if (index == 0) {
          //!
          game.menu.gameMenu(customer);

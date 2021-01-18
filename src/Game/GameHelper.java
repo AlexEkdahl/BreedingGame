@@ -17,55 +17,56 @@ public class GameHelper {
       }
       return (answer.equalsIgnoreCase("y") ? true : false);
    }
+   
+   //Check if string is int
+   private static int isInt(String s){
+      int n = -1;
+      try {
+         return Integer.parseInt(s);
+      } catch (Exception e) {
+         System.out.println("Enter an integer");
+         isInt(input.nextLine());
+      }
+      return n;
+   }
 
    // To make sure user choice is in range of what the menu/question is
-<<<<<<< HEAD
-   public static int getInt(int min, int max) {
-=======
-   public static int getInt(boolean useScanner, int min, int max) {
->>>>>>> c275e31fb1b4581bd7f05fb8ced306b2309046ec
-      int returnInt = -1;
-      System.out.print("Enter here: ");
-            try {
-               returnInt = Integer.parseInt(GameHelper.input.nextLine());
-               if (returnInt > max || returnInt < min) {
-                  System.out.println("Enter a number between " + min + "-" + max);
-                  getInt(min, max);
-               }
-            } catch (Exception e) {
-               System.out.println("Enter an integer");
-               getInt(min, max);
-            }
-      return returnInt;
-   }
-
-   // Overloaded get Int
-   public static int getInt(int min, int max, int save) {
-      int returnInt = 0;
+   public static int getInt(int min, int max){
       System.out.println("Enter here: ");
-      String s = GameHelper.input.nextLine();
-
-         do {
-            try {
-               returnInt = Integer.parseInt(s);
-               if (returnInt > max || returnInt < min && returnInt != save) {
-                  System.out.println("Enter a number between " + min + "-" + max + ", or " + save);
-                  s = input.nextLine();
-               }
-            } catch (Exception e) {
-               System.out.println("Enter an integer");
-               s = input.nextLine();
-            }
-         } while (returnInt > max || returnInt < min && returnInt != save);
-
-      return returnInt;
+      int intReturn = isInt(input.nextLine());
+      while (intReturn > max || intReturn < min){
+         System.out.println("Enter a number between " + min + "-" + max);
+         intReturn = isInt(input.nextLine());
+      }
+      return intReturn;
    }
+
+      // Overloaded with save option
+      public static int getInt(int min, int max, int save){
+         System.out.println("Enter here: ");
+         int intReturn = isInt(input.nextLine());
+         while ((intReturn > max || intReturn < min) && intReturn !=save){
+            System.out.println("Enter a number between " + min + "-" + max + ", or " + save);
+            intReturn = isInt(input.nextLine());
+         }
+         return intReturn;
+      }
+   
 
    // "Sleeps" the terminal for int ms seconds
    public static void waitMilliSeconds(int ms) {
       try {
          Thread.sleep(ms);
       } catch (InterruptedException e) {
+         e.printStackTrace();
+      }
+   }
+
+   public static void inputEnter(){
+      System.out.println("\nPress Enter to continue...");
+      try {
+         System.in.read();
+      } catch (IOException e) {
          e.printStackTrace();
       }
    }
