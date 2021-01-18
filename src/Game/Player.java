@@ -6,7 +6,7 @@ import Game.FoodClasses.Food;
 import Game.PokemonClasses.*;
 
 public class Player {
-
+   public Game game;
    private String name;
    private int money;
    private ArrayList<Pokemon> playerPokemon;
@@ -17,12 +17,21 @@ public class Player {
    private boolean canBuyFood = true;
    private boolean canBreed = true;
    private boolean canFeedPokemon = true;
+   private boolean roundDone = false;
 
    public Player(String name, int money) {
       this.name = name;
       this.money = money;
       this.playerPokemon = new ArrayList<>();
       this.playerFood = new LinkedHashMap<>();
+   }
+
+   public void setRoundDone(boolean roundDone) {
+      this.roundDone = roundDone;
+   }
+
+   public boolean getRoundDone(){
+      return roundDone;
    }
 
    public void setCanBreed(boolean canBreed) {
@@ -90,13 +99,16 @@ public class Player {
 
    public void createPokemon(Pokemon pokemon, boolean offspring) {
       if (offspring) {
+         game.menu.playerDisplay(this);
          pokemon.setGender(Math.random() > 0.5 ? 1 : 2);
          System.out.println("You got a " + pokemon.getGenderString() + " " + pokemon.getBreed());
       } else {
+         game.menu.playerDisplay(this);
          System.out.println("What is " + pokemon.getBreed() + " gender?");
          System.out.println("[1] female / [2] male");
          pokemon.setGender(GameHelper.getInt(1, 2));
       }
+      game.menu.playerDisplay(this);
       System.out.println("Nickname for your " + pokemon.getBreed() + ": ");
       pokemon.setName(GameHelper.input.nextLine());
       addPokemon(pokemon);

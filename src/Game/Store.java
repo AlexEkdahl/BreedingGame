@@ -21,6 +21,7 @@ public class Store {
       this.game = game;
    }
 
+   // TODO why?
    private void fillPokeShelf() {
       if (pokemonShelf != null) {
          pokemonShelf.clear();
@@ -32,6 +33,7 @@ public class Store {
       pokemonShelf.put("Ditto", new Ditto());
    }
 
+   // TODO why?
    private void fillFoodShelf() {
       if (foodShelf != null) {
          foodShelf.clear();
@@ -51,15 +53,18 @@ public class Store {
       for (Map.Entry<String, Pokemon> entry : pokemonShelf.entrySet()) {
          if (customer.getMoney() < entry.getValue().getPrice()) {
             System.out
-                  .println("[" + n + "]" + entry.getKey() + "\t" + entry.getValue().getPrice() + "\t\t[to expensive]");
+                  .println("["+n+"]" + entry.getKey() + "\t" + entry.getValue().getPrice() + "\t\t[to expensive]");
             n++;
          } else {
-            System.out.println("[" + n + "]" + entry.getKey() + "\t" + entry.getValue().getPrice());
+            System.out.println("["+n+"]" + entry.getKey() + "\t" + entry.getValue().getPrice());
             n++;
          }
       }
       System.out.println("\n[0] Exit shop");
-      pokemonToBuy(GameHelper.getInt(0, 5), customer);
+      int answer = GameHelper.getInt(0, 5);
+      if (answer != 0) {
+         pokemonToBuy(answer, customer);
+      }
    }
 
    public void displayFood(Player customer) {
@@ -70,65 +75,49 @@ public class Store {
       for (Map.Entry<String, Food> entry : foodShelf.entrySet()) {
          if (customer.getMoney() < entry.getValue().getPrice()) {
             System.out.println(
-                  "[" + n + "]" + entry.getKey() + "\t" + entry.getValue().getPrice() + "\t\t [too expensive]");
+                  "["+n+"]" + entry.getKey() + "\t" + entry.getValue().getPrice() + "\t\t [too expensive]");
             n++;
          } else {
-            System.out.println("[" + n + "]" + entry.getKey() + "\t" + entry.getValue().getPrice());
+            System.out.println("["+n+"]" + entry.getKey() + "\t" + entry.getValue().getPrice());
             n++;
          }
       }
       System.out.println("\n[0] Exit shop");
-      foodToBuy(GameHelper.getInt(0, 5), customer);
+      int answer = GameHelper.getInt(0, 5);
+      if (answer != 0) {
+         foodToBuy(answer, customer);
+      }
    }
 
    public void buyPokemon(Pokemon pokemon, Player customer) {
-      game.menu.accessThisStore("buyPokemon", customer);
       if (enoughMoney(pokemon, customer)) {
-         System.out.println("Would you like to buy a " + pokemon.getBreed() + " for " + pokemon.getPrice());
-         System.out.println("===== info =====");
-         System.out.println(pokemon.toString(true));
-         System.out.println("[y / n]");
-         if (GameHelper.validateString()) {
+         System.out.println("\nWould you like to buy a " + pokemon.getBreed() + " for " + pokemon.getPrice() + "?\n");
+         System.out.println("===== info =====\n" + pokemon.toString(true) + "\n\n[y / n]\n");
+         String answer = GameHelper.validateString();
+         if (answer.equals("y")) {
             customer.createPokemon(pokemon, false);
             customer.handlePurchase(pokemon.getPrice());
             customer.accessShops(false);
             customer.setCanBuyPokemon(true);
-            //!
-            displayPokemon(customer);
-         } else {
-            //!
-            displayPokemon(customer);
          }
       } else {
          System.out.println("Not enough money");
-         //!
-         displayPokemon(customer);
+         GameHelper.inputEnter();
       }
    }
 
    public void buyFood(Food food, Player customer) {
-         game.menu.accessThisStore("buyFood", customer);
-         System.out.println("Max item you can buy: " + maxFood(food, customer));
-         System.out.println("How much: ");
-<<<<<<< HEAD
-         int number = GameHelper.getInt(1, maxFood(food, customer));
-=======
-         int number = GameHelper.getInt(true, 1, maxFood(food, customer));
->>>>>>> c275e31fb1b4581bd7f05fb8ced306b2309046ec
-         if (number == 0) {
-            //!
-            displayFood(customer);
-         } else {
-            customer.addFood(food, number);
-            customer.handlePurchase((food.getPrice() * number));
-            customer.accessShops(false);
-            // User is able to only buy food this round
-            customer.setCanBuyFood(true);
-            //!
-            displayFood(customer);
-         }
+      System.out.println("Max item you can buy: " + maxFood(food, customer));
+      System.out.println("How much: ");
+      int number = GameHelper.getInt(0, maxFood(food, customer));
+      if (number != 0) {
+         customer.addFood(food, number);
+         customer.handlePurchase((food.getPrice() * number));
+         customer.accessShops(false);
+         // User is able to only buy food this round
+         customer.setCanBuyFood(true);
       }
-   
+   }
 
    public boolean enoughMoney(Pokemon pokemon, Player costumer) {
       return (costumer.getMoney() >= pokemon.getPrice() ? true : false);
@@ -140,8 +129,6 @@ public class Store {
 
    public void pokemonToBuy(int number, Player customer) {
       switch (number) {
-         //!
-         case 0 -> game.menu.gameMenu(customer);
          case 1 -> buyPokemon(new Bulbasur(), customer);
          case 2 -> buyPokemon(new Charmander(), customer);
          case 3 -> buyPokemon(new Squirtle(), customer);
@@ -152,8 +139,6 @@ public class Store {
 
    public void foodToBuy(int number, Player customer) {
       switch (number) {
-         //!
-         case 0 -> game.menu.gameMenu(customer);
          case 1 -> buyFood(new Berry(), customer);
          case 2 -> buyFood(new PokeBlock(), customer);
          case 3 -> buyFood(new PokePuff(), customer);
@@ -168,29 +153,23 @@ public class Store {
    public void sellPokemon(Player customer) {
       game.menu.playerDisplay(customer);
       System.out.println("====== Sell your POKEMON ======");
-      customer.printPokemonList();
-      System.out.println("\n[0] Exit to game menu");
-<<<<<<< HEAD
-      int index = GameHelper.getInt(0, customer.getPlayerPokemon().size());
-=======
-      int index = GameHelper.getInt(true, 0, customer.getPlayerPokemon().size());
->>>>>>> c275e31fb1b4581bd7f05fb8ced306b2309046ec
-      if (index == 0) {
-         //!
-         game.menu.gameMenu(customer);
-      }
-      game.menu.accessThisStore("sellPokemon", customer);
-      System.out.println("Do you want to sell " + customer.getPokemon(index - 1).getName() + " ?");
-      System.out.println("[y / n]");
-      if (GameHelper.validateString()) {
-         customer.sellPokemon(index - 1);
-         customer.accessShops(false);
-         customer.setCanSellPokemon(true);
-         //!
-         sellPokemon(customer);
+      if (customer.getPlayerPokemon().size() != 0) {
+         customer.printPokemonList();
+         System.out.println("\n[0] Exit to game menu");
+         int index = GameHelper.getInt(0, customer.getPlayerPokemon().size());
+         game.menu.playerDisplay(customer);
+         if (index != 0) {
+            System.out.println("Do you want to sell " + customer.getPokemon(index - 1).getName() + " ?" + "\n[y / n]");
+            String answer = GameHelper.validateString();
+            if (answer.equals("y")) {
+               customer.sellPokemon(index - 1);
+               customer.accessShops(false);
+               customer.setCanSellPokemon(true);
+            }
+         }
       } else {
-         //!
-         sellPokemon(customer);
+         System.out.println("You have no Pokemon");
+         GameHelper.inputEnter();
       }
    }
 
