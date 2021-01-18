@@ -2,9 +2,6 @@ package Game;
 
 import java.util.ArrayList;
 
-import Game.FoodClasses.*;
-import Game.PokemonClasses.*;
-
 public class Game {
 
    private ArrayList<Player>players;

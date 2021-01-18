@@ -5,47 +5,42 @@ import java.util.Scanner;
 
 public class GameHelper {
 
-   //Scanner used for entire project
+   // Scanner used for entire project
    public static Scanner input = new Scanner(System.in);
 
-   public static boolean validateString(String answer) {
-      System.out.print("Enter here: ");
+   public static boolean validateString() {
+      System.out.println("Enter here: ");
+      String answer = GameHelper.input.nextLine();
       if (!answer.equalsIgnoreCase("y") && !answer.equalsIgnoreCase("n")) {
          System.out.println("[y / n]");
-         answer = input.nextLine();
-         validateString(answer);
+         validateString();
       }
       return (answer.equalsIgnoreCase("y") ? true : false);
    }
 
    // To make sure user choice is in range of what the menu/question is
-   public static int getInt(boolean useScanner, int min, int max) {
-
-      int returnInt = 0;
+   public static int getInt(int min, int max) {
+      int returnInt = -1;
       System.out.print("Enter here: ");
-      String s = GameHelper.input.nextLine();
-      if (useScanner) {
-         do {
             try {
-               returnInt = Integer.parseInt(s);
+               returnInt = Integer.parseInt(GameHelper.input.nextLine());
                if (returnInt > max || returnInt < min) {
                   System.out.println("Enter a number between " + min + "-" + max);
-                  s = input.nextLine();
+                  getInt(min, max);
                }
             } catch (Exception e) {
                System.out.println("Enter an integer");
-               s = input.nextLine();
+               getInt(min, max);
             }
-         } while (returnInt > max || returnInt < min);
-      }
       return returnInt;
    }
+
    // Overloaded get Int
-   public static int getInt(boolean useScanner, int min, int max, int save) {
+   public static int getInt(int min, int max, int save) {
       int returnInt = 0;
       System.out.println("Enter here: ");
       String s = GameHelper.input.nextLine();
-      if (useScanner) {
+
          do {
             try {
                returnInt = Integer.parseInt(s);
@@ -58,7 +53,7 @@ public class GameHelper {
                s = input.nextLine();
             }
          } while (returnInt > max || returnInt < min && returnInt != save);
-      }
+
       return returnInt;
    }
 

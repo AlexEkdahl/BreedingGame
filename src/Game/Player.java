@@ -7,17 +7,62 @@ import Game.PokemonClasses.*;
 
 public class Player {
 
-   private Game game;
    private String name;
    private int money;
    private ArrayList<Pokemon> playerPokemon;
    private LinkedHashMap<Food, Integer> playerFood;
+
+   private boolean canBuyPokemon = true;
+   private boolean canSellPokemon = true;
+   private boolean canBuyFood = true;
+   private boolean canBreed = true;
+   private boolean canFeedPokemon = true;
 
    public Player(String name, int money) {
       this.name = name;
       this.money = money;
       this.playerPokemon = new ArrayList<>();
       this.playerFood = new LinkedHashMap<>();
+   }
+
+   public void setCanBreed(boolean canBreed) {
+      this.canBreed = canBreed;
+   }
+
+   public void setCanBuyFood(boolean canBuyFood) {
+      this.canBuyFood = canBuyFood;
+   }
+
+   public void setCanBuyPokemon(boolean canBuyPokemon) {
+      this.canBuyPokemon = canBuyPokemon;
+   }
+
+   public void setCanSellPokemon(boolean canSellPokemon) {
+      this.canSellPokemon = canSellPokemon;
+   }
+
+   public void setCanFeedPokemon(boolean canFeedPokemon) {
+      this.canFeedPokemon = canFeedPokemon;
+   }
+
+   public boolean canFeedPokemon(){
+      return canFeedPokemon;
+   }
+
+   public boolean canBreed(){
+      return canBreed;
+   }
+
+   public boolean canBuyFood(){
+      return canBuyFood;
+   }
+
+   public boolean canBuyPokemon(){
+      return canBuyPokemon;
+   }
+
+   public boolean canSellPokemon(){
+      return canSellPokemon;
    }
 
    public ArrayList<Pokemon> getPlayerPokemon() {
@@ -50,7 +95,7 @@ public class Player {
       } else {
          System.out.println("What is " + pokemon.getBreed() + " gender?");
          System.out.println("[1] female / [2] male");
-         pokemon.setGender(GameHelper.getInt(true, 1, 2));
+         pokemon.setGender(GameHelper.getInt(1, 2));
       }
       System.out.println("Nickname for your " + pokemon.getBreed() + ": ");
       pokemon.setName(GameHelper.input.nextLine());
@@ -94,17 +139,35 @@ public class Player {
       return playerPokemon.get(index);
    }
 
-   //!
+   // !
    public void feedPokemon(int index) {
       System.out.println("Choose food to feed: ");
       getPokemon(index - 1);
    }
 
-   public void sellPokemon(int index){
-      System.out.println("You got " + playerPokemon.get(index).getValue() + " for selling " + getPokemon(index).getName());
+   public void sellPokemon(int index) {
+      System.out
+            .println("You got " + playerPokemon.get(index).getValue() + " for selling " + getPokemon(index).getName());
       money += playerPokemon.get(index).getValue();
       playerPokemon.remove(index);
-
    }
+
+   //Granting access to shops
+   public void accessShops(boolean setAllTrue) {
+      if (setAllTrue) {
+         this.canBuyPokemon = true;
+         this.canSellPokemon = true;
+         this.canBuyFood = true;
+         this.canBreed = true;
+         this.canFeedPokemon = true;
+      } else {
+         this.canBuyPokemon = false;
+         this.canSellPokemon = false;
+         this.canBuyFood = false;
+         this.canBreed = false;
+         this.canFeedPokemon = false;
+      }
+   }
+   
 
 }

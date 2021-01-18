@@ -2,8 +2,6 @@ package Game;
 
 import java.util.ArrayList;
 
-import Game.PokemonClasses.Pokemon;
-
 public class Menu {
 
    Game game;
@@ -21,7 +19,7 @@ public class Menu {
       System.out.println("\n[0]. Exit game");
       // TODO Load from saved file
 
-      mainMenuChoice(GameHelper.getInt(true, 0, 2));
+      mainMenuChoice(GameHelper.getInt(0, 2));
    }
 
    public void gameMenu(Player player) {
@@ -32,10 +30,9 @@ public class Menu {
       System.out.println("[3] Feed Pokemon");
       System.out.println("[4] Breed Pokemon");
       System.out.println("[5] Sell Pokemon");
-      System.out.println("[6] Sell Pokemon");
       System.out.println("\n[9] -Save Game- ");
       System.out.println("[0] - Finish round");
-      gameMenuChoice(GameHelper.getInt(true, 0, 6, 9), player);
+      gameMenuChoice(GameHelper.getInt(0, 5), player);
    }
 
    // TODO
@@ -59,7 +56,7 @@ public class Menu {
       System.out.println("===== Feed your Pokemon =====");
       player.printPokemonList();
       System.out.println("\n[0] Exit to game menu");
-      choice = GameHelper.getInt(true, 0, player.getPlayerPokemon().size());
+      choice = GameHelper.getInt(0, player.getPlayerPokemon().size());
       if (choice == 0) {
          gameMenu(player);
       } else {
@@ -93,13 +90,13 @@ public class Menu {
       int numOfRounds;
       int startingMoney;
       System.out.println("How many players: ");
-      numOfPlayers = GameHelper.getInt(true, 1, 4);
+      numOfPlayers = GameHelper.getInt(1, 4);
       System.out.println("How many rounds: ");
-      numOfRounds = GameHelper.getInt(true, 5, 35);
+      numOfRounds = GameHelper.getInt(5, 35);
       System.out.println("Starting money: ");
       System.out.println("[EASY][MEDIUM][HARD]");
       System.out.println("[$$$][$$][$]");
-      startingMoney = GameHelper.getInt(true, 100, 1000);
+      startingMoney = GameHelper.getInt(100, 5000);
 
       for (int i = 1; i <= numOfPlayers; i++) {
          System.out.printf("Player %d name:\n", i);
@@ -129,7 +126,62 @@ public class Menu {
          // case 9 -> //save game
          // case 0 -> //finish round
       }
+   }
 
+   public void accessThisStore(String storeName, Player player) {
+      switch (storeName) {
+         case "buyPokemon":
+            if (!player.canBuyPokemon()) {
+               choiceMade(player);
+            }
+            break;
+         case "buyFood":
+            if (!player.canBuyFood()) {
+               choiceMade(player);
+            }
+            break;
+         case "breedPokemon":
+            if (!player.canBreed()) {
+               choiceMade(player);
+            }
+            break;
+         case "sellPokemon":
+            if (!player.canSellPokemon()) {
+               choiceMade(player);
+            }
+            break;
+         case "feedPokemon":
+            choiceMade(player);
+      }
+   }
+
+   private void choiceMade(Player player) {
+      if (player.canBreed()) {
+         System.out.println("You made your choice of breeding this round");
+         GameHelper.waitMilliSeconds(3000);
+         //!
+         gameMenu(player);
+      } else if (player.canBuyFood()) {
+         System.out.println("You made your choice, you can only buy food this round");
+         GameHelper.waitMilliSeconds(3000);
+         //!
+         gameMenu(player);
+      } else if (player.canBuyPokemon()) {
+         System.out.println("You made your choice, you can only buy Pokemon this round");
+         GameHelper.waitMilliSeconds(3000);
+         //!
+         gameMenu(player);
+      } else if (player.canSellPokemon()) {
+         System.out.println("You made your choice, you can only sell Pokemon this round");
+         GameHelper.waitMilliSeconds(3000);
+         //!
+         gameMenu(player);
+      } else if (player.canFeedPokemon()) {
+         System.out.println("You made your choice, you can only feed your Pokemon this round");
+         GameHelper.waitMilliSeconds(3000);
+         //!
+         gameMenu(player);
+      }
    }
 
 }

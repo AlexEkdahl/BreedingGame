@@ -15,14 +15,17 @@ public class Feed {
    public void setGame(Game game) {
       this.game = game;
    }
-
+   // TODO accessability
    // TODO Maybe want the user to be able to try to feed the pokemon wrong food?
    public void feedPokemon(Player player) {
       game.menu.playerDisplay(player);
+      System.out.println("===== Feed your Pokemon =====");
       player.printPokemonList();
-      System.out.println("[0] Exit to game menu");
-      int pokeIndex = GameHelper.getInt(true, 0, player.getPlayerPokemon().size());
+      System.out.println("\n[0] Exit to game menu");
+      System.out.println("Which Pokemon will you feed: ");
+      int pokeIndex = GameHelper.getInt(0, player.getPlayerPokemon().size());
       if (pokeIndex == 0) {
+         //!
          game.menu.gameMenu(player);
       }
       game.menu.playerDisplay(player);
