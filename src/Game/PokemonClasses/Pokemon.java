@@ -28,6 +28,10 @@ public abstract class Pokemon {
       this.name = name;
    }
 
+   public int getMaxAge() {
+      return maxAge;
+   }
+
    public String getName() {
       return name;
    }
@@ -59,6 +63,7 @@ public abstract class Pokemon {
    public int getAge() {
       return age;
    }
+
    public void aging() {
       this.age++;
    }
@@ -89,7 +94,8 @@ public abstract class Pokemon {
 
    public String toString(boolean forShop) {
       if (forShop) {
-         return getBreed() + ", can generate max " + maxOffspring + " offsprings and eat: " + foodToString();
+      return "===== info =====\n" + getBreed() + "\n\nMax offsprings: " + maxOffspring + "\nMax age: " + getMaxAge()
+               + "\nEat: " + foodToString() + "\n===== info =====";
       }
       return getBreed() + " named " + name + ", age: " + age + " " + gender + " and health: " + health
             + ". Generate max " + maxOffspring + " offsprings";

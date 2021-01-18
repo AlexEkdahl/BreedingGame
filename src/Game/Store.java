@@ -91,8 +91,9 @@ public class Store {
 
    public void buyPokemon(Pokemon pokemon, Player customer) {
       if (enoughMoney(pokemon, customer)) {
+         game.menu.playerDisplay(customer);
          System.out.println("\nWould you like to buy a " + pokemon.getBreed() + " for " + pokemon.getPrice() + "?\n");
-         System.out.println("===== info =====\n" + pokemon.toString(true) + "\n\n[y / n]\n");
+         System.out.println(pokemon.toString(true) + "\n\n[y / n]");
          String answer = GameHelper.validateString();
          if (answer.equals("y")) {
             customer.createPokemon(pokemon, false);

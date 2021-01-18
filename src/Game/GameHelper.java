@@ -9,7 +9,7 @@ public class GameHelper {
    public static Scanner input = new Scanner(System.in);
 
    public static String validateString() {
-      System.out.println("Enter here: ");
+      System.out.println("\nEnter here: ");
       String answer = GameHelper.input.nextLine();
       if (!answer.equalsIgnoreCase("y") && !answer.equalsIgnoreCase("n")) {
          System.out.println("[y / n]");
@@ -20,7 +20,7 @@ public class GameHelper {
 
    // To make sure user choice is in range of what the menu/question is
    public static int getInt(int min, int max) {
-      System.out.println("Enter here: ");
+      System.out.println("\nEnter here: ");
       int intReturn = -1;
       do {
          try {

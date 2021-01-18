@@ -1,7 +1,9 @@
 package Game;
 
 import java.util.ArrayList;
+import java.util.Map;
 
+import Game.FoodClasses.Food;
 import Game.PokemonClasses.Pokemon;
 
 public class Menu {
@@ -15,8 +17,7 @@ public class Menu {
    public void mainMenu() {
       GameHelper.clearScreen();
       System.out.println("====== Welcome to THE POKEMON BREEDERS RACE ======");
-      System.out.println("MAIN MENU");
-      System.out.println("[1] New game");
+      System.out.println("\n[1] New game");
       System.out.println("[2] How to play");
       System.out.println("\n[0]. Exit game");
       // TODO Load from saved file
@@ -26,7 +27,7 @@ public class Menu {
 
    public void gameMenu(Player player) {
       playerDisplay(player);
-      System.out.println("\tGAME MENU");
+      System.out.println("===== GAME MENU =====");
       System.out.println("[1] Buy Pokemon");
       System.out.println("[2] Buy food");
       System.out.println("[3] Feed Pokemon");
@@ -45,6 +46,7 @@ public class Menu {
       System.out.println("Round: " + game.getRound());
       System.out.println();
       pokeDisplay(player);
+      foodDisplay(player);
       // System.out.println("POKEMON AGE");
       // System.out.println("POKEMON HEALTH");
       // System.out.println();
@@ -91,17 +93,25 @@ public class Menu {
       int numOfPlayers;
       int numOfRounds;
       int startingMoney;
-      System.out.println("How many players: ");
+      GameHelper.clearScreen();
+      System.out.println("====== Welcome to THE POKEMON BREEDERS RACE ======");
+      System.out.println("\nHow many players:");
       numOfPlayers = GameHelper.getInt(1, 4);
-      System.out.println("How many rounds: ");
+      GameHelper.clearScreen();
+      System.out.println("====== Welcome to THE POKEMON BREEDERS RACE ======");
+      System.out.println("\nHow many rounds: ");
       numOfRounds = GameHelper.getInt(5, 35);
-      System.out.println("Starting money: ");
-      System.out.println("[EASY][MEDIUM][HARD]");
-      System.out.println("[5000][2500][1100]");
+      GameHelper.clearScreen();
+      System.out.println("====== Welcome to THE POKEMON BREEDERS RACE ======");
+      System.out.println("\nStarting money");
+      System.out.println("\n  [EASY]   [MEDIUM]    [HARD]");
+      System.out.println("[5 0 0 0]  [2 5 0 0]  [1 1 0 0]");
       startingMoney = GameHelper.getInt(1100, 5000);
 
       for (int i = 1; i <= numOfPlayers; i++) {
-         System.out.printf("Player %d name:\n", i);
+         GameHelper.clearScreen();
+         System.out.println("====== Welcome to THE POKEMON BREEDERS RACE ======");
+         System.out.printf("\nPlayer %d name:\n", i);
          players.add(new Player(GameHelper.input.nextLine(), startingMoney));
       }
       game.setNumOfRounds(numOfRounds);
@@ -186,8 +196,15 @@ public class Menu {
 
    private void pokeDisplay(Player player){
       for (Pokemon pokemon : player.getPlayerPokemon()){
-         System.out.println(pokemon.getName() + "\tage: " + pokemon.getAge() + "\thealth: " + pokemon.getHealth());
+         System.out.println(pokemon.getName() + "\tage: " + pokemon.getAge() + "\thealth: " + pokemon.getHealth() +"%");
       }
+   }
+   private void foodDisplay(Player player){
+      for (Map.Entry<Food, Integer> entry : player.getPlayerFood().entrySet()) {
+
+            System.out.print(entry.getKey().getType() + ": " + entry.getValue() + "st\t");
+
+         }
    }
 
 }

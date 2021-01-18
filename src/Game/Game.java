@@ -31,13 +31,14 @@ public class Game {
          player.game = this;
       }
       currentPlayer = players.get(0);
-
       while (round < numOfRounds) {
          menu.gameMenu(currentPlayer);
          if (currentPlayer.getRoundDone()) {
             changePlayer();
          }
       }
+      pokemonAgeOrSell(true);
+
    }
 
    public void setNumOfRounds(int numOfRounds) {
@@ -66,8 +67,7 @@ public class Game {
          currentPlayer = players.get(0);
          currentPlayer.accessShops(true);
          currentPlayer.setRoundDone(false);
-         reducePokemonHealth();
-         pokemonAgeing();
+         pokemonAgeOrSell(false);
          round++;
       } else {
          currentPlayer = players.get(players.indexOf(currentPlayer) + 1);
@@ -76,24 +76,27 @@ public class Game {
       }
    }
 
-   //TODO add sickness
-
-   private void pokemonAgeing(){
-      for (Player player: players){
-         for(Pokemon pokemon: player.getPlayerPokemon()){
-            pokemon.aging();
+   // TODO add sickness
+   // Reverse loop, needed to remove pokemon from it
+   // Ageing and health reduce
+   private void pokemonAgeOrSell(boolean sellAll) {
+      for (Player player : players) {
+         for (int i = player.getPlayerPokemon().size() - 1; i >= 0; i--) {
+            if (sellAll) {
+               player.sellPokemon(i);
+               GameHelper.inputEnter();
+            } else {
+               player.getPokemon(i).aging();
+               player.getPokemon(i).reduceHealth();
+               if (player.getPokemon(i).getAge() > player.getPokemon(i).getMaxAge()
+                     || player.getPokemon(i).getHealth() <= 0) {
+                  System.out.println(player.getName() + "! " + player.getPokemon(i).getName() + " died");
+                  player.getPlayerPokemon().remove(i);
+                  GameHelper.inputEnter();
+               }
+            }
          }
       }
    }
-
-   private void reducePokemonHealth(){
-      for (Player player: players){
-         for(Pokemon pokemon: player.getPlayerPokemon()){
-            pokemon.reduceHealth();
-         }
-      }
-   }
-
-
 
 }
