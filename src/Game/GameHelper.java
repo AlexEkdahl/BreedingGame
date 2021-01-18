@@ -19,7 +19,11 @@ public class GameHelper {
    }
 
    // To make sure user choice is in range of what the menu/question is
+<<<<<<< HEAD
    public static int getInt(int min, int max) {
+=======
+   public static int getInt(boolean useScanner, int min, int max) {
+>>>>>>> c275e31fb1b4581bd7f05fb8ced306b2309046ec
       int returnInt = -1;
       System.out.print("Enter here: ");
             try {

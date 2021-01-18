@@ -32,7 +32,11 @@ public class Menu {
       System.out.println("[5] Sell Pokemon");
       System.out.println("\n[9] -Save Game- ");
       System.out.println("[0] - Finish round");
+<<<<<<< HEAD
       gameMenuChoice(GameHelper.getInt(0, 5), player);
+=======
+      gameMenuChoice(GameHelper.getInt(true, 0, 5), player);
+>>>>>>> c275e31fb1b4581bd7f05fb8ced306b2309046ec
    }
 
    // TODO

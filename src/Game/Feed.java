@@ -23,7 +23,11 @@ public class Feed {
       player.printPokemonList();
       System.out.println("\n[0] Exit to game menu");
       System.out.println("Which Pokemon will you feed: ");
+<<<<<<< HEAD
       int pokeIndex = GameHelper.getInt(0, player.getPlayerPokemon().size());
+=======
+      int pokeIndex = GameHelper.getInt(true, 0, player.getPlayerPokemon().size());
+>>>>>>> c275e31fb1b4581bd7f05fb8ced306b2309046ec
       if (pokeIndex == 0) {
          //!
          game.menu.gameMenu(player);
