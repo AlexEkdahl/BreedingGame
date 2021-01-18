@@ -48,7 +48,7 @@ public abstract class Pokemon {
       return canEatFood;
    }
 
-   public int getValue(){
+   public int getValue() {
       return (price * health) / 100;
    }
 
@@ -76,8 +76,8 @@ public abstract class Pokemon {
       if (forShop) {
          return getBreed() + ", can generate max " + maxOffspring + " offsprings and eat: " + foodToString();
       }
-      return getBreed() + " named " + name + ", age: " + age + " " + gender + " and health: " + health + ". Generate max "
-            + maxOffspring + " offsprings";
+      return getBreed() + " named " + name + ", age: " + age + " " + gender + " and health: " + health
+            + ". Generate max " + maxOffspring + " offsprings";
    }
 
    public String foodToString() {
@@ -89,29 +89,26 @@ public abstract class Pokemon {
    }
 
    public void loveMakeing(Player owner, Pokemon mate) {
-      if (Math.random() > 0.5) {
-         int offsprings = (int) (Math.random() * this.maxOffspring) + 1;
-         for (int i = 0; i < offsprings; i++) {
-            System.out.print(i + 1 + ".");
-            GameHelper.waitMilliSeconds(700);
-            System.out.print(".");
-            GameHelper.waitMilliSeconds(700);
-            System.out.print(".");
-            GameHelper.waitMilliSeconds(700);
+
+      int offsprings = (int) (Math.random() * this.maxOffspring) + 1;
+      for (int i = 0; i < offsprings; i++) {
+         System.out.print(i + 1 + ".");
+         GameHelper.waitMilliSeconds(700);
+         System.out.print(".");
+         GameHelper.waitMilliSeconds(700);
+         System.out.print(".");
+         GameHelper.waitMilliSeconds(700);
+      }
+      System.out.print(" " + offsprings + " new " + mate.getBreed() + "!");
+      System.out.println(" Congratulations, " + this.name + " and " + mate.getName() + " successfully mated");
+      for (int j = 0; j < offsprings; j++) {
+         switch (this.getBreed()) {
+            case "Pikachu" -> owner.createPokemon(new Pikachu(), true);
+            case "Bulbasur" -> owner.createPokemon(new Bulbasur(), true);
+            case "Charmander" -> owner.createPokemon(new Charmander(), true);
+            case "Squirtle" -> owner.createPokemon(new Squirtle(), true);
+            case "Ditto" -> owner.createPokemon(new Ditto(), true);
          }
-         System.out.print(" " + offsprings + " new " + mate.getBreed() + "!");
-         System.out.println(" Congratulations, " + this.name + " and " + mate.getName() + " successfully mated");
-         for (int j = 0; j < offsprings; j++) {
-            switch (this.getBreed()) {
-               case "Pikachu" -> owner.createPokemon(new Pikachu(), true);
-               case "Bulbasur" -> owner.createPokemon(new Bulbasur(), true);
-               case "Charmander" -> owner.createPokemon(new Charmander(), true);
-               case "Squirtle" -> owner.createPokemon(new Squirtle(), true);
-               case "Ditto" -> owner.createPokemon(new Ditto(), true);
-            }
-         }
-      } else {
-         System.out.println("NOPE");
       }
    }
 

@@ -5,23 +5,22 @@ import java.util.Scanner;
 
 public class GameHelper {
 
-   //Scanner used for entire project
+   // Scanner used for entire project
    public static Scanner input = new Scanner(System.in);
 
-   public static boolean validateString(String answer) {
-      System.out.print("Enter here: ");
+   public static boolean validateString() {
+      System.out.println("Enter here: ");
+      String answer = GameHelper.input.nextLine();
       if (!answer.equalsIgnoreCase("y") && !answer.equalsIgnoreCase("n")) {
          System.out.println("[y / n]");
-         answer = input.nextLine();
-         validateString(answer);
+         validateString();
       }
       return (answer.equalsIgnoreCase("y") ? true : false);
    }
 
    // To make sure user choice is in range of what the menu/question is
    public static int getInt(boolean useScanner, int min, int max) {
-
-      int returnInt = 0;
+      int returnInt = -1;
       System.out.print("Enter here: ");
       String s = GameHelper.input.nextLine();
       if (useScanner) {
@@ -40,6 +39,7 @@ public class GameHelper {
       }
       return returnInt;
    }
+
    // Overloaded get Int
    public static int getInt(boolean useScanner, int min, int max, int save) {
       int returnInt = 0;
