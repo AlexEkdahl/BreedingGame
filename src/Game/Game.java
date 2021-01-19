@@ -38,6 +38,8 @@ public class Game {
          }
       }
       pokemonAgeOrSell(true);
+      printAllScores();
+      System.out.println("Winner is " + getWinner().getName());
 
    }
 
@@ -98,5 +100,25 @@ public class Game {
          }
       }
    }
+
+   public void printAllScores() {
+      for (Player player : this.players) {
+         System.out.println(player.getName() + "\t\tgot:" + player.getMoney());
+      }
+   }
+
+   public Player getWinner() {
+      int bestScore = 0;
+      int bestIndex = 0;
+      for (int i = 0; i < players.size(); i++) {
+         if (players.get(i).getMoney() > bestScore) {
+            bestScore = players.get(i).getMoney();
+            bestIndex = i;
+         }
+      }
+      return players.get(bestIndex);
+   }
+
+
 
 }

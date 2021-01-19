@@ -72,8 +72,12 @@ public abstract class Pokemon {
       return health;
    }
 
-   public void eat() {
-
+   //TODO make funnier 
+   public void eat(Food food, int quantity) {
+      health += ((food.getHealthValue() / 100) * health) * quantity;
+      //Cant get over 100
+      health = Math.min(health, 100);
+    
    }
 
    public boolean isAlive() {

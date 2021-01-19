@@ -158,7 +158,7 @@ public class Player {
 
    public void sellPokemon(int index) {
       System.out
-            .println("You got " + playerPokemon.get(index).getValue() + " for selling " + getPokemon(index).getName());
+            .println(name + " " + playerPokemon.get(index).getValue() + " for selling " + getPokemon(index).getName());
       money += playerPokemon.get(index).getValue();
       playerPokemon.remove(index);
    }

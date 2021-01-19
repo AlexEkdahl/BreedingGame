@@ -4,17 +4,18 @@ package Game.FoodClasses;
 public abstract class Food {
 
    protected int price;
+   protected int healthValue;
 
    public Food() {
 
    }
 
-   public int getPrice() {
-      return price;
+   public int getHealthValue() {
+      return healthValue;
    }
 
-   public void setPrice(int price) {
-      this.price = price;
+   public int getPrice() {
+      return price;
    }
 
    public String getType(){
