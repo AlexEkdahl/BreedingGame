@@ -1,8 +1,6 @@
 package Game;
 
-import java.util.ArrayList;
-import java.util.Map;
-
+import java.util.*;
 import Game.FoodClasses.Food;
 import Game.PokemonClasses.Pokemon;
 
@@ -14,7 +12,7 @@ public class Menu {
       this.game = game;
    }
 
-   public void mainMenu() {
+   protected void mainMenu() {
       GameHelper.clearScreen();
       System.out.println("====== Welcome to THE POKEMON BREEDERS RACE ======");
       System.out.println("\n[1] New game");
@@ -25,7 +23,7 @@ public class Menu {
       mainMenuChoice(GameHelper.getInt(0, 2));
    }
 
-   public void gameMenu(Player player) {
+   protected void gameMenu(Player player) {
       playerDisplay(player);
       System.out.println("===== GAME MENU =====");
       System.out.println("[1] Buy Pokemon");
@@ -38,23 +36,22 @@ public class Menu {
       gameMenuChoice(GameHelper.getInt(0, 5), player);
    }
 
-   // TODO
-   public void playerDisplay(Player player) {
+   protected void playerDisplay(Player player) {
       GameHelper.clearScreen();
       System.out.println(player.getName());
       System.out.println("Money: " + player.getMoney());
       System.out.println("Round: " + game.getRound());
       System.out.println();
-      pokeDisplay(player);
-      foodDisplay(player);
-      // System.out.println("POKEMON AGE");
-      // System.out.println("POKEMON HEALTH");
-      // System.out.println();
-
+      if (player.getPlayerPokemon().size() != 0) {
+         pokeDisplay(player);
+      }
+      if (player.getPlayerFood().size() != 0) {
+         foodDisplay(player);
+      }
       System.out.println("\n".repeat(3));
    }
 
-   public void feedPokemon(Player player) {
+   protected void feedPokemon(Player player) {
       playerDisplay(player);
       int choice = 0;
       System.out.println("===== Feed your Pokemon =====");
@@ -70,10 +67,10 @@ public class Menu {
 
    }
 
-   public void howToPlay() {
+   private void howToPlay() {
       GameHelper.clearScreen();
-      System.out
-            .println("===== HOW TO PLAY =====\n" + "* This is a turn based game were players take tuns on setting up\n"
+      System.out.println(
+            "===== HOW TO PLAY =====\n\n" + "* This is a turn based game were players take tuns on setting up\n"
                   + "* their Pokemon for success. Players choose from buying or selling\n"
                   + "* Pokemon, buying food or try to breed. Each Pokemon have a different\n"
                   + "* value. When the last turn is finished the players automatically sell\n"
@@ -82,13 +79,12 @@ public class Menu {
       mainMenu();
    }
 
-   public void exitGame() {
+   private void exitGame() {
       System.out.println("Bye bye");
       System.exit(0);
    }
 
-   // TODO refactor
-   public void newGameMenu() {
+   private void newGameMenu() {
       ArrayList<Player> players = new ArrayList<>();
       int numOfPlayers;
       int numOfRounds;
@@ -107,7 +103,6 @@ public class Menu {
       System.out.println("\n  [EASY]   [MEDIUM]    [HARD]");
       System.out.println("[5 0 0 0]  [2 5 0 0]  [1 1 0 0]");
       startingMoney = GameHelper.getInt(1100, 5000);
-
       for (int i = 1; i <= numOfPlayers; i++) {
          GameHelper.clearScreen();
          System.out.println("====== Welcome to THE POKEMON BREEDERS RACE ======");
@@ -118,7 +113,7 @@ public class Menu {
       game.setPlayers(players);
    }
 
-   public void mainMenuChoice(int choice) {
+   private void mainMenuChoice(int choice) {
       switch (choice) {
          case 1 -> newGameMenu();
          case 2 -> howToPlay();
@@ -127,56 +122,25 @@ public class Menu {
       }
    }
 
-   // !
-   public void gameMenuChoice(int choice, Player player) {
+   private void gameMenuChoice(int choice, Player player) {
       switch (choice) {
-         case 1:
-            if (player.canBuyPokemon()) {
-               game.store.displayPokemon(player);
-            } else {
-               choiceMade(player);
-            }
-            break;
-         case 2:
-            if (player.canBuyFood()) {
-               game.store.displayFood(player);
-            } else {
-               choiceMade(player);
-            }
-            break;
-         case 3:
-            if (player.canFeedPokemon()) {
-               game.feed.feedPokemon(player);
-            } else {
-               choiceMade(player);
-            }
-            break;
-         case 4:
-            if (player.canBreed()) {
+         case 1 -> game.store.displayPokemon(player);
+         case 2 -> game.store.displayFood(player);
+         case 3 -> game.feed.feedPokemon(player);
+         case 4 -> {
+            if (player.canBreed())
                game.breed.printAvailablePokemon(player);
-            } else {
-               choiceMade(player);
-            }
-            break;
-         case 5:
-            if (player.canSellPokemon()) {
-               game.store.sellPokemon(player);
-            } else {
-               choiceMade(player);
-            }
-            break;
-            // case 9 -> //save game
-         case 0:
-            player.setRoundDone(true);
-            break;
+            else choiceMade(player);
+         }
+         case 5 -> game.store.sellPokemon(player);
+         // case 9 -> //save game
+         case 0 -> player.setRoundDone(true);
+
       }
    }
 
-   private void choiceMade(Player player) {
-      if (player.canBreed()) {
-         System.out.println("You made your choice of breeding this round");
-         GameHelper.inputEnter();
-      } else if (player.canBuyFood()) {
+   public void choiceMade(Player player) {
+      if (player.canBuyFood()) {
          System.out.println("You made your choice, you can only buy food this round");
          GameHelper.inputEnter();
       } else if (player.canBuyPokemon()) {
@@ -194,17 +158,20 @@ public class Menu {
       }
    }
 
-   private void pokeDisplay(Player player){
-      for (Pokemon pokemon : player.getPlayerPokemon()){
-         System.out.println(pokemon.getName() + "\tage: " + pokemon.getAge() + "\thealth: " + pokemon.getHealth() +"%");
+   private void pokeDisplay(Player player) {
+      System.out.println("===== POKEMON =====");
+      for (Pokemon pokemon : player.getPlayerPokemon()) {
+         System.out
+               .println(pokemon.getName() + "\tage: " + pokemon.getAge() + "\thealth: " + pokemon.getHealth() + "%");
       }
    }
-   private void foodDisplay(Player player){
+
+   private void foodDisplay(Player player) {
+      System.out.println("===== FOOD =====");
       for (Map.Entry<Food, Integer> entry : player.getPlayerFood().entrySet()) {
+         System.out.print(entry.getKey().getType() + ": " + entry.getValue() + "st\t");
 
-            System.out.print(entry.getKey().getType() + ": " + entry.getValue() + "st\t");
-
-         }
+      }
    }
 
 }

@@ -1,7 +1,6 @@
 package Game;
 
 import java.util.*;
-
 import Game.FoodClasses.Food;
 import Game.PokemonClasses.*;
 
@@ -26,12 +25,52 @@ public class Player {
       this.playerFood = new LinkedHashMap<>();
    }
 
-   public void setRoundDone(boolean roundDone) {
-      this.roundDone = roundDone;
+   public boolean getRoundDone() {
+      return roundDone;
    }
 
-   public boolean getRoundDone(){
-      return roundDone;
+   public boolean canFeedPokemon() {
+      return canFeedPokemon;
+   }
+
+   public boolean canBreed() {
+      return canBreed;
+   }
+
+   public boolean canBuyFood() {
+      return canBuyFood;
+   }
+
+   public boolean canBuyPokemon() {
+      return canBuyPokemon;
+   }
+
+   public boolean canSellPokemon() {
+      return canSellPokemon;
+   }
+
+   public ArrayList<Pokemon> getPlayerPokemon() {
+      return playerPokemon;
+   }
+
+   public int getMoney() {
+      return money;
+   }
+
+   public String getName() {
+      return name;
+   }
+
+   public LinkedHashMap<Food, Integer> getPlayerFood() {
+      return playerFood;
+   }
+
+   public Pokemon getPokemon(int index) {
+      return playerPokemon.get(index);
+   }
+
+   public void setRoundDone(boolean roundDone) {
+      this.roundDone = roundDone;
    }
 
    public void setCanBreed(boolean canBreed) {
@@ -54,43 +93,15 @@ public class Player {
       this.canFeedPokemon = canFeedPokemon;
    }
 
-   public boolean canFeedPokemon(){
-      return canFeedPokemon;
-   }
-
-   public boolean canBreed(){
-      return canBreed;
-   }
-
-   public boolean canBuyFood(){
-      return canBuyFood;
-   }
-
-   public boolean canBuyPokemon(){
-      return canBuyPokemon;
-   }
-
-   public boolean canSellPokemon(){
-      return canSellPokemon;
-   }
-
-   public ArrayList<Pokemon> getPlayerPokemon() {
-      return playerPokemon;
-   }
-
-   public int getMoney() {
-      return money;
-   }
-
-   public String getName() {
-      return name;
-   }
-
    public void setMoney(int money) {
       this.money = money;
    }
 
-   public void addPokemon(Pokemon newPokemon) {
+   public void handlePurchase(int itemCost) {
+      money -= itemCost;
+   }
+
+   private void addPokemon(Pokemon newPokemon) {
       playerPokemon.add(newPokemon);
    }
 
@@ -116,14 +127,10 @@ public class Player {
    // if playerFood already contains that food, add up quantity
    public void addFood(Food food, int quantity) {
       if (playerFood.containsKey(food)) {
-         playerFood.put(food, playerFood.get(food) + quantity);
+         playerFood.put(food, (playerFood.get(food) + quantity));
       } else {
          playerFood.put(food, quantity);
       }
-   }
-
-   public void handlePurchase(int itemCost) {
-      money -= itemCost;
    }
 
    public void printPokemonList() {
@@ -134,20 +141,12 @@ public class Player {
       }
    }
 
-   public LinkedHashMap<Food, Integer> getPlayerFood() {
-      return playerFood;
-   }
-
    public void printPlayerFood() {
       int n = 1;
       for (Map.Entry<Food, Integer> entry : playerFood.entrySet()) {
          System.out.println("[" + n + "]" + entry.getKey().getType() + "\t" + entry.getValue());
          n++;
       }
-   }
-
-   public Pokemon getPokemon(int index) {
-      return playerPokemon.get(index);
    }
 
    // !
@@ -163,7 +162,7 @@ public class Player {
       playerPokemon.remove(index);
    }
 
-   //Granting access to shops
+   // Granting access to shops
    public void accessShops(boolean setAllTrue) {
       if (setAllTrue) {
          this.canBuyPokemon = true;
@@ -179,6 +178,5 @@ public class Player {
          this.canFeedPokemon = false;
       }
    }
-   
 
 }

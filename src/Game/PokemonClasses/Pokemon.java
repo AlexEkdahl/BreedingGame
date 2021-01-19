@@ -24,10 +24,6 @@ public abstract class Pokemon {
    protected int maxAge;
    protected int price;
 
-   public void setName(String name) {
-      this.name = name;
-   }
-
    public int getMaxAge() {
       return maxAge;
    }
@@ -56,32 +52,39 @@ public abstract class Pokemon {
       return (price * health) / 100;
    }
 
-   public void reduceHealth() {
-      this.health -= (int) (Math.random() * 15) + 10;
+   public int getHealth() {
+      return health;
    }
 
    public int getAge() {
       return age;
    }
 
-   public void aging() {
-      this.age++;
-   }
-
-   public int getHealth() {
-      return health;
-   }
-
-   //TODO make funnier 
-   public void eat(Food food, int quantity) {
-      health += ((food.getHealthValue() / 100) * health) * quantity;
-      //Cant get over 100
-      health = Math.min(health, 100);
-    
+   public String getBreed() {
+      return this.getClass().getSimpleName();
    }
 
    public boolean isAlive() {
       return (age < maxAge && health > 0);
+   }
+
+   public void setName(String name) {
+      this.name = name;
+   }
+
+   public void reduceHealth() {
+      this.health -= (int) (Math.random() * 15) + 10;
+   }
+
+   public void aging() {
+      this.age++;
+   }
+
+   public void eat(Food food, int quantity) {
+      health += ((food.getHealthValue() / 100) * health) * quantity;
+      // Cant get over 100
+      health = Math.min(health, 100);
+
    }
 
    public void setGender(int n) {
@@ -92,13 +95,9 @@ public abstract class Pokemon {
       }
    }
 
-   public String getBreed() {
-      return this.getClass().getSimpleName();
-   }
-
    public String toString(boolean forShop) {
       if (forShop) {
-      return "===== info =====\n" + getBreed() + "\n\nMax offsprings: " + maxOffspring + "\nMax age: " + getMaxAge()
+         return "===== info =====\n" + getBreed() + "\n\nMax offsprings: " + maxOffspring + "\nMax age: " + getMaxAge()
                + "\nEat: " + foodToString() + "\n===== info =====";
       }
       return getBreed() + " named " + name + ", age: " + age + " " + gender + " and health: " + health
@@ -114,7 +113,6 @@ public abstract class Pokemon {
    }
 
    public void loveMakeing(Player owner, Pokemon mate) {
-
       int offsprings = (int) (Math.random() * this.maxOffspring) + 1;
       for (int i = 0; i < offsprings; i++) {
          System.out.print(i + 1 + ".");

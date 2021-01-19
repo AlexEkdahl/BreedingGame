@@ -1,7 +1,5 @@
 package Game.FoodClasses;
 
-import Game.PokemonClasses.*;
-
 public class Berry extends Food {
 
    public Berry(){

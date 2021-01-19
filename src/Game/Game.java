@@ -1,7 +1,7 @@
 package Game;
 
 import java.util.ArrayList;
-import Game.PokemonClasses.*;
+
 
 public class Game {
 

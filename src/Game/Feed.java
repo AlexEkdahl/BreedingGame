@@ -16,6 +16,9 @@ public class Feed {
       this.game = game;
    }
 
+   //Sparar food i en LinkedHashedMap<Food, Integer>
+   //Printar ut available food, enbart
+
    public void feedPokemon(Player player) {
       game.menu.playerDisplay(player);
       System.out.println("===== Feed your Pokemon =====");
@@ -32,6 +35,7 @@ public class Feed {
             int choice = GameHelper.getInt(0, numberOffFoods);
 
          }
+
          game.menu.playerDisplay(player);
 
       } else {
@@ -63,9 +67,6 @@ public class Feed {
       return false;
    }
 
-   // TODO läspå
-   // From my understandings it would have been better to use a Set of food,
-   // reference Array is bad
    private boolean isRightFood(Pokemon pokemon, Food targetFood) {
       for (Food food : pokemon.getCanEatFood()) {
          if (food.getClass().equals(food.getClass())) {

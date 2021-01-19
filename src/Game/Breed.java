@@ -1,11 +1,10 @@
 package Game;
 
 import java.util.ArrayList;
-
 import Game.PokemonClasses.*;
 
 public class Breed {
-   Game game;
+   private Game game;
 
    public Breed() {
 
@@ -16,22 +15,26 @@ public class Breed {
    }
 
    public void printAvailablePokemon(Player player) {
-      GameHelper.clearScreen();
-      game.menu.playerDisplay(player);
-      System.out.println("===== Breeding =====\n");
-      if ((player.getPlayerPokemon().size() > 1)) {
-         int i = 1;
-         for (Pokemon pokemon : player.getPlayerPokemon()) {
-            System.out.println("[" + i + "]" + pokemon.toString(false));
-            i++;
-         }
-         System.out.println("\n[0] Exit to game menu" + "\nSelect your first Pokemon");
-         int choice = GameHelper.getInt(0, player.getPlayerPokemon().size());
-         if (choice != 0)
+      while (true) {
+         game.menu.playerDisplay(player);
+         System.out.println("===== Breeding =====\n");
+         if ((player.getPlayerPokemon().size() > 1)) {
+            int i = 1;
+            for (Pokemon pokemon : player.getPlayerPokemon()) {
+               System.out.println("[" + i + "]" + pokemon.toString(false));
+               i++;
+            }
+            System.out.println("\n[0] Exit to game menu" + "\nSelect your first Pokemon");
+            int choice = GameHelper.getInt(0, player.getPlayerPokemon().size());
+            if (choice == 0) {
+               break;
+            }
             printSuitableMate(getPokemon(choice, player), player);
-      } else {
-         System.out.println("You dont have enough Pokemon");
-         GameHelper.inputEnter();
+         } else {
+            System.out.println("You dont have enough Pokemon");
+            GameHelper.inputEnter();
+            break;
+         }
       }
    }
 
@@ -49,7 +52,7 @@ public class Breed {
          }
          System.out.println("\n[0] Exit to game menu");
          int choice = GameHelper.getInt(0, tempMate.size());
-         if (choice != 0) {
+         if (choice == 0) {
             if (Math.random() > 0.5) {
                pokemon.loveMakeing(player, getMate(choice, tempMate));
                player.accessShops(false);
