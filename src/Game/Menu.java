@@ -42,29 +42,13 @@ public class Menu {
       System.out.println("Money: " + player.getMoney());
       System.out.println("Round: " + game.getRound());
       System.out.println();
-      if (player.getPlayerPokemon().size() != 0) {
-         pokeDisplay(player);
-      }
       if (player.getPlayerFood().size() != 0) {
          foodDisplay(player);
       }
-      System.out.println("\n".repeat(3));
-   }
-
-   protected void feedPokemon(Player player) {
-      playerDisplay(player);
-      int choice = 0;
-      System.out.println("===== Feed your Pokemon =====");
-      player.printPokemonList();
-      System.out.println("\n[0] Exit to game menu");
-      choice = GameHelper.getInt(0, player.getPlayerPokemon().size());
-      if (choice == 0) {
-         gameMenu(player);
-      } else {
-         playerDisplay(player);
-         player.feedPokemon(choice);
+      if (player.getPlayerPokemon().size() != 0) {
+         pokeDisplay(player);
       }
-
+      System.out.println("\n".repeat(2));
    }
 
    private void howToPlay() {
@@ -73,8 +57,15 @@ public class Menu {
             "===== HOW TO PLAY =====\n\n" + "* This is a turn based game were players take tuns on setting up\n"
                   + "* their Pokemon for success. Players choose from buying or selling\n"
                   + "* Pokemon, buying food or try to breed. Each Pokemon have a different\n"
-                  + "* value. When the last turn is finished the players automatically sell\n"
-                  + "* their Pokemon and the winner is the one with most money left.");
+                  + "* value. Dont forget that different Pokemon eat different food.\n"
+                  + "* When the last turn is finished the players automatically sell\n"
+                  + "* their Pokemon and the winner is the one with most money left.\n\n"
+                  + "* A player can only make a action in one of the categories per round.\n"
+                  + "* But is able eg. to buy multiple Pokemon per round.\n\n"
+                  + "* A player that is unable to buy any Pokemon due to shortage of money and\n"
+                  + "* dont have any pokemon in their party is eliminated.\n"
+                  + "* Each round your Pokemon get 1 year older and is loosing a percentage\n"
+                  + "* of health. If you are unlucky one of your Pokemon get sick....");
       GameHelper.inputEnter();
       mainMenu();
    }
@@ -91,11 +82,11 @@ public class Menu {
       int startingMoney;
       GameHelper.clearScreen();
       System.out.println("====== Welcome to THE POKEMON BREEDERS RACE ======");
-      System.out.println("\nHow many players:");
+      System.out.println("\nHow many players (1-4):");
       numOfPlayers = GameHelper.getInt(1, 4);
       GameHelper.clearScreen();
       System.out.println("====== Welcome to THE POKEMON BREEDERS RACE ======");
-      System.out.println("\nHow many rounds: ");
+      System.out.println("\nHow many rounds (5-35): ");
       numOfRounds = GameHelper.getInt(5, 35);
       GameHelper.clearScreen();
       System.out.println("====== Welcome to THE POKEMON BREEDERS RACE ======");
@@ -124,22 +115,43 @@ public class Menu {
 
    private void gameMenuChoice(int choice, Player player) {
       switch (choice) {
-         case 1 -> game.store.displayPokemon(player);
-         case 2 -> game.store.displayFood(player);
-         case 3 -> game.feed.feedPokemon(player);
+         case 1 -> {
+            if (player.canBuyPokemon())
+               game.store.displayPokemon(player);
+            else
+               choiceMade(player);
+         }
+         case 2 -> {
+            if (player.canBuyFood())
+               game.store.displayFood(player);
+            else
+               choiceMade(player);
+         }
+         case 3 -> {
+            if (player.canFeedPokemon())
+               game.feed.feedPokemon(player);
+            else
+               choiceMade(player);
+         }
          case 4 -> {
             if (player.canBreed())
                game.breed.printAvailablePokemon(player);
-            else choiceMade(player);
+            else
+               choiceMade(player);
          }
-         case 5 -> game.store.sellPokemon(player);
+         case 5 -> {
+            if (player.canSellPokemon())
+               game.store.sellPokemon(player);
+            else
+               choiceMade(player);
+         }
          // case 9 -> //save game
          case 0 -> player.setRoundDone(true);
 
       }
    }
 
-   public void choiceMade(Player player) {
+   protected void choiceMade(Player player) {
       if (player.canBuyFood()) {
          System.out.println("You made your choice, you can only buy food this round");
          GameHelper.inputEnter();
@@ -161,15 +173,22 @@ public class Menu {
    private void pokeDisplay(Player player) {
       System.out.println("===== POKEMON =====");
       for (Pokemon pokemon : player.getPlayerPokemon()) {
-         System.out
-               .println(pokemon.getName() + "\tage: " + pokemon.getAge() + "\thealth: " + pokemon.getHealth() + "%");
+         System.out.println(pokemon.getBreed() + ", " + pokemon.getName() + "\tage: " + pokemon.getAge() + "/"+ pokemon.getMaxAge() + "\thealth: "
+               + pokemon.getHealth() + "%");
       }
    }
 
    private void foodDisplay(Player player) {
+      // remove from display if amount is 0
+      for (int i = player.getPlayerFood().size() - 1; i > 0; i--) {
+         if (player.getPlayerFood().get(i).getAmount() == 0) {
+            player.getPlayerFood().remove(i);
+         }
+      }
+
       System.out.println("===== FOOD =====");
-      for (Map.Entry<Food, Integer> entry : player.getPlayerFood().entrySet()) {
-         System.out.print(entry.getKey().getType() + ": " + entry.getValue() + "st\t");
+      for (Food food : player.getPlayerFood()) {
+         System.out.println(food.getType() + ": " + food.getAmount() + "kg");
 
       }
    }

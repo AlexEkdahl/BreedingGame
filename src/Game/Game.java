@@ -2,7 +2,6 @@ package Game;
 
 import java.util.ArrayList;
 
-
 public class Game {
 
    private ArrayList<Player> players;
@@ -25,7 +24,6 @@ public class Game {
       store.setGame(this);
       breed.setGame(this);
       feed.setGame(this);
-
       menu.mainMenu();
       for (Player player : players) {
          player.game = this;
@@ -55,9 +53,14 @@ public class Game {
       return round;
    }
 
-   private boolean playerLost() {
-      return (currentPlayer.getPlayerPokemon() == null && currentPlayer.getMoney() < 500) ? true : false;
-
+   private void playerLost() {
+      for (int i = players.size()-1; i>0; i--) {
+         if (players.get(i).getPlayerPokemon().size() == 0 && players.get(i).getMoney() < 500) {
+            System.out.println(players.get(i).getName() + " ran out of Pokemon and money and is ELIMINATED");
+            players.remove(i);
+            GameHelper.inputEnter();
+         }
+      }
    }
 
    public void changePlayer() {
@@ -66,6 +69,7 @@ public class Game {
       GameHelper.inputEnter();
       // If the player is last in turn, then start over with player 1
       if (players.indexOf(currentPlayer) == players.size() - 1) {
+         playerLost();
          currentPlayer = players.get(0);
          currentPlayer.accessShops(true);
          currentPlayer.setRoundDone(false);
@@ -90,9 +94,13 @@ public class Game {
             } else {
                player.getPokemon(i).aging();
                player.getPokemon(i).reduceHealth();
-               if (player.getPokemon(i).getAge() > player.getPokemon(i).getMaxAge()
-                     || player.getPokemon(i).getHealth() <= 0) {
-                  System.out.println(player.getName() + "! " + player.getPokemon(i).getName() + " died");
+               if (player.getPokemon(i).getAge() > player.getPokemon(i).getMaxAge()) {
+                  System.out.println(player.getName() + "! " + player.getPokemon(i).getName() + " died of old age");
+                  player.getPlayerPokemon().remove(i);
+                  GameHelper.inputEnter();
+               } else if (player.getPokemon(i).getHealth() <= 0) {
+                  System.out.println(player.getName() + "! " + player.getPokemon(i).getName()
+                        + " died because health dropped below 0");
                   player.getPlayerPokemon().remove(i);
                   GameHelper.inputEnter();
                }
@@ -118,7 +126,5 @@ public class Game {
       }
       return players.get(bestIndex);
    }
-
-
 
 }

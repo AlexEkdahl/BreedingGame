@@ -30,6 +30,7 @@ public class Breed {
                break;
             }
             printSuitableMate(getPokemon(choice, player), player);
+            //break;
          } else {
             System.out.println("You dont have enough Pokemon");
             GameHelper.inputEnter();
@@ -52,11 +53,17 @@ public class Breed {
          }
          System.out.println("\n[0] Exit to game menu");
          int choice = GameHelper.getInt(0, tempMate.size());
-         if (choice == 0) {
+         if (choice != 0) {
             if (Math.random() > 0.5) {
                pokemon.loveMakeing(player, getMate(choice, tempMate));
                player.accessShops(false);
             } else {
+               System.out.print("\n.");
+               GameHelper.waitMilliSeconds(700);
+               System.out.print(".");
+               GameHelper.waitMilliSeconds(700);
+               System.out.print(".");
+               GameHelper.waitMilliSeconds(700);
                System.out.println("Unsuccessful breeding");
                player.accessShops(false);
                GameHelper.inputEnter();

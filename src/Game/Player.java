@@ -9,7 +9,7 @@ public class Player {
    private String name;
    private int money;
    private ArrayList<Pokemon> playerPokemon;
-   private LinkedHashMap<Food, Integer> playerFood;
+   private ArrayList<Food> playerFood;
 
    private boolean canBuyPokemon = true;
    private boolean canSellPokemon = true;
@@ -22,7 +22,7 @@ public class Player {
       this.name = name;
       this.money = money;
       this.playerPokemon = new ArrayList<>();
-      this.playerFood = new LinkedHashMap<>();
+      this.playerFood = new ArrayList<>();
    }
 
    public boolean getRoundDone() {
@@ -61,7 +61,11 @@ public class Player {
       return name;
    }
 
-   public LinkedHashMap<Food, Integer> getPlayerFood() {
+   public Food getFood(int index){
+      return playerFood.get(index);
+   }
+
+   public ArrayList<Food> getPlayerFood() {
       return playerFood;
    }
 
@@ -124,35 +128,26 @@ public class Player {
       addPokemon(pokemon);
    }
 
-   // if playerFood already contains that food, add up quantity
    public void addFood(Food food, int quantity) {
-      if (playerFood.containsKey(food)) {
-         playerFood.put(food, (playerFood.get(food) + quantity));
+      if (playerFood.contains(food)) {
+         food.addFood(quantity);
       } else {
-         playerFood.put(food, quantity);
+         playerFood.add(food);
+         food.addFood(quantity);
       }
    }
 
-   public void printPokemonList() {
+   public void printPokemonList(boolean condensed) {
       int i = 1;
       for (Pokemon pokemon : playerPokemon) {
-         System.out.println("[" + i + "]" + pokemon.toString(false));
-         i++;
+         if (condensed) {
+            System.out.println("[" + i + "]" + pokemon.toString(false));
+            i++;
+         } else {
+            System.out.println(
+                  "[" + i + "]" + pokemon.getBreed() + ", " + pokemon.getName() + " health: " + pokemon.getHealth());
+         }
       }
-   }
-
-   public void printPlayerFood() {
-      int n = 1;
-      for (Map.Entry<Food, Integer> entry : playerFood.entrySet()) {
-         System.out.println("[" + n + "]" + entry.getKey().getType() + "\t" + entry.getValue());
-         n++;
-      }
-   }
-
-   // !
-   public void feedPokemon(int index) {
-      System.out.println("Choose food to feed: ");
-      getPokemon(index - 1);
    }
 
    public void sellPokemon(int index) {
