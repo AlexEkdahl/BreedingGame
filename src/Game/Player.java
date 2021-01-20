@@ -11,6 +11,7 @@ public class Player {
    private ArrayList<Pokemon> playerPokemon;
    private ArrayList<Food> playerFood;
 
+   //TODO public
    private boolean canBuyPokemon = true;
    private boolean canSellPokemon = true;
    private boolean canBuyFood = true;
@@ -108,7 +109,7 @@ public class Player {
    private void addPokemon(Pokemon newPokemon) {
       playerPokemon.add(newPokemon);
    }
-
+   //TODO ev Animal
    // creates pokemon to playerPokemon
    public void createPokemon(Pokemon pokemon, boolean offspring) {
       if (offspring) {

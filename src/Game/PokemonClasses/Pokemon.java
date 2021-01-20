@@ -81,6 +81,7 @@ public abstract class Pokemon {
    }
 
    public void eat(Food food, int quantity) {
+      //TODO for loop
       health = health + (int)(health * 0.10)*quantity;
       // Cant get over 100
       health = Math.min(health, 100);

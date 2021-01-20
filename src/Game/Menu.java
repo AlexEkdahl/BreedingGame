@@ -45,14 +45,10 @@ public class Menu {
       if (player.getPlayerFood().size() != 0) {
          foodDisplay(player);
       }
-<<<<<<< HEAD
       if (player.getPlayerPokemon().size() != 0) {
          pokeDisplay(player);
       }
       System.out.println("\n".repeat(2));
-=======
-      System.out.println("\n".repeat(3));
->>>>>>> b2feee859f3249c89f6599e021b68b9b84a53bc6
    }
 
    private void howToPlay() {
@@ -177,11 +173,7 @@ public class Menu {
    private void pokeDisplay(Player player) {
       System.out.println("===== POKEMON =====");
       for (Pokemon pokemon : player.getPlayerPokemon()) {
-<<<<<<< HEAD
          System.out.println(pokemon.getBreed() + ", " + pokemon.getName() + "\tage: " + pokemon.getAge() + "/"+ pokemon.getMaxAge() + "\thealth: "
-=======
-         System.out.println(pokemon.getBreed() + ", " + pokemon.getName() + "\tage: " + pokemon.getAge() + "\thealth: "
->>>>>>> b2feee859f3249c89f6599e021b68b9b84a53bc6
                + pokemon.getHealth() + "%");
       }
    }
