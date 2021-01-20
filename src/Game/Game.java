@@ -25,9 +25,13 @@ public class Game {
       breed.setGame(this);
       feed.setGame(this);
       menu.mainMenu();
+
+
       for (Player player : players) {
          player.game = this;
       }
+
+      
       currentPlayer = players.get(0);
       while (round < numOfRounds) {
          menu.gameMenu(currentPlayer);
