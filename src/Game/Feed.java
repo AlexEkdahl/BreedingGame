@@ -2,7 +2,6 @@ package Game;
 
 import Game.FoodClasses.*;
 import Game.PokemonClasses.*;
-import java.util.*;
 
 public class Feed {
 
@@ -16,60 +15,68 @@ public class Feed {
       this.game = game;
    }
 
-   //Sparar food i en LinkedHashedMap<Food, Integer>
-   //Printar ut available food, enbart
-
    public void feedPokemon(Player player) {
-      game.menu.playerDisplay(player);
-      System.out.println("===== Feed your Pokemon =====");
-      player.printPokemonList();
-      System.out.println("\n[0] Exit to game menu" + "\nWhich Pokemon will you feed: ");
-      int pokeIndex = GameHelper.getInt(0, player.getPlayerPokemon().size());
-      if (pokeIndex != 0) {
-         game.menu.playerDisplay(player);
+      if (player.getPlayerPokemon().size() != 0 && (player.getPlayerFood().size() != 0)) {
+         while (true) {
+            game.menu.playerDisplay(player);
+            System.out.println("===== Feed your Pokemon =====\n");
+            printPokemon(player);
+            System.out.println("\n[0] Exit to game menu" + "\nWhich Pokemon will you feed: ");
+            int pokeIndex = GameHelper.getInt(0, player.getPlayerPokemon().size());
+            if (pokeIndex != 0) {
+               game.menu.playerDisplay(player);
+               System.out.println("===== Feed your Pokemon =====\n");
+               printFood(player);
+               System.out.println("\n[0] Exit to game menu" + "\n Choose food: ");
 
-         if (gotRightFood(player.getPokemon(pokeIndex - 1), player)) {
-            System.out.println("===== Available Food for "+player.getPokemon(pokeIndex - 1).getBreed()+" =====");
-            int numberOffFoods = printRightFood(player.getPokemon(pokeIndex - 1), player);
-            System.out.println("\nWhat food: ");
-            int choice = GameHelper.getInt(0, numberOffFoods);
+               int pokFood = GameHelper.getInt(0, player.getPlayerFood().size());
+               if (pokFood != 0 && isRightFood(player.getPokemon(pokeIndex - 1), player.getFood(pokFood - 1))) {
+                  System.out.println("Max amount: " + player.getFood(pokFood - 1).getAmount());
+                  int amount = GameHelper.getInt(0, player.getFood(pokFood - 1).getAmount());
+                  if (amount == 0) {
+                     break;
+                  }
+                  player.getPokemon(pokeIndex - 1).eat(player.getFood(pokFood - 1), amount);
+                  player.getFood(pokFood - 1).removeFood(amount);
+                  player.accessShops(false);
+                  player.setCanFeedPokemon(true);
+                  break;
+               } else {
+                  System.out
+                        .println("Thats not a suitable food option for " + player.getPokemon(pokeIndex - 1).getBreed());
+                        GameHelper.waitMilliSeconds(1500);
+               }
 
+            } else {
+               break;
+            }
          }
-
-         game.menu.playerDisplay(player);
-
       } else {
-         System.out.println("You have no suitable food for " + player.getPokemon(pokeIndex - 1).getName());
+         System.out.println("You have no Pokemon or no food");
          GameHelper.inputEnter();
       }
    }
 
-   // Only print food this pokemon can eat that the player got
-   private int printRightFood(Pokemon pokemon, Player player) {
-      int n = 1;
-      for (Map.Entry<Food, Integer> entry : player.getPlayerFood().entrySet()) {
-         if (isRightFood(pokemon, entry.getKey())) {
-            System.out.println("[" + n + "]" + entry.getKey().getType() + "\t" + entry.getValue());
-            n++;
-         }
+   private void printPokemon(Player player) {
+      int i = 1;
+      for (Pokemon pokemon : player.getPlayerPokemon()) {
+         System.out.println("[" + i + "]" + pokemon.getBreed() + ", " + pokemon.getName() + ". Health: "
+               + pokemon.getHealth() + " Age: " + pokemon.getAge());
+               System.out.println("\t- Eats: " + pokemon.foodToString());
       }
-      return n - 1;
    }
 
-   private boolean gotRightFood(Pokemon pokemon, Player player) {
-      for (Map.Entry<Food, Integer> entry : player.getPlayerFood().entrySet()) {
-         for (Food food : pokemon.getCanEatFood()) {
-            if (entry.getKey().getClass().equals(food.getClass())) {
-               return true;
-            }
-         }
+   private void printFood(Player player) {
+      int i = 1;
+      for (Food food : player.getPlayerFood()) {
+         System.out.println("[" + i + "]" + food.getType() + ", " + food.getAmount() + "st");
+         i++;
       }
-      return false;
    }
 
-   private boolean isRightFood(Pokemon pokemon, Food targetFood) {
-      for (Food food : pokemon.getCanEatFood()) {
-         if (food.getClass().equals(food.getClass())) {
+   private boolean isRightFood(Pokemon pokemon, Food food) {
+      for (Food pokefood : pokemon.getCanEatFood()) {
+         if (pokefood.getType().equals(food.getType())) {
             return true;
          }
       }

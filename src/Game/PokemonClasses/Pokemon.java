@@ -81,10 +81,9 @@ public abstract class Pokemon {
    }
 
    public void eat(Food food, int quantity) {
-      health += ((food.getHealthValue() / 100) * health) * quantity;
+      health += (int)(health * 0.10);
       // Cant get over 100
       health = Math.min(health, 100);
-
    }
 
    public void setGender(int n) {
@@ -98,11 +97,12 @@ public abstract class Pokemon {
    public String toString(boolean forShop) {
       if (forShop) {
          return "===== info =====\n" + getBreed() + "\n\nMax offsprings: " + maxOffspring + "\nMax age: " + getMaxAge()
-               + "\nEat: " + foodToString() + "\n===== info =====";
+               + "\nEat: " + foodToString() + "\n================";
       }
-      return getBreed() + " named " + name + ", age: " + age + " " + gender + " and health: " + health
-            + ". Generate max " + maxOffspring + " offsprings";
+      return getBreed() + ", " + name + ", age: " + age + " " + gender + " health: " + health
+            + ". Max offspring: " + maxOffspring;
    }
+
 
    public String foodToString() {
       String s = "";
