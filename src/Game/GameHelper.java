@@ -1,9 +1,10 @@
 package Game;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.Scanner;
 
-public class GameHelper {
+public class GameHelper implements Serializable{
 
    // Scanner used for entire project
    public static Scanner input = new Scanner(System.in);
@@ -33,6 +34,23 @@ public class GameHelper {
 
          }
       } while (intReturn == -1 || intReturn > max || intReturn < min);
+      return intReturn;
+   }
+
+   public static int getInt(int min, int max, int save) {
+      System.out.println("\nEnter here: ");
+      int intReturn = -1;
+      do {
+         try {
+            intReturn = Integer.parseInt(input.nextLine());
+            if (intReturn > max || intReturn < min || intReturn !=9) {
+               System.out.println("A number between " + min + "-" + max + "or " +save);
+            }
+         } catch (Exception e) {
+            System.out.println("An integer!");
+
+         }
+      } while (intReturn != 9 || intReturn > max || intReturn < min);
       return intReturn;
    }
 

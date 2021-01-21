@@ -1,9 +1,11 @@
 package Game;
 
+import java.io.Serializable;
+
 import Game.FoodClasses.*;
 import Game.PokemonClasses.*;
 
-public class Feed {
+public class Feed implements Serializable{
 
    Game game;
 

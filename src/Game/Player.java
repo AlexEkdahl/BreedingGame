@@ -1,10 +1,11 @@
 package Game;
 
+import java.io.Serializable;
 import java.util.*;
 import Game.FoodClasses.Food;
 import Game.PokemonClasses.*;
 
-public class Player {
+public class Player implements Serializable{
    public Game game;
    private String name;
    private int money;

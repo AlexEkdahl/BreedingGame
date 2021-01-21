@@ -1,9 +1,10 @@
 package Game;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import Game.PokemonClasses.*;
 
-public class Game {
+public class Game  implements Serializable{
 
    private ArrayList<Player> players;
 
@@ -35,6 +36,20 @@ public class Game {
       pokemonAgeOrSell(true);
       printAllScores();
       System.out.println("The winner is " + getWinner().getName());
+   }
+
+   public void newGame(){
+
+      while (round < numOfRounds) {
+         menu.gameMenu(currentPlayer);
+         if (currentPlayer.roundDone) {
+            changePlayer();
+         }
+      }
+      pokemonAgeOrSell(true);
+      printAllScores();
+      System.out.println("The winner is " + getWinner().getName());
+
    }
 
    public void setNumOfRounds(int numOfRounds) {
@@ -147,5 +162,7 @@ public class Game {
       }
       return players.get(bestIndex);
    }
+
+
 
 }

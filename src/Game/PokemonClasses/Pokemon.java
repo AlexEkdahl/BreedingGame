@@ -1,12 +1,13 @@
 package Game.PokemonClasses;
 
+import java.io.Serializable;
 import java.util.*;
 
 import Game.GameHelper;
 import Game.Player;
 import Game.FoodClasses.*;
 
-public abstract class Pokemon {
+public abstract class Pokemon implements Serializable {
 
    enum Gender {
       FEMALE, MALE

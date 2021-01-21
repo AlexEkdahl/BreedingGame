@@ -1,10 +1,11 @@
 package Game;
 
+import java.io.Serializable;
 import java.util.*;
 import Game.FoodClasses.Food;
 import Game.PokemonClasses.Pokemon;
 
-public class Menu {
+public class Menu implements Serializable {
 
    public boolean readHowTo = false;
    Game game;
@@ -47,7 +48,7 @@ public class Menu {
       System.out.println("[5] Sell Pokemon");
       System.out.println("\n[9] -Save Game- ");
       System.out.println("[0] - Finish round");
-      gameMenuChoice(GameHelper.getInt(0, 5), player);
+      gameMenuChoice(GameHelper.getInt(0, 9), player);
    }
 
    protected void playerDisplay(Player player) {
@@ -123,6 +124,7 @@ public class Menu {
       switch (choice) {
          case 1 -> newGameMenu();
          case 2 -> howToPlay();
+         case 3 -> loadSavedFile(); //loadSavedFile();
          case 0 -> exitGame();
          // TODO Load from saved file
       }
@@ -170,10 +172,22 @@ public class Menu {
                choiceMade(player);
             }
          }
-         // case 9 -> //save game
+         case 9 -> newSaveFile();
          case 0 -> player.roundDone = true;
-
       }
+   }
+
+   //!
+   private void newSaveFile() {
+      //System.out.println("Enter the name of the savefile: ");
+      //String fileToSave = GameHelper.input.nextLine() + ".ser";
+      Serializer.serialize("Alex.ser", game);
+   }
+   //!
+   public void loadSavedFile() {
+      this.game = (Game) Serializer.deserialize("Alex.ser");
+      game.newGame();
+
    }
 
    protected void choiceMade(Player player) {
@@ -198,7 +212,7 @@ public class Menu {
    private void pokeDisplay(Player player) {
       System.out.println("===== POKEMON =====");
       for (Pokemon pokemon : player.getPlayerPokemon()) {
-         //Cant get the padding right
+         // Cant get the padding right
          System.out.printf("%s%s %-10s %s%s/%-3s %s%s%s\n", pokemon.getBreed(), pokemon.genderSymbol(),
                pokemon.getName(), "Age: ", pokemon.getAge(), pokemon.getMaxAge(), "Health: ", pokemon.getHealth(), "%");
       }

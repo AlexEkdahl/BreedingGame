@@ -1,9 +1,10 @@
 package Game;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import Game.PokemonClasses.*;
 
-public class Breed {
+public class Breed implements Serializable{
    private Game game;
 
    public Breed() {
