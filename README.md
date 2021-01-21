@@ -14,13 +14,13 @@ The workspace contains one folder and three packages, where:
 
 ## Grading criteria 
 
-- `Betygskrav G`:
+#Betygskrav:
 Uppfyll kraven på Spelgång och spelregler (G-nivå).
 Använd Git-för versionshantering
 Skapa de klasser som anges här ovan. Den enda rad kod som ska finna i Main-klassens statiska main-metod är new Game().
 Kopiera inte någon annans kod.
 
--`Betygskrav VG`:
+#Betygskrav VG:
 Djur kan bli sjuka (20% chans per djur och spelrunda). I så fall måste man betala veterinärkostnader för dem (olika pris för olika slags djur). Då är det 50% chans att de blir friska. Annars dör de. [check]
 Man kan spara pågående spel till disk och fortsätta det senare. Flera spel kan sparas under olika filnamn. Användaren väljer filnamn.
 Man kan köpa och sälja djur till varandra (mellan olika spelare).
