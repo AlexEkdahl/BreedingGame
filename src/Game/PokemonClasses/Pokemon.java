@@ -15,7 +15,7 @@ public abstract class Pokemon {
    protected String name;
    protected Gender gender;
    protected int health = 100;
-   protected boolean isSick = false;
+   public boolean isSick = false;
 
    protected int maxOffspring;
    protected Set<Food> canEat;
@@ -49,7 +49,7 @@ public abstract class Pokemon {
    }
 
    public int getValue() {
-      return (price * health) / 100;
+      return (int) Math.round(price * health/100.0 * (age == 0 ? 1.0 : (1.0 - (double)age/maxAge)));
    }
 
    public int getHealth() {
@@ -64,10 +64,6 @@ public abstract class Pokemon {
       return this.getClass().getSimpleName();
    }
 
-   public boolean isAlive() {
-      return (age < maxAge && health > 0);
-   }
-
    public void setName(String name) {
       this.name = name;
    }
@@ -80,9 +76,14 @@ public abstract class Pokemon {
       this.age++;
    }
 
+   public String genderSymbol() {
+      return (gender == Gender.FEMALE) ? "♀" : "♂";
+   }
+
    public void eat(Food food, int quantity) {
-      //TODO for loop
-      health = health + (int)(health * 0.10)*quantity;
+      for (int i = 0; i < quantity; i++) {
+         health = health + (int) (health * 0.10);
+      }
       // Cant get over 100
       health = Math.min(health, 100);
    }
@@ -100,9 +101,8 @@ public abstract class Pokemon {
          return "===== info =====\n" + getBreed() + "\n\nMax offsprings: " + maxOffspring + "\nMax age: " + getMaxAge()
                + "\nEat: " + foodToString() + "\n================";
       }
-      return getBreed() + ", " + name + ". "+ gender + " Max offspring: " + maxOffspring;
+      return getBreed() + getGenderString() + " " + name + " " + " Max offspring: " + maxOffspring;
    }
-
 
    public String foodToString() {
       String s = "";
