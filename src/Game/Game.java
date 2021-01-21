@@ -1,6 +1,7 @@
 package Game;
 
 import java.util.ArrayList;
+import Game.PokemonClasses.*;
 
 public class Game {
 
@@ -16,10 +17,6 @@ public class Game {
    private Player currentPlayer;
 
    public Game() {
-
-   }
-
-   public void newGame() {
       menu.setGame(this);
       store.setGame(this);
       breed.setGame(this);
@@ -31,13 +28,13 @@ public class Game {
       currentPlayer = players.get(0);
       while (round < numOfRounds) {
          menu.gameMenu(currentPlayer);
-         if (currentPlayer.getRoundDone()) {
+         if (currentPlayer.roundDone) {
             changePlayer();
          }
       }
       pokemonAgeOrSell(true);
       printAllScores();
-      System.out.println("Winner is " + getWinner().getName());
+      System.out.println("The winner is " + getWinner().getName());
    }
 
    public void setNumOfRounds(int numOfRounds) {
@@ -52,8 +49,12 @@ public class Game {
       return round;
    }
 
+   public int getNumOfRounds() {
+      return numOfRounds;
+   }
+
    private void playerLost() {
-      for (int i = players.size()-1; i>0; i--) {
+      for (int i = players.size() - 1; i > 0; i--) {
          if (players.get(i).getPlayerPokemon().size() == 0 && players.get(i).getMoney() < 500) {
             System.out.println(players.get(i).getName() + " ran out of Pokemon and money and is ELIMINATED");
             players.remove(i);
@@ -71,19 +72,19 @@ public class Game {
          playerLost();
          currentPlayer = players.get(0);
          currentPlayer.accessShops(true);
-         currentPlayer.setRoundDone(false);
+         currentPlayer.roundDone = false;
          pokemonAgeOrSell(false);
          round++;
       } else {
          currentPlayer = players.get(players.indexOf(currentPlayer) + 1);
          currentPlayer.accessShops(true);
-         currentPlayer.setRoundDone(false);
+         currentPlayer.roundDone = false;
       }
+      getSick(currentPlayer);
    }
 
    // TODO add sickness
    // Reverse loop, needed to remove pokemon from it
-   // Ageing and health reduce
    private void pokemonAgeOrSell(boolean sellAll) {
       for (Player player : players) {
          for (int i = player.getPlayerPokemon().size() - 1; i >= 0; i--) {
@@ -103,6 +104,27 @@ public class Game {
                   player.getPlayerPokemon().remove(i);
                   GameHelper.inputEnter();
                }
+            }
+         }
+      }
+   }
+
+   public void getSick(Player currentPlayer) {
+
+      for (int i = currentPlayer.getPlayerPokemon().size() - 1; i > 0; i--) {
+         if (Math.random() < 0.2) {
+            currentPlayer.getPokemon(i).isSick = false;
+            System.out
+                  .println(currentPlayer.getPokemon(i).toString(false) + "Got sick, pay the vet or let Pokemon die?");
+            System.out.println("Cost: 300");
+            System.out.println("\n[y / n]");
+            String s = GameHelper.validateString();
+            if (s.equals("n")) {
+               currentPlayer.getPlayerPokemon().remove(i);
+               System.out.println("DIED");
+               GameHelper.inputEnter();
+            } else {
+               currentPlayer.handlePurchase(300);
             }
          }
       }

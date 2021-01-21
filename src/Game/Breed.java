@@ -30,7 +30,7 @@ public class Breed {
                break;
             }
             printSuitableMate(getPokemon(choice, player), player);
-            //break;
+            break;
          } else {
             System.out.println("You dont have enough Pokemon");
             GameHelper.inputEnter();

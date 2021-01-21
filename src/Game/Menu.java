@@ -6,6 +6,7 @@ import Game.PokemonClasses.Pokemon;
 
 public class Menu {
 
+   public boolean readHowTo = false;
    Game game;
 
    public void setGame(Game game) {
@@ -15,12 +16,25 @@ public class Menu {
    protected void mainMenu() {
       GameHelper.clearScreen();
       System.out.println("====== Welcome to THE POKEMON BREEDERS RACE ======");
-      System.out.println("\n[1] New game");
-      System.out.println("[2] How to play");
-      System.out.println("\n[0]. Exit game");
+      if (readHowTo) {
+         System.out.println("\n[" + PrintColors.ANSI_GREEN + 1 + PrintColors.ANSI_RESET + "]" + PrintColors.ANSI_GREEN
+               + " New game" + PrintColors.ANSI_RESET);
+      } else {
+         System.out.println("\n[1] New game");
+      }
+      if (readHowTo) {
+         System.out.println("[2] How to play");
+
+      } else {
+         System.out.println("[" + PrintColors.ANSI_YELLOW + 2 + PrintColors.ANSI_RESET + "]" + PrintColors.ANSI_YELLOW
+               + " How to play" + PrintColors.ANSI_RESET);
+      }
+
+      System.out.println(PrintColors.ANSI_BLACK + "\n[3] Load game" + PrintColors.ANSI_RESET);
+      System.out.println("\n[0] Exit game");
       // TODO Load from saved file
 
-      mainMenuChoice(GameHelper.getInt(0, 2));
+      mainMenuChoice(GameHelper.getInt(0, 3));
    }
 
    protected void gameMenu(Player player) {
@@ -38,9 +52,9 @@ public class Menu {
 
    protected void playerDisplay(Player player) {
       GameHelper.clearScreen();
-      System.out.println(player.getName());
+      System.out.println(PrintColors.ANSI_RED + player.getName() + PrintColors.ANSI_RESET);
       System.out.println("Money: " + player.getMoney());
-      System.out.println("Round: " + game.getRound());
+      System.out.println("Round: " + game.getRound() + "/" + game.getNumOfRounds());
       System.out.println();
       if (player.getPlayerFood().size() != 0) {
          foodDisplay(player);
@@ -48,11 +62,12 @@ public class Menu {
       if (player.getPlayerPokemon().size() != 0) {
          pokeDisplay(player);
       }
-      System.out.println("\n".repeat(2));
+      System.out.println();
    }
 
    private void howToPlay() {
       GameHelper.clearScreen();
+      readHowTo = true;
       System.out.println(
             "===== HOW TO PLAY =====\n\n" + "* This is a turn based game were players take tuns on setting up\n"
                   + "* their Pokemon for success. Players choose from buying or selling\n"
@@ -116,52 +131,62 @@ public class Menu {
    private void gameMenuChoice(int choice, Player player) {
       switch (choice) {
          case 1 -> {
-            if (player.canBuyPokemon())
+            if (player.canBuyPokemon)
                game.store.displayPokemon(player);
-            else
+            else {
+               playerDisplay(player);
                choiceMade(player);
+            }
          }
          case 2 -> {
-            if (player.canBuyFood())
+            if (player.canBuyFood)
                game.store.displayFood(player);
-            else
+            else {
+               playerDisplay(player);
                choiceMade(player);
+            }
          }
          case 3 -> {
-            if (player.canFeedPokemon())
+            if (player.canFeedPokemon)
                game.feed.feedPokemon(player);
-            else
+            else {
+               playerDisplay(player);
                choiceMade(player);
+            }
          }
          case 4 -> {
-            if (player.canBreed())
+            if (player.canBreed)
                game.breed.printAvailablePokemon(player);
-            else
+            else {
+               playerDisplay(player);
                choiceMade(player);
+            }
          }
          case 5 -> {
-            if (player.canSellPokemon())
+            if (player.canSellPokemon)
                game.store.sellPokemon(player);
-            else
+            else {
+               playerDisplay(player);
                choiceMade(player);
+            }
          }
          // case 9 -> //save game
-         case 0 -> player.setRoundDone(true);
+         case 0 -> player.roundDone = true;
 
       }
    }
 
    protected void choiceMade(Player player) {
-      if (player.canBuyFood()) {
+      if (player.canBuyFood) {
          System.out.println("You made your choice, you can only buy food this round");
          GameHelper.inputEnter();
-      } else if (player.canBuyPokemon()) {
+      } else if (player.canBuyPokemon) {
          System.out.println("You made your choice, you can only buy Pokemon this round");
          GameHelper.inputEnter();
-      } else if (player.canSellPokemon()) {
+      } else if (player.canSellPokemon) {
          System.out.println("You made your choice, you can only sell Pokemon this round");
          GameHelper.inputEnter();
-      } else if (player.canFeedPokemon()) {
+      } else if (player.canFeedPokemon) {
          System.out.println("You made your choice, you can only feed your Pokemon this round");
          GameHelper.inputEnter();
       } else {
@@ -173,8 +198,9 @@ public class Menu {
    private void pokeDisplay(Player player) {
       System.out.println("===== POKEMON =====");
       for (Pokemon pokemon : player.getPlayerPokemon()) {
-         System.out.println(pokemon.getBreed() + ", " + pokemon.getName() + "\tage: " + pokemon.getAge() + "/"+ pokemon.getMaxAge() + "\thealth: "
-               + pokemon.getHealth() + "%");
+         //Cant get the padding right
+         System.out.printf("%s%s %-10s %s%s/%-3s %s%s%s\n", pokemon.getBreed(), pokemon.genderSymbol(),
+               pokemon.getName(), "Age: ", pokemon.getAge(), pokemon.getMaxAge(), "Health: ", pokemon.getHealth(), "%");
       }
    }
 
@@ -185,7 +211,6 @@ public class Menu {
             player.getPlayerFood().remove(i);
          }
       }
-
       System.out.println("===== FOOD =====");
       for (Food food : player.getPlayerFood()) {
          System.out.println(food.getType() + ": " + food.getAmount() + "kg");

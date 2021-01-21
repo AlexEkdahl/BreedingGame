@@ -39,7 +39,7 @@ public class Feed {
                   player.getPokemon(pokeIndex - 1).eat(player.getFood(pokFood - 1), amount);
                   player.getFood(pokFood - 1).removeFood(amount);
                   player.accessShops(false);
-                  player.setCanFeedPokemon(true);
+                  player.canFeedPokemon = true;
                } else {
                   System.out
                         .println("Thats not a suitable food option for " + player.getPokemon(pokeIndex - 1).getBreed());

@@ -11,43 +11,18 @@ public class Player {
    private ArrayList<Pokemon> playerPokemon;
    private ArrayList<Food> playerFood;
 
-   //TODO public
-   private boolean canBuyPokemon = true;
-   private boolean canSellPokemon = true;
-   private boolean canBuyFood = true;
-   private boolean canBreed = true;
-   private boolean canFeedPokemon = true;
-   private boolean roundDone = false;
+   public boolean canBuyPokemon = true;
+   public boolean canSellPokemon = true;
+   public boolean canBuyFood = true;
+   public boolean canBreed = true;
+   public boolean canFeedPokemon = true;
+   public boolean roundDone = false;
 
    public Player(String name, int money) {
       this.name = name;
       this.money = money;
       this.playerPokemon = new ArrayList<>();
       this.playerFood = new ArrayList<>();
-   }
-
-   public boolean getRoundDone() {
-      return roundDone;
-   }
-
-   public boolean canFeedPokemon() {
-      return canFeedPokemon;
-   }
-
-   public boolean canBreed() {
-      return canBreed;
-   }
-
-   public boolean canBuyFood() {
-      return canBuyFood;
-   }
-
-   public boolean canBuyPokemon() {
-      return canBuyPokemon;
-   }
-
-   public boolean canSellPokemon() {
-      return canSellPokemon;
    }
 
    public ArrayList<Pokemon> getPlayerPokemon() {
@@ -62,7 +37,7 @@ public class Player {
       return name;
    }
 
-   public Food getFood(int index){
+   public Food getFood(int index) {
       return playerFood.get(index);
    }
 
@@ -74,34 +49,6 @@ public class Player {
       return playerPokemon.get(index);
    }
 
-   public void setRoundDone(boolean roundDone) {
-      this.roundDone = roundDone;
-   }
-
-   public void setCanBreed(boolean canBreed) {
-      this.canBreed = canBreed;
-   }
-
-   public void setCanBuyFood(boolean canBuyFood) {
-      this.canBuyFood = canBuyFood;
-   }
-
-   public void setCanBuyPokemon(boolean canBuyPokemon) {
-      this.canBuyPokemon = canBuyPokemon;
-   }
-
-   public void setCanSellPokemon(boolean canSellPokemon) {
-      this.canSellPokemon = canSellPokemon;
-   }
-
-   public void setCanFeedPokemon(boolean canFeedPokemon) {
-      this.canFeedPokemon = canFeedPokemon;
-   }
-
-   public void setMoney(int money) {
-      this.money = money;
-   }
-
    public void handlePurchase(int itemCost) {
       money -= itemCost;
    }
@@ -109,18 +56,18 @@ public class Player {
    private void addPokemon(Pokemon newPokemon) {
       playerPokemon.add(newPokemon);
    }
-   //TODO ev Animal
+
    // creates pokemon to playerPokemon
    public void createPokemon(Pokemon pokemon, boolean offspring) {
       if (offspring) {
          game.menu.playerDisplay(this);
          pokemon.setGender(Math.random() > 0.5 ? 1 : 2);
          System.out.println("You got a " + pokemon.getGenderString() + " " + pokemon.getBreed());
-         GameHelper.waitMilliSeconds(1000);
+         GameHelper.waitMilliSeconds(1500);
       } else {
          game.menu.playerDisplay(this);
          System.out.println("What is " + pokemon.getBreed() + " gender?");
-         System.out.println("[1] female / [2] male");
+         System.out.println("[1] Female / [2] Male");
          pokemon.setGender(GameHelper.getInt(1, 2));
       }
       game.menu.playerDisplay(this);
@@ -147,6 +94,7 @@ public class Player {
          } else {
             System.out.println(
                   "[" + i + "]" + pokemon.getBreed() + ", " + pokemon.getName() + " health: " + pokemon.getHealth());
+                  i++;
          }
       }
    }

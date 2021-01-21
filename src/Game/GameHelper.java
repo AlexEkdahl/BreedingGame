@@ -35,7 +35,6 @@ public class GameHelper {
       } while (intReturn == -1 || intReturn > max || intReturn < min);
       return intReturn;
    }
-   
 
    // "Sleeps" the terminal for int ms seconds
    public static void waitMilliSeconds(int ms) {
