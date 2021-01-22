@@ -2,9 +2,12 @@ package Game;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import Game.PokemonClasses.*;
+import Game.PokemonClasses.Pokemon;
+
 
 public class Breed implements Serializable{
+
+   private static final long serialVersionUID = -7646741697164257955L;
    private Game game;
 
    public Breed() {
@@ -16,7 +19,6 @@ public class Breed implements Serializable{
    }
 
    public void printAvailablePokemon(Player player) {
-      while (true) {
          game.menu.playerDisplay(player);
          System.out.println("===== Breeding =====\n");
          if ((player.getPlayerPokemon().size() > 1)) {
@@ -27,18 +29,14 @@ public class Breed implements Serializable{
             }
             System.out.println("\n[0] Exit to game menu" + "\nSelect your first Pokemon");
             int choice = GameHelper.getInt(0, player.getPlayerPokemon().size());
-            if (choice == 0) {
-               break;
+            if (choice != 0) {
+               printSuitableMate(getPokemon(choice, player), player);
             }
-            printSuitableMate(getPokemon(choice, player), player);
-            break;
          } else {
             System.out.println("You dont have enough Pokemon");
             GameHelper.inputEnter();
-            break;
          }
       }
-   }
 
    // containing list of suitable mates for selected pokemon
    public void printSuitableMate(Pokemon pokemon, Player player) {

@@ -4,8 +4,9 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.Scanner;
 
-public class GameHelper implements Serializable{
+public class GameHelper implements Serializable {
 
+   private static final long serialVersionUID = -8029255442254002436L;
    // Scanner used for entire project
    public static Scanner input = new Scanner(System.in);
 
@@ -43,8 +44,8 @@ public class GameHelper implements Serializable{
       do {
          try {
             intReturn = Integer.parseInt(input.nextLine());
-            if (intReturn > max || intReturn < min || intReturn !=9) {
-               System.out.println("A number between " + min + "-" + max + "or " +save);
+            if (intReturn > max || intReturn < min || intReturn != 9) {
+               System.out.println("A number between " + min + "-" + max + "or " + save);
             }
          } catch (Exception e) {
             System.out.println("An integer!");
@@ -76,11 +77,13 @@ public class GameHelper implements Serializable{
    public static void clearScreen() {
       try {
          if (System.getProperty("os.name").contains("Windows")) {
+            System.out.println("\n".repeat(60));
             new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
          } else {
             System.out.print("\033\143");
          }
       } catch (IOException | InterruptedException ex) {
+
       }
    }
 

@@ -1,12 +1,16 @@
 package Game;
 
+
 import java.io.Serializable;
 import java.util.*;
+
+
 import Game.FoodClasses.Food;
 import Game.PokemonClasses.Pokemon;
 
 public class Menu implements Serializable {
 
+   private static final long serialVersionUID = 8360868585706663885L;
    public boolean readHowTo = false;
    Game game;
 
@@ -33,7 +37,6 @@ public class Menu implements Serializable {
 
       System.out.println(PrintColors.ANSI_BLACK + "\n[3] Load game" + PrintColors.ANSI_RESET);
       System.out.println("\n[0] Exit game");
-      // TODO Load from saved file
 
       mainMenuChoice(GameHelper.getInt(0, 3));
    }
@@ -124,9 +127,8 @@ public class Menu implements Serializable {
       switch (choice) {
          case 1 -> newGameMenu();
          case 2 -> howToPlay();
-         case 3 -> loadSavedFile(); //loadSavedFile();
+         case 3 -> loadSavedFile(); // loadSavedFile();
          case 0 -> exitGame();
-         // TODO Load from saved file
       }
    }
 
@@ -177,13 +179,12 @@ public class Menu implements Serializable {
       }
    }
 
-   //!
    private void newSaveFile() {
-      //System.out.println("Enter the name of the savefile: ");
-      //String fileToSave = GameHelper.input.nextLine() + ".ser";
+      // System.out.println("Enter the name of the savefile: ");
+      // String fileToSave = GameHelper.input.nextLine() + ".ser";
       Serializer.serialize("Alex.ser", game);
    }
-   //!
+
    public void loadSavedFile() {
       this.game = (Game) Serializer.deserialize("Alex.ser");
       game.newGame();

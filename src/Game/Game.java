@@ -2,10 +2,11 @@ package Game;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import Game.PokemonClasses.*;
+
 
 public class Game  implements Serializable{
 
+   private static final long serialVersionUID = -5785154736259821702L;
    private ArrayList<Player> players;
 
    Menu menu = new Menu();
@@ -27,19 +28,10 @@ public class Game  implements Serializable{
          player.game = this;
       }
       currentPlayer = players.get(0);
-      while (round < numOfRounds) {
-         menu.gameMenu(currentPlayer);
-         if (currentPlayer.roundDone) {
-            changePlayer();
-         }
-      }
-      pokemonAgeOrSell(true);
-      printAllScores();
-      System.out.println("The winner is " + getWinner().getName());
+      newGame();
    }
 
    public void newGame(){
-
       while (round < numOfRounds) {
          menu.gameMenu(currentPlayer);
          if (currentPlayer.roundDone) {
@@ -49,7 +41,6 @@ public class Game  implements Serializable{
       pokemonAgeOrSell(true);
       printAllScores();
       System.out.println("The winner is " + getWinner().getName());
-
    }
 
    public void setNumOfRounds(int numOfRounds) {
@@ -98,7 +89,6 @@ public class Game  implements Serializable{
       getSick(currentPlayer);
    }
 
-   // TODO add sickness
    // Reverse loop, needed to remove pokemon from it
    private void pokemonAgeOrSell(boolean sellAll) {
       for (Player player : players) {

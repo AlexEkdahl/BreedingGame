@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 public abstract class Food implements Serializable {
 
+   private static final long serialVersionUID = -1387588430498837085L;
    protected int price;
    protected int healthValue;
    protected int amount;
@@ -22,13 +23,7 @@ public abstract class Food implements Serializable {
 
    public void removeFood(int quantity){
       this.amount -=  quantity;
-      if(amount == 0){
-         
-      }
-   }
 
-   public int getHealthValue() {
-      return healthValue;
    }
 
    public int getPrice() {

@@ -13,7 +13,7 @@ public class Serializer {
          out.writeObject(data);
          out.close();
          file.close();
-         System.out.println("IT WORKED");
+         System.out.println("File saved");
          GameHelper.inputEnter();
       } catch (Exception ignored) {
          System.out.println("DID NOT WORK");
