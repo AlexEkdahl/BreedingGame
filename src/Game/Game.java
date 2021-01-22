@@ -1,10 +1,13 @@
 package Game;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 
-public class Game  implements Serializable{
+public class Game implements Serializable {
 
    private static final long serialVersionUID = -5785154736259821702L;
    private ArrayList<Player> players;
@@ -18,7 +21,7 @@ public class Game  implements Serializable{
    private int round = 1;
    private Player currentPlayer;
 
-   public Game() {
+   public Game() throws IOException, UnsupportedAudioFileException, LineUnavailableException {
       menu.setGame(this);
       store.setGame(this);
       breed.setGame(this);
@@ -31,7 +34,7 @@ public class Game  implements Serializable{
       newGame();
    }
 
-   public void newGame(){
+   public void newGame() throws IOException, UnsupportedAudioFileException, LineUnavailableException {
       while (round < numOfRounds) {
          menu.gameMenu(currentPlayer);
          if (currentPlayer.roundDone) {
@@ -126,7 +129,7 @@ public class Game  implements Serializable{
             String s = GameHelper.validateString();
             if (s.equals("n")) {
                currentPlayer.getPlayerPokemon().remove(i);
-               System.out.println("DIED");
+               System.out.println("You let your Pokemon died...");
                GameHelper.inputEnter();
             } else {
                currentPlayer.handlePurchase(300);

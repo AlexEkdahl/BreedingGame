@@ -1,12 +1,16 @@
 package Game;
 
+import java.io.IOException;
 import java.io.Serializable;
+
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 
 import Game.FoodClasses.*;
 import Game.PokemonClasses.*;
 
-public class Feed implements Serializable{
-   
+public class Feed implements Serializable {
+
    private static final long serialVersionUID = -8932016239895369145L;
    Game game;
 
@@ -18,7 +22,7 @@ public class Feed implements Serializable{
       this.game = game;
    }
 
-   public void feedPokemon(Player player) {
+   public void feedPokemon(Player player) throws IOException, UnsupportedAudioFileException, LineUnavailableException {
       if (player.getPlayerPokemon().size() != 0 && (player.getPlayerFood().size() != 0)) {
          while (true) {
             game.menu.playerDisplay(player);
@@ -44,6 +48,7 @@ public class Feed implements Serializable{
                   player.accessShops(false);
                   player.canFeedPokemon = true;
                } else {
+                  Audio.soundEffect("audio/listen.wav");
                   System.out
                         .println("Thats not a suitable food option for " + player.getPokemon(pokeIndex - 1).getBreed());
                   GameHelper.waitMilliSeconds(1500);

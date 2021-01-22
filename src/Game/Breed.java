@@ -1,11 +1,15 @@
 package Game;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
+
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+
 import Game.PokemonClasses.Pokemon;
 
-
-public class Breed implements Serializable{
+public class Breed implements Serializable {
 
    private static final long serialVersionUID = -7646741697164257955L;
    private Game game;
@@ -18,28 +22,30 @@ public class Breed implements Serializable{
       this.game = game;
    }
 
-   public void printAvailablePokemon(Player player) {
-         game.menu.playerDisplay(player);
-         System.out.println("===== Breeding =====\n");
-         if ((player.getPlayerPokemon().size() > 1)) {
-            int i = 1;
-            for (Pokemon pokemon : player.getPlayerPokemon()) {
-               System.out.println("[" + i + "]" + pokemon.toString(false));
-               i++;
-            }
-            System.out.println("\n[0] Exit to game menu" + "\nSelect your first Pokemon");
-            int choice = GameHelper.getInt(0, player.getPlayerPokemon().size());
-            if (choice != 0) {
-               printSuitableMate(getPokemon(choice, player), player);
-            }
-         } else {
-            System.out.println("You dont have enough Pokemon");
-            GameHelper.inputEnter();
+   public void printAvailablePokemon(Player player)
+         throws IOException, UnsupportedAudioFileException, LineUnavailableException {
+      game.menu.playerDisplay(player);
+      System.out.println("===== Breeding =====\n");
+      if ((player.getPlayerPokemon().size() > 1)) {
+         int i = 1;
+         for (Pokemon pokemon : player.getPlayerPokemon()) {
+            System.out.println("[" + i + "]" + pokemon.toString(false));
+            i++;
          }
+         System.out.println("\n[0] Exit to game menu" + "\nSelect your first Pokemon");
+         int choice = GameHelper.getInt(0, player.getPlayerPokemon().size());
+         if (choice != 0) {
+            printSuitableMate(getPokemon(choice, player), player);
+         }
+      } else {
+         System.out.println("You dont have enough Pokemon");
+         GameHelper.inputEnter();
       }
+   }
 
    // containing list of suitable mates for selected pokemon
-   public void printSuitableMate(Pokemon pokemon, Player player) {
+   public void printSuitableMate(Pokemon pokemon, Player player)
+         throws IOException, UnsupportedAudioFileException, LineUnavailableException {
       GameHelper.clearScreen();
       game.menu.playerDisplay(player);
       System.out.println("===== Select your partner =====");
@@ -63,6 +69,7 @@ public class Breed implements Serializable{
                GameHelper.waitMilliSeconds(700);
                System.out.print(".");
                GameHelper.waitMilliSeconds(700);
+               Audio.soundEffect("audio/nextTime.wav");
                System.out.println("Unsuccessful breeding");
                player.accessShops(false);
                GameHelper.inputEnter();
