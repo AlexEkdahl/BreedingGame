@@ -29,6 +29,7 @@ public class Store implements Serializable {
       if (pokemonShelf != null) {
          pokemonShelf.clear();
       }
+      assert pokemonShelf != null;
       pokemonShelf.add(new Bulbasur());
       pokemonShelf.add(new Charmander());
       pokemonShelf.add(new Squirtle());
@@ -40,6 +41,7 @@ public class Store implements Serializable {
       if (foodShelf != null) {
          foodShelf.clear();
       }
+      assert foodShelf != null;
       foodShelf.add(new Berry());
       foodShelf.add(new PokeBlock());
       foodShelf.add(new PokePuff());
@@ -56,11 +58,10 @@ public class Store implements Serializable {
             if (customer.getMoney() < pokemon.getPrice()) {
                System.out
                      .println("[" + n + "]" + pokemon.getBreed() + "\t" + pokemon.getPrice() + "$\t\t[to expensive]");
-               n++;
             } else {
                System.out.println("[" + n + "]" + pokemon.getBreed() + "\t" + pokemon.getPrice() + "$");
-               n++;
             }
+            n++;
          }
          System.out.println("\n[0] Exit shop");
          int answer = GameHelper.getInt(0, 5);
@@ -130,11 +131,7 @@ public class Store implements Serializable {
    }
 
    public boolean enoughMoney(Pokemon pokemon, Player costumer) {
-      return (costumer.getMoney() >= pokemon.getPrice() ? true : false);
-   }
-
-   public boolean enoughMoney(Food food, int quantity, Player costumer) {
-      return (costumer.getMoney() >= (food.getPrice() * quantity)) ? true : false;
+      return (costumer.getMoney() >= pokemon.getPrice());
    }
 
    public int maxFood(Food food, Player customer) {
@@ -153,15 +150,13 @@ public class Store implements Serializable {
                break;
             }
             game.menu.playerDisplay(customer);
-            if (index != 0) {
-               System.out.println("Do you want to sell " + customer.getPokemon(index - 1).getName() + " for "
-                     + customer.getPokemon(index - 1).getValue() + "$?" + "\n[y / n]");
-               String answer = GameHelper.validateString();
-               if (answer.equals("y") && customer.canSellPokemon) {
-                  customer.sellPokemon(index - 1);
-                  customer.accessShops(false);
-                  customer.canSellPokemon = true;
-               }
+            System.out.println("Do you want to sell " + customer.getPokemon(index - 1).getName() + " for "
+                  + customer.getPokemon(index - 1).getValue() + "$?" + "\n[y / n]");
+            String answer = GameHelper.validateString();
+            if (answer.equals("y") && customer.canSellPokemon) {
+               customer.sellPokemon(index - 1);
+               customer.accessShops(false);
+               customer.canSellPokemon = true;
             }
          } else {
             System.out.println("You have no Pokemon");
@@ -173,12 +168,12 @@ public class Store implements Serializable {
 
    private String whichPokemon(Food food) {
       fillPokeShelf();
-      String s = "";
+      StringBuilder s = new StringBuilder();
       for (Pokemon pokemon : pokemonShelf) {
          if (game.feed.isRightFood(pokemon, food))
-            s = s + pokemon.getBreed() + ", ";
+            s.append(pokemon.getBreed()).append(", ");
       }
-      return s.trim().replaceFirst(".$", "");
+      return s.toString().trim().replaceFirst(".$", "");
    }
 
 }

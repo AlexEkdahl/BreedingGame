@@ -7,7 +7,7 @@ import Game.PokemonClasses.*;
 
 public class Player implements Serializable{
    public Game game;
-   private String name;
+   private final String name;
    private int money;
    private ArrayList<Pokemon> playerPokemon;
    private ArrayList<Food> playerFood;

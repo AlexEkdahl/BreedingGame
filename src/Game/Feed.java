@@ -55,11 +55,10 @@ public class Feed implements Serializable{
       } else {
          if (player.getPlayerPokemon().size() == 0) {
             System.out.println("You haven't got any Pokemon");
-            GameHelper.inputEnter();
          } else {
             System.out.println("You have no food");
-            GameHelper.inputEnter();
          }
+         GameHelper.inputEnter();
       }
    }
 

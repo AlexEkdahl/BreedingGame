@@ -102,7 +102,7 @@ public abstract class Pokemon implements Serializable {
          return "===== info =====\n" + getBreed() + "\n\nMax offsprings: " + maxOffspring + "\nMax age: " + getMaxAge()
                + "\nEat: " + foodToString() + "\n================";
       }
-      return getBreed() + getGenderString() + " " + name + " " + " Max offspring: " + maxOffspring;
+      return getBreed() +genderSymbol() + " " + name + " " + " Max offspring: " + maxOffspring;
    }
 
    public String foodToString() {
