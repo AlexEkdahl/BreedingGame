@@ -19,4 +19,14 @@ public class Audio implements Serializable {
         clip.start();
     }
 
+    public static void soundEffect(String filePath)
+    throws IOException, UnsupportedAudioFileException, LineUnavailableException {
+        stream = AudioSystem.getAudioInputStream(new File(filePath));
+        clip = AudioSystem.getClip();
+        clip.open(stream);
+        clip.start();
+    }
+
+
+
 }

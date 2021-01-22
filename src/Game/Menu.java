@@ -1,9 +1,11 @@
 package Game;
 
-
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.*;
 
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 
 import Game.FoodClasses.Food;
 import Game.PokemonClasses.Pokemon;
@@ -35,13 +37,13 @@ public class Menu implements Serializable {
                + " How to play" + PrintColors.ANSI_RESET);
       }
 
-      System.out.println(PrintColors.ANSI_BLACK + "\n[3] Load game" + PrintColors.ANSI_RESET);
+      System.out.println("\n[3] Load game");
       System.out.println("\n[0] Exit game");
 
       mainMenuChoice(GameHelper.getInt(0, 3));
    }
 
-   protected void gameMenu(Player player) {
+   protected void gameMenu(Player player) throws IOException, UnsupportedAudioFileException, LineUnavailableException {
       playerDisplay(player);
       System.out.println("===== GAME MENU =====");
       System.out.println("[1] Buy Pokemon");
@@ -132,7 +134,8 @@ public class Menu implements Serializable {
       }
    }
 
-   private void gameMenuChoice(int choice, Player player) {
+   private void gameMenuChoice(int choice, Player player)
+         throws IOException, UnsupportedAudioFileException, LineUnavailableException {
       switch (choice) {
          case 1 -> {
             if (player.canBuyPokemon)
@@ -186,26 +189,38 @@ public class Menu implements Serializable {
    }
 
    public void loadSavedFile() {
-      this.game = (Game) Serializer.deserialize("Alex.ser");
-      game.newGame();
+      try {
+         this.game = (Game) Serializer.deserialize("Alex.ser");
+         game.newGame();
+      } catch (Exception error) {
+         System.out.println("No saved file");
+         GameHelper.inputEnter();
+         mainMenu();
+      }
 
    }
 
-   protected void choiceMade(Player player) {
+   protected void choiceMade(Player player)
+         throws IOException, UnsupportedAudioFileException, LineUnavailableException {
       if (player.canBuyFood) {
          System.out.println("You made your choice, you can only buy food this round");
+         Audio.soundEffect("audio/ahem.wav");
          GameHelper.inputEnter();
       } else if (player.canBuyPokemon) {
          System.out.println("You made your choice, you can only buy Pokemon this round");
+         Audio.soundEffect("audio/ahem.wav");
          GameHelper.inputEnter();
       } else if (player.canSellPokemon) {
          System.out.println("You made your choice, you can only sell Pokemon this round");
+         Audio.soundEffect("audio/ahem.wav");
          GameHelper.inputEnter();
       } else if (player.canFeedPokemon) {
          System.out.println("You made your choice, you can only feed your Pokemon this round");
+         Audio.soundEffect("audio/ahem.wav");
          GameHelper.inputEnter();
       } else {
          System.out.println("You made your choice, you can only try or succeed breeding your Pokemon once per round");
+         Audio.soundEffect("audio/ahem.wav");
          GameHelper.inputEnter();
       }
    }
