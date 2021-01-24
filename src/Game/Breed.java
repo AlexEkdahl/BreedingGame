@@ -10,8 +10,6 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 import Game.PokemonClasses.Pokemon;
 
 public class Breed implements Serializable {
-
-   private static final long serialVersionUID = -7646741697164257955L;
    private Game game;
 
    public Breed() {

@@ -6,14 +6,11 @@ import Game.FoodClasses.Food;
 import Game.PokemonClasses.*;
 
 public class Player implements Serializable{
- 
-   private static final long serialVersionUID = -6515961421583920387L;
    protected Game game;
    private final String name;
    private int money;
    private ArrayList<Pokemon> playerPokemon;
    private ArrayList<Food> playerFood;
-
    public boolean canBuyPokemon = true;
    public boolean canSellPokemon = true;
    public boolean canBuyFood = true;

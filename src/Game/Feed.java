@@ -10,8 +10,6 @@ import Game.FoodClasses.*;
 import Game.PokemonClasses.*;
 
 public class Feed implements Serializable {
-
-   private static final long serialVersionUID = -8932016239895369145L;
    Game game;
 
    public Feed() {

@@ -8,15 +8,11 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
 public class Game implements Serializable {
-
-   private static final long serialVersionUID = -5785154736259821702L;
    private ArrayList<Player> players;
-
    Menu menu = new Menu();
    Store store = new Store();
    Breed breed = new Breed();
    Feed feed = new Feed();
-
    private int numOfRounds;
    private int round = 1;
    private Player currentPlayer;

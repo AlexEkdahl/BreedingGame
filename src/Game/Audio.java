@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.io.Serializable;
 
 public class Audio implements Serializable {
-    private static final long serialVersionUID = 1L;
     static Clip clip;
     static AudioInputStream stream;
 
@@ -27,6 +26,11 @@ public class Audio implements Serializable {
         clip.start();
     }
 
-
-
+    public static void dummyMethod(){
+        if (clip.isRunning()){
+            clip.stop();
+        } else {
+            clip.start();
+        }
+     }
 }

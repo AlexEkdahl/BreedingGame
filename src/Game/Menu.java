@@ -11,8 +11,6 @@ import Game.FoodClasses.Food;
 import Game.PokemonClasses.Pokemon;
 
 public class Menu implements Serializable {
-
-   private static final long serialVersionUID = 8360868585706663885L;
    public boolean readHowTo = false;
    Game game;
 
@@ -36,10 +34,8 @@ public class Menu implements Serializable {
          System.out.println("[" + PrintColors.ANSI_YELLOW + 2 + PrintColors.ANSI_RESET + "]" + PrintColors.ANSI_YELLOW
                + " How to play" + PrintColors.ANSI_RESET);
       }
-
       System.out.println("\n[3] Load game");
       System.out.println("\n[0] Exit game");
-
       mainMenuChoice(GameHelper.getInt(0, 3));
    }
 
@@ -51,7 +47,8 @@ public class Menu implements Serializable {
       System.out.println("[3] Feed Pokemon");
       System.out.println("[4] Breed Pokemon");
       System.out.println("[5] Sell Pokemon");
-      System.out.println("\n[9] -Save Game- ");
+      System.out.println("\n[8] Turn off/on music");
+      System.out.println("[9] Save Game");
       System.out.println("[0] - Finish round");
       gameMenuChoice(GameHelper.getInt(0, 9), player);
    }
@@ -129,7 +126,7 @@ public class Menu implements Serializable {
       switch (choice) {
          case 1 -> newGameMenu();
          case 2 -> howToPlay();
-         case 3 -> loadSavedFile(); // loadSavedFile();
+         case 3 -> loadSavedFile();
          case 0 -> exitGame();
       }
    }
@@ -177,52 +174,42 @@ public class Menu implements Serializable {
                choiceMade(player);
             }
          }
+         case 8 -> Audio.dummyMethod();
          case 9 -> newSaveFile();
          case 0 -> player.roundDone = true;
       }
    }
 
    private void newSaveFile() {
-      // System.out.println("Enter the name of the savefile: ");
-      // String fileToSave = GameHelper.input.nextLine() + ".ser";
-      Serializer.serialize("Alex.ser", game);
+      Serializer.serialize("SaveFile.ser", game);
    }
 
    public void loadSavedFile() {
       try {
-         this.game = (Game) Serializer.deserialize("Alex.ser");
+         this.game = (Game) Serializer.deserialize("SaveFile.ser");
          game.newGame();
       } catch (Exception error) {
          System.out.println("No saved file");
          GameHelper.inputEnter();
          mainMenu();
       }
-
    }
 
    protected void choiceMade(Player player)
          throws IOException, UnsupportedAudioFileException, LineUnavailableException {
       if (player.canBuyFood) {
          System.out.println("You made your choice, you can only buy food this round");
-         Audio.soundEffect("audio/ahem.wav");
-         GameHelper.inputEnter();
       } else if (player.canBuyPokemon) {
          System.out.println("You made your choice, you can only buy Pokemon this round");
-         Audio.soundEffect("audio/ahem.wav");
-         GameHelper.inputEnter();
       } else if (player.canSellPokemon) {
          System.out.println("You made your choice, you can only sell Pokemon this round");
-         Audio.soundEffect("audio/ahem.wav");
-         GameHelper.inputEnter();
       } else if (player.canFeedPokemon) {
          System.out.println("You made your choice, you can only feed your Pokemon this round");
-         Audio.soundEffect("audio/ahem.wav");
-         GameHelper.inputEnter();
       } else {
          System.out.println("You made your choice, you can only try or succeed breeding your Pokemon once per round");
-         Audio.soundEffect("audio/ahem.wav");
-         GameHelper.inputEnter();
       }
+      Audio.soundEffect("audio/ahem.wav");
+      GameHelper.inputEnter();
    }
 
    private void pokeDisplay(Player player) {

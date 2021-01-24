@@ -7,8 +7,6 @@ import Game.PokemonClasses.*;
 import Game.FoodClasses.*;
 
 public class Store implements Serializable {
-
-   private static final long serialVersionUID = -4939414527283300418L;
    private Game game;
    private ArrayList<Pokemon> pokemonShelf = new ArrayList<>();
    private ArrayList<Food> foodShelf = new ArrayList<>();

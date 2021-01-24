@@ -5,8 +5,6 @@ import java.io.Serializable;
 import java.util.Scanner;
 
 public class GameHelper implements Serializable {
-
-   private static final long serialVersionUID = -8029255442254002436L;
    // Scanner used for entire project
    public static Scanner input = new Scanner(System.in);
 
@@ -19,7 +17,6 @@ public class GameHelper implements Serializable {
       }
       return (answer.equalsIgnoreCase("y") ? "y" : "n");
    }
-
    // To make sure user choice is in range of what the menu/question is
    public static int getInt(int min, int max) {
       System.out.println("\nEnter here: ");
@@ -37,24 +34,7 @@ public class GameHelper implements Serializable {
       } while (intReturn == -1 || intReturn > max || intReturn < min);
       return intReturn;
    }
-
-   public static int getInt(int min, int max, int save) {
-      System.out.println("\nEnter here: ");
-      int intReturn = -1;
-      do {
-         try {
-            intReturn = Integer.parseInt(input.nextLine());
-            if (intReturn > max || intReturn < min || intReturn != 9) {
-               System.out.println("A number between " + min + "-" + max + "or " + save);
-            }
-         } catch (Exception e) {
-            System.out.println("An integer!");
-
-         }
-      } while (intReturn != 9 || intReturn > max || intReturn < min);
-      return intReturn;
-   }
-
+   
    // "Sleeps" the terminal for int ms seconds
    public static void waitMilliSeconds(int ms) {
       try {
@@ -72,7 +52,6 @@ public class GameHelper implements Serializable {
          e.printStackTrace();
       }
    }
-
    // Work on mac os, clear the terminal. Not just fill screen with \n
    public static void clearScreen() {
       try {
@@ -86,5 +65,4 @@ public class GameHelper implements Serializable {
 
       }
    }
-
 }

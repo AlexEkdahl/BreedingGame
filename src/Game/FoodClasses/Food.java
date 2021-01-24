@@ -3,8 +3,6 @@ package Game.FoodClasses;
 import java.io.Serializable;
 
 public abstract class Food implements Serializable {
-
-   private static final long serialVersionUID = -1387588430498837085L;
    protected int price;
    protected int healthValue;
    protected int amount;
