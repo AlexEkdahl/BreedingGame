@@ -20,6 +20,52 @@ public class PrintColors {
    public static final String BLUE_UNDERLINED = "\033[4;34m";
    public static final String PURPLE_UNDERLINED = "\033[4;35m";
    public static final String CYAN_UNDERLINED = "\033[4;36m";
-   public static final String WHITE_UNDERLINED = "\033[4;37m"; 
+   public static final String WHITE_UNDERLINED = "\033[4;37m";
+
+   public static void startUp(){
+      System.out.printf(ANSI_YELLOW + "                                             ,-.\n");
+      System.out.printf("                                          _.|  '\n");
+      System.out.printf("                                        .'  | /\n");
+      System.out.printf("                                      ,'    |'\n");
+      System.out.printf("                                     /      /\n");
+      System.out.printf("                       _..----\"\"---.'      /\n");
+      System.out.printf(" _.....---------...,-\"\"                  ,'\n");
+      System.out.printf(" `-._  \\                                /\n");
+      System.out.printf("     `-.+_            __           ,--. .\n");
+      System.out.printf("          `-.._     .:  ).        (`--\"| \\\n");
+      System.out.printf("               7    | `\" |         `...'  \\\n");
+      System.out.printf("               |     `--'     '+\"        ,\". ,\"\"-\n");
+      System.out.printf("               |   _...        .____     | |/    '\n");
+      System.out.printf("          _.   |  .    `.  '--\"   /      `./     j\n");
+      System.out.printf("         \\' `-.|  '     |   `.   /        /     /\n");
+      System.out.printf("         '     `-. `---\"      `-\"        /     /\n");
+      System.out.printf("          \\       `.                  _,'     /\n");
+      System.out.printf("           \\        `                        .\n");
+      System.out.printf("            \\                                j\n");
+      System.out.printf("             \\                              /\n");
+      System.out.printf("              `.                           .\n");
+      System.out.printf("                +                          \\\n");
+      System.out.printf("                |                           L\n");
+      System.out.printf("                |                           |\n");
+      System.out.printf("                |  _ /,                     |\n");
+      System.out.printf("                | | L)'..                   |\n");
+      System.out.printf("                | .    | `                  |\n");
+      System.out.printf("                '  \\'   L                   '\n");
+      System.out.printf("                 \\  \\   |                  j\n");
+      System.out.printf("                  `. `__'                 /\n");
+      System.out.printf("                _,.--.---........__      /\n");
+      System.out.printf("               ---.,'---`         |   -j\"\n");
+      System.out.printf("                .-'  '....__      L    |\n");
+      System.out.printf("              \"\"--..    _,-'       \\ l||\n");
+      System.out.printf("                  ,-'  .....------. `||'\n");
+      System.out.printf("               _,'                /\n");
+      System.out.printf("             ,'                  /\n");
+      System.out.printf("            '---------+-        /\n");
+      System.out.printf("                     /         /\n");
+      System.out.printf("                   .'         /\n");
+      System.out.printf("                 .'          /\n");
+      System.out.printf("               ,'           /\n");
+      System.out.printf("             _'....----\"\"\"\"\" mh\n" + ANSI_RESET);
+   }
 
 }
