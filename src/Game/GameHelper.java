@@ -54,6 +54,7 @@ public class GameHelper implements Serializable {
       }
    }
 
+   //Faster way of doing "\n".repeat(60)
    public static void clearScreen() {
       System.out.println(System.lineSeparator().repeat(80));
    }
@@ -63,7 +64,6 @@ public class GameHelper implements Serializable {
    public static void clearScreen1() {
       try {
          if (System.getProperty("os.name").contains("Windows")) {
-            System.out.println("\n".repeat(60));
             new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
          } else {
             System.out.print("\033\143");
