@@ -1,12 +1,10 @@
 package Game;
 
-import java.io.IOException;
-import java.io.Serializable;
+import java.io.*;
+import java.nio.file.*;
 import java.util.*;
-
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
-
 import Game.FoodClasses.Food;
 import Game.PokemonClasses.Pokemon;
 
@@ -181,17 +179,44 @@ public class Menu implements Serializable {
    }
 
    private void newSaveFile() {
-      Serializer.serialize("SaveFile.ser", game);
+         System.out.println("Enter name on savefile:");
+         String fileName = GameHelper.input.nextLine() + ".ser";
+         if (!Files.exists(Paths.get(fileName))) {
+            Serializer.serialize("SaveFiles/" + fileName, game);
+         } else {
+            System.out.println("Filename already exist.");
+            System.out.println("[1] Overwrite existing savefile\n" + "[2] Create a new one");
+            if (GameHelper.getInt(1, 2) == 1) {
+               Serializer.serialize("SaveFile/" + fileName, game);
+            }
+         }
    }
 
    public void loadSavedFile() {
+      String[] saveFiles;
+      File f = new File("SaveFiles/");
+      FilenameFilter filter = new FilenameFilter() {
+          @Override
+          public boolean accept(File f, String name) {
+              return name.endsWith(".ser");
+          }
+      };
+      saveFiles = f.list(filter);
+      GameHelper.clearScreen();
+      System.out.println("====== Welcome to THE POKEMON BREEDERS RACE ======");
+      System.out.println("\nSaved files\n");
+      int n = 1;
+      for (String save : saveFiles){
+      System.out.println("["+n+"] " + save.replaceAll(".ser",""));
+      n++;
+      }
+      int choice = GameHelper.getInt(1, saveFiles.length);
+      String saveString = "SaveFiles/"+saveFiles[choice -1];
       try {
-         this.game = (Game) Serializer.deserialize("SaveFile.ser");
+         this.game = (Game) Serializer.deserialize(saveString);
          game.newGame();
-      } catch (Exception error) {
-         System.out.println("No saved file");
-         GameHelper.inputEnter();
-         mainMenu();
+      }catch (Exception error){
+          System.out.println(error);
       }
    }
 

@@ -152,4 +152,5 @@ Temporary Items
 /.VSCodeCounter/
 *.ser
 *.class
+/SaveFiles/
 

@@ -32,6 +32,7 @@ public class Serializer {
          return data;
       } catch (Exception error) {
          System.out.println("Load fail");
+         System.out.println(error);
          return false; // we couldn't complete deserialization
       }
    }
