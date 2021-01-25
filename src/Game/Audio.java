@@ -10,7 +10,7 @@ public class Audio implements Serializable {
     static AudioInputStream stream;
 
     public static void soundEffect(String filePath)
-    throws IOException, UnsupportedAudioFileException, LineUnavailableException {
+            throws IOException, UnsupportedAudioFileException, LineUnavailableException {
         stream = AudioSystem.getAudioInputStream(new File(filePath));
         clip = AudioSystem.getClip();
         clip.open(stream);
@@ -18,19 +18,23 @@ public class Audio implements Serializable {
     }
 
     public static void themeSong(String filePath)
-    throws IOException, UnsupportedAudioFileException, LineUnavailableException {
+            throws IOException, UnsupportedAudioFileException, LineUnavailableException {
         stream = AudioSystem.getAudioInputStream(new File(filePath));
         clip = AudioSystem.getClip();
         clip.open(stream);
+        FloatControl volume = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+        double sound = 0.2;
+        float dB = (float) (Math.log(sound) / Math.log(10.0) * 20.0);
+        volume.setValue(dB);
         clip.loop(Clip.LOOP_CONTINUOUSLY);
         clip.start();
     }
 
-    public static void dummyMethod(){
-        if (clip.isRunning()){
+    public static void dummyMethod() {
+        if (clip.isRunning()) {
             clip.stop();
         } else {
             clip.start();
         }
-     }
+    }
 }
