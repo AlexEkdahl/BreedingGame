@@ -17,6 +17,7 @@ public class GameHelper implements Serializable {
       }
       return (answer.equalsIgnoreCase("y") ? "y" : "n");
    }
+
    // To make sure user choice is in range of what the menu/question is
    public static int getInt(int min, int max) {
       System.out.println("\nEnter here: ");
@@ -34,7 +35,7 @@ public class GameHelper implements Serializable {
       } while (intReturn == -1 || intReturn > max || intReturn < min);
       return intReturn;
    }
-   
+
    // "Sleeps" the terminal for int ms seconds
    public static void waitMilliSeconds(int ms) {
       try {
@@ -52,8 +53,14 @@ public class GameHelper implements Serializable {
          e.printStackTrace();
       }
    }
-   // Work on mac os, clear the terminal. Not just fill screen with \n
+
    public static void clearScreen() {
+      System.out.println("\n".repeat(60));
+   }
+
+   // Work on terminal not in ide such as Intellij unless you active escape codes,
+   // clear the terminal. Not just fill screen with \n
+   public static void clearScreen1() {
       try {
          if (System.getProperty("os.name").contains("Windows")) {
             System.out.println("\n".repeat(60));
