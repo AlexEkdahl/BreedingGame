@@ -55,7 +55,7 @@ public class GameHelper implements Serializable {
    }
 
    public static void clearScreen() {
-      System.out.println("\n".repeat(60));
+      System.out.println(System.lineSeparator().repeat(80));
    }
 
    // Work on terminal not in ide such as Intellij unless you active escape codes,
