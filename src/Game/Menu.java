@@ -183,8 +183,8 @@ public class Menu implements Serializable {
       System.out.println("Enter name on savefile:");
       String fileName = GameHelper.input.nextLine() + ".ser";
       if (!Files.exists(Paths.get("SaveFile/" + fileName))) {
-         if (!f.exists()){
-          f.mkdir();  
+         if (!f.exists()) {
+            f.mkdir();
          }
          Serializer.serialize("SaveFiles/" + fileName, game);
       } else {
@@ -200,28 +200,33 @@ public class Menu implements Serializable {
       String[] saveFiles;
       File f = new File("SaveFiles/");
       FilenameFilter filter = new FilenameFilter() {
-          @Override
-          public boolean accept(File f, String name) {
-              return name.endsWith(".ser");
-          }
+         @Override
+         public boolean accept(File f, String name) {
+            return name.endsWith(".ser");
+         }
       };
       saveFiles = f.list(filter);
-      GameHelper.clearScreen();
-      System.out.println("====== Welcome to THE POKEMON BREEDERS RACE ======");
-      System.out.println("\nSaved files\n");
-      int n = 1;
-      for (String save : saveFiles){
-      System.out.println("["+n+"] " + save.replaceAll(".ser",""));
-      n++;
+      if (saveFiles != null) {
+         GameHelper.clearScreen();
+         System.out.println("====== Welcome to THE POKEMON BREEDERS RACE ======");
+         System.out.println("\nSaved files\n");
+         int n = 1;
+         for (String save : saveFiles) {
+            System.out.println("[" + n + "] " + save.replaceAll(".ser", ""));
+            n++;
+         }
+         int choice = GameHelper.getInt(1, saveFiles.length);
+         String saveString = "SaveFiles/" + saveFiles[choice - 1];
+         try {
+            this.game = (Game) Serializer.deserialize(saveString);
+            game.newGame();
+         } catch (Exception error) {
+            System.out.println(error);
+         }
       }
-      int choice = GameHelper.getInt(1, saveFiles.length);
-      String saveString = "SaveFiles/"+saveFiles[choice -1];
-      try {
-         this.game = (Game) Serializer.deserialize(saveString);
-         game.newGame();
-      }catch (Exception error){
-          System.out.println(error);
-      }
+      System.out.println("No save files");
+      GameHelper.inputEnter();
+      mainMenu();
    }
 
    protected void choiceMade(Player player)
