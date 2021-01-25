@@ -2,7 +2,6 @@ package Game;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-
 import Game.PokemonClasses.*;
 import Game.FoodClasses.*;
 

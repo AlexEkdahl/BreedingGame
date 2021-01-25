@@ -2,10 +2,8 @@ package Game;
 
 import java.io.IOException;
 import java.io.Serializable;
-
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
-
 import Game.FoodClasses.*;
 import Game.PokemonClasses.*;
 
@@ -57,6 +55,8 @@ public class Feed implements Serializable {
             }
          }
       } else {
+         game.menu.playerDisplay(player);
+         System.out.println("===== Feed your Pokemon =====\n");
          if (player.getPlayerPokemon().size() == 0) {
             System.out.println("You haven't got any Pokemon");
          } else {
