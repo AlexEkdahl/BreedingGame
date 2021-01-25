@@ -179,17 +179,21 @@ public class Menu implements Serializable {
    }
 
    private void newSaveFile() {
-         System.out.println("Enter name on savefile:");
-         String fileName = GameHelper.input.nextLine() + ".ser";
-         if (!Files.exists(Paths.get(fileName))) {
-            Serializer.serialize("SaveFiles/" + fileName, game);
-         } else {
-            System.out.println("Filename already exist.");
-            System.out.println("[1] Overwrite existing savefile\n" + "[2] Create a new one");
-            if (GameHelper.getInt(1, 2) == 1) {
-               Serializer.serialize("SaveFile/" + fileName, game);
-            }
+      File f = new File("SaveFiles/");
+      System.out.println("Enter name on savefile:");
+      String fileName = GameHelper.input.nextLine() + ".ser";
+      if (!Files.exists(Paths.get("SaveFile/" + fileName))) {
+         if (!f.exists()){
+          f.mkdir();  
          }
+         Serializer.serialize("SaveFiles/" + fileName, game);
+      } else {
+         System.out.println("Filename already exist.");
+         System.out.println("[1] Overwrite existing savefile\n" + "[2] Create a new one");
+         if (GameHelper.getInt(1, 2) == 1) {
+            Serializer.serialize("SaveFile/" + fileName, game);
+         }
+      }
    }
 
    public void loadSavedFile() {
