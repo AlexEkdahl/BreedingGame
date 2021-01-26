@@ -206,7 +206,7 @@ public class Menu implements Serializable {
          }
       };
       saveFiles = f.list(filter);
-      if (saveFiles != null) {
+      if (saveFiles.length != 0) {
          GameHelper.clearScreen();
          System.out.println("====== Welcome to THE POKEMON BREEDERS RACE ======");
          System.out.println("\nSaved files\n");

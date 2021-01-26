@@ -35,7 +35,7 @@ public class Game implements Serializable {
    }
 
    public void newGame() throws IOException, UnsupportedAudioFileException, LineUnavailableException {
-      while (round < numOfRounds && players.size() != 0) {
+      while (round <= numOfRounds && players.size() != 0) {
          menu.gameMenu(currentPlayer);
          if (currentPlayer.roundDone) {
             changePlayer();
@@ -136,7 +136,11 @@ public class Game implements Serializable {
                   System.out.println("You let your Pokemon died...");
                   GameHelper.inputEnter();
                } else {
-                  currentPlayer.handlePurchase(300);
+                  if (currentPlayer.getMoney() > 300) {
+                     currentPlayer.handlePurchase(300);
+                  } else {
+                     System.out.println("You couldn't pay the price, you dont have enough founds");
+                  }
                }
             }
          }
