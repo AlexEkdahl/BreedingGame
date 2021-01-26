@@ -19,8 +19,8 @@ public class Game implements Serializable {
 
    public Game() throws IOException, UnsupportedAudioFileException, LineUnavailableException {
       Audio.themeSong("audio/themesong.wav");
-      PrintColors.startUp();
-      GameHelper.waitMilliSeconds(2500);
+      // PrintColors.startUp();
+      // GameHelper.waitMilliSeconds(2500);
 
       menu.setGame(this);
       store.setGame(this);
@@ -48,7 +48,26 @@ public class Game implements Serializable {
       } else {
          System.out.println("No winners only losers!");
       }
+   }
 
+   public void changePlayer() {
+      GameHelper.clearScreen();
+      System.out.println("Next player");
+      GameHelper.inputEnter();
+      // If the player is last in turn, then start over with player 1
+      if (players.indexOf(currentPlayer) == players.size() - 1) {
+         currentPlayer = players.get(0);
+         currentPlayer.accessShops(true);
+         currentPlayer.roundDone = false;
+         pokemonAgeOrSell(false);
+         round++;
+      } else {
+         currentPlayer = players.get(players.indexOf(currentPlayer) + 1);
+         currentPlayer.accessShops(true);
+         currentPlayer.roundDone = false;
+      }
+      playerLost();
+      getSick(currentPlayer);
    }
 
    public void setNumOfRounds(int numOfRounds) {
@@ -75,26 +94,6 @@ public class Game implements Serializable {
             GameHelper.inputEnter();
          }
       }
-   }
-
-   public void changePlayer() {
-      GameHelper.clearScreen();
-      System.out.println("Next player");
-      GameHelper.inputEnter();
-      // If the player is last in turn, then start over with player 1
-      if (players.indexOf(currentPlayer) == players.size() - 1) {
-         currentPlayer = players.get(0);
-         currentPlayer.accessShops(true);
-         currentPlayer.roundDone = false;
-         pokemonAgeOrSell(false);
-         round++;
-      } else {
-         currentPlayer = players.get(players.indexOf(currentPlayer) + 1);
-         currentPlayer.accessShops(true);
-         currentPlayer.roundDone = false;
-      }
-      playerLost();
-      getSick(currentPlayer);
    }
 
    // Reverse loop, needed to remove pokemon from it
