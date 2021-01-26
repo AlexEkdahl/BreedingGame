@@ -50,7 +50,7 @@ public abstract class Pokemon implements Serializable {
    }
 
    public int getValue() {
-      return (int) Math.round(price * health/100.0 * (age == 0 ? 1.0 : (1.0 - (double)age/maxAge)));
+      return (int) Math.round(price * health / 100.0 * (age == 0 ? 1.0 : (1.0 - (double) age / maxAge)));
    }
 
    public int getHealth() {
@@ -61,8 +61,11 @@ public abstract class Pokemon implements Serializable {
       return age;
    }
 
-   public String getBreed() {
-      return this.getClass().getSimpleName();
+   public String getBreed(boolean addGender) {
+      if (!addGender) {
+         return this.getClass().getSimpleName();
+      }
+      return this.getClass().getSimpleName() + genderSymbol();
    }
 
    public void setName(String name) {
@@ -99,10 +102,10 @@ public abstract class Pokemon implements Serializable {
 
    public String toString(boolean forShop) {
       if (forShop) {
-         return "===== info =====\n" + getBreed() + "\n\nMax offsprings: " + maxOffspring + "\nMax age: " + getMaxAge()
-               + "\nEat: " + foodToString() + "\n================";
+         return "===== info =====\n" + getBreed(false) + "\n\nMax offsprings: " + maxOffspring + "\nMax age: "
+               + getMaxAge() + "\nEat: " + foodToString() + "\n================";
       }
-      return getBreed() +genderSymbol() + " " + name + " " + " Max offspring: " + maxOffspring;
+      return getBreed(true) + " " + name + " Max offspring: " + maxOffspring;
    }
 
    public String foodToString() {
@@ -123,10 +126,10 @@ public abstract class Pokemon implements Serializable {
          System.out.print(".");
          GameHelper.waitMilliSeconds(700);
       }
-      System.out.print(" " + offsprings + " new " + mate.getBreed() + "!");
+      System.out.print(" " + offsprings + " new " + mate.getBreed(false) + "!");
       System.out.println(" Congratulations, " + this.name + " and " + mate.getName() + " successfully mated");
       for (int j = 0; j < offsprings; j++) {
-         switch (this.getBreed()) {
+         switch (this.getBreed(false)) {
             case "Pikachu" -> owner.createPokemon(new Pikachu(), true);
             case "Bulbasur" -> owner.createPokemon(new Bulbasur(), true);
             case "Charmander" -> owner.createPokemon(new Charmander(), true);

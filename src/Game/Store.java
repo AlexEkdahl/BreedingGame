@@ -52,10 +52,10 @@ public class Store implements Serializable {
          System.out.println("===== Pokemon Shop =====\n");
          for (Pokemon pokemon : pokemonShelf) {
             if (customer.getMoney() < pokemon.getPrice()) {
-               System.out
-                     .println("[" + n + "]" + pokemon.getBreed() + "\t" + pokemon.getPrice() + "$\t\t[to expensive]");
+               System.out.printf("[%-1.2s]%-10.10s\t%3.4s$\t[to expensive]", n, pokemon.getBreed(false),
+                     pokemon.getPrice());
             } else {
-               System.out.println("[" + n + "]" + pokemon.getBreed() + "\t" + pokemon.getPrice() + "$");
+               System.out.printf("[%-1.2s]%-10.10s\t%3.4s$%n", n, pokemon.getBreed(false), pokemon.getPrice());
             }
             n++;
          }
@@ -73,7 +73,7 @@ public class Store implements Serializable {
          game.menu.playerDisplay(customer);
          System.out.println(pokemon.toString(true));
          System.out.println(
-               "\nWould you like to buy a " + pokemon.getBreed() + " for " + pokemon.getPrice() + "$?\n[y / n]");
+               "\nWould you like to buy a " + pokemon.getBreed(false) + " for " + pokemon.getPrice() + "$?\n[y / n]");
          String answer = GameHelper.validateString();
          if (answer.equals("y") && customer.canBuyPokemon) {
             customer.createPokemon(pokemon, false);
@@ -115,7 +115,7 @@ public class Store implements Serializable {
    public void buyFood(Food food, Player customer) {
       game.menu.playerDisplay(customer);
       System.out.println("===== PokeFood Shop =====\n");
-      System.out.println("Max " + food.getType()+ " you can buy: " + maxFood(food, customer));
+      System.out.println("Max " + food.getType() + " you can buy: " + maxFood(food, customer));
       System.out.println("How many: ");
       int number = GameHelper.getInt(0, maxFood(food, customer));
       if (number != 0 && customer.canBuyFood) {
@@ -167,7 +167,7 @@ public class Store implements Serializable {
       StringBuilder s = new StringBuilder();
       for (Pokemon pokemon : pokemonShelf) {
          if (game.feed.isRightFood(pokemon, food))
-            s.append(pokemon.getBreed()).append(", ");
+            s.append(pokemon.getBreed(false)).append(", ");
       }
       return s.toString().trim().replaceFirst(".$", "");
    }

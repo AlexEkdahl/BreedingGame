@@ -45,8 +45,8 @@ public class Feed implements Serializable {
                   player.canFeedPokemon = true;
                } else {
                   Audio.soundEffect("audio/listen.wav");
-                  System.out
-                        .println("Thats not a suitable food option for " + player.getPokemon(pokeIndex - 1).getBreed());
+                  System.out.println(
+                        "Thats not a suitable food option for " + player.getPokemon(pokeIndex - 1).getBreed(false));
                   GameHelper.waitMilliSeconds(1500);
                }
 
@@ -69,7 +69,7 @@ public class Feed implements Serializable {
    private void printPokemon(Player player) {
       int i = 1;
       for (Pokemon pokemon : player.getPlayerPokemon()) {
-         System.out.println("[" + i + "]" + pokemon.getBreed() + ", " + pokemon.getName() + ". Health: "
+         System.out.println("[" + i + "]" + pokemon.getBreed(false) + ", " + pokemon.getName() + ". Health: "
                + pokemon.getHealth() + " Age: " + pokemon.getAge());
          System.out.println("\t- Eats: " + pokemon.foodToString() + "\n");
          i++;

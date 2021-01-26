@@ -206,7 +206,7 @@ public class Menu implements Serializable {
          }
       };
       saveFiles = f.list(filter);
-      if (saveFiles != null) {
+      if (saveFiles.length != 0) {
          GameHelper.clearScreen();
          System.out.println("====== Welcome to THE POKEMON BREEDERS RACE ======");
          System.out.println("\nSaved files\n");
@@ -250,8 +250,8 @@ public class Menu implements Serializable {
       System.out.println("===== POKEMON =====");
       for (Pokemon pokemon : player.getPlayerPokemon()) {
          // Cant get the padding right
-         System.out.printf("%s%s %-10s %s%s/%-3s %s%s%s\n", pokemon.getBreed(), pokemon.genderSymbol(),
-               pokemon.getName(), "Age: ", pokemon.getAge(), pokemon.getMaxAge(), "Health: ", pokemon.getHealth(), "%");
+         System.out.printf("%-11.11s %-10s %s%s/%-3s %s%s%s\n", pokemon.getBreed(true), pokemon.getName(), "Age: ",
+               pokemon.getAge(), pokemon.getMaxAge(), "Health: ", pokemon.getHealth(), "%");
       }
    }
 

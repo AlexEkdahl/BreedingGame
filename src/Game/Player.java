@@ -5,7 +5,7 @@ import java.util.*;
 import Game.FoodClasses.Food;
 import Game.PokemonClasses.*;
 
-public class Player implements Serializable{
+public class Player implements Serializable {
    protected Game game;
    private final String name;
    private int money;
@@ -62,16 +62,16 @@ public class Player implements Serializable{
       if (offspring) {
          game.menu.playerDisplay(this);
          pokemon.setGender(Math.random() > 0.5 ? 1 : 2);
-         System.out.println("You got a " + pokemon.getGenderString() + " " + pokemon.getBreed());
+         System.out.println("You got a " + pokemon.getGenderString() + " " + pokemon.getBreed(false));
          GameHelper.waitMilliSeconds(1500);
       } else {
          game.menu.playerDisplay(this);
-         System.out.println("What is " + pokemon.getBreed() + " gender?");
+         System.out.println("What is " + pokemon.getBreed(false) + " gender?");
          System.out.println("[1] Female / [2] Male");
          pokemon.setGender(GameHelper.getInt(1, 2));
       }
       game.menu.playerDisplay(this);
-      System.out.println("Nickname for your " + pokemon.getBreed() + ": ");
+      System.out.println("Nickname for your " + pokemon.getBreed(false) + ": ");
       pokemon.setName(GameHelper.input.nextLine());
       addPokemon(pokemon);
    }
@@ -92,9 +92,9 @@ public class Player implements Serializable{
             System.out.println("[" + i + "]" + pokemon.toString(false));
             i++;
          } else {
-            System.out.println(
-                  "[" + i + "]" + pokemon.getBreed() + ", " + pokemon.getName() + " health: " + pokemon.getHealth());
-                  i++;
+            System.out.println("[" + i + "]" + pokemon.getBreed(false) + ", " + pokemon.getName() + " health: "
+                  + pokemon.getHealth());
+            i++;
          }
       }
    }
