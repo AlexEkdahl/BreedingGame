@@ -209,7 +209,7 @@ public class Menu implements Serializable {
          }
       };
       saveFiles = f.list(filter);
-      if (saveFiles == null) {
+      if (saveFiles == null || saveFiles.length ==0) {
          System.out.println("No save files");
       } else {
          GameHelper.clearScreen();
