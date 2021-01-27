@@ -24,6 +24,7 @@ public class Audio implements Serializable {
         clip.open(stream);
         FloatControl volume = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
         double sound = 0.2;
+        // calculate db
         float dB = (float) (Math.log(sound) / Math.log(10.0) * 20.0);
         volume.setValue(dB);
         clip.loop(Clip.LOOP_CONTINUOUSLY);

@@ -17,24 +17,28 @@ public class Menu implements Serializable {
    }
 
    protected void mainMenu() {
-      GameHelper.clearScreen();
-      System.out.println("====== Welcome to THE POKEMON BREEDERS RACE ======");
-      if (readHowTo) {
-         System.out.println("\n[" + PrintColors.ANSI_GREEN + 1 + PrintColors.ANSI_RESET + "]" + PrintColors.ANSI_GREEN
-               + " New game" + PrintColors.ANSI_RESET);
-      } else {
-         System.out.println("\n[1] New game");
-      }
-      if (readHowTo) {
-         System.out.println("[2] How to play");
+      int choice = -1;
+      while (choice != 1) {
+         GameHelper.clearScreen();
+         System.out.println("====== Welcome to THE POKEMON BREEDERS RACE ======");
+         if (readHowTo) {
+            System.out.println("\n[" + PrintColors.ANSI_GREEN + 1 + PrintColors.ANSI_RESET + "]"
+                  + PrintColors.ANSI_GREEN + " New game" + PrintColors.ANSI_RESET);
+         } else {
+            System.out.println("\n[1] New game");
+         }
+         if (readHowTo) {
+            System.out.println("[2] How to play");
 
-      } else {
-         System.out.println("[" + PrintColors.ANSI_YELLOW + 2 + PrintColors.ANSI_RESET + "]" + PrintColors.ANSI_YELLOW
-               + " How to play" + PrintColors.ANSI_RESET);
+         } else {
+            System.out.println("[" + PrintColors.ANSI_YELLOW + 2 + PrintColors.ANSI_RESET + "]"
+                  + PrintColors.ANSI_YELLOW + " How to play" + PrintColors.ANSI_RESET);
+         }
+         System.out.println("\n[3] Load game");
+         System.out.println("\n[0] Exit game");
+         choice = GameHelper.getInt(0, 3);
+         mainMenuChoice(choice);
       }
-      System.out.println("\n[3] Load game");
-      System.out.println("\n[0] Exit game");
-      mainMenuChoice(GameHelper.getInt(0, 3));
    }
 
    protected void gameMenu(Player player) throws IOException, UnsupportedAudioFileException, LineUnavailableException {
@@ -83,7 +87,6 @@ public class Menu implements Serializable {
                   + "* Each round your Pokemon get 1 year older and is loosing a percentage\n"
                   + "* of health. If you are unlucky one of your Pokemon get sick....");
       GameHelper.inputEnter();
-      mainMenu();
    }
 
    private void exitGame() {
@@ -206,7 +209,9 @@ public class Menu implements Serializable {
          }
       };
       saveFiles = f.list(filter);
-      if (saveFiles.length != 0) {
+      if (saveFiles == null) {
+         System.out.println("No save files");
+      } else {
          GameHelper.clearScreen();
          System.out.println("====== Welcome to THE POKEMON BREEDERS RACE ======");
          System.out.println("\nSaved files\n");
@@ -224,9 +229,7 @@ public class Menu implements Serializable {
             System.out.println(error);
          }
       }
-      System.out.println("No save files");
       GameHelper.inputEnter();
-      mainMenu();
    }
 
    protected void choiceMade(Player player)
