@@ -64,44 +64,41 @@ public class Player implements Serializable {
         if (offspring) {
             game.menu.playerDisplay(this);
             pokemon.setGender(Math.random() > 0.5 ? 1 : 2);
-            System.out.println("You got a " + pokemon.getGenderString() + " " + pokemon.getBreed(false));
-            GameHelper.waitMilliSeconds(1500);
+            Helper.print("You got a " + pokemon.getGenderString() + " " + pokemon.getBreed(false));
+            Helper.waitMilliSeconds(1500);
         } else {
             game.menu.playerDisplay(this);
-            System.out.println("What is " + pokemon.getBreed(false) + " gender?");
-            System.out.println("[1] Female / [2] Male");
-            pokemon.setGender(GameHelper.getInt(1, 2));
+            Helper.print("What is " + pokemon.getBreed(false) + " gender?");
+            Helper.print("[1] Female / [2] Male");
+            pokemon.setGender(Helper.getInt(1, 2));
         }
         game.menu.playerDisplay(this);
-        System.out.println("Nickname for your " + pokemon.getBreed(false) + ": ");
-        pokemon.setName(GameHelper.input.nextLine());
+        Helper.print("Nickname for your " + pokemon.getBreed(false) + ": ");
+        pokemon.setName(Helper.input.nextLine());
         addPokemon(pokemon);
     }
 
     public void addFood(Food food, int quantity) {
-        if (playerFood.contains(food)) {
-            food.addFood(quantity);
-        } else {
+        if (!playerFood.contains(food)) {
             playerFood.add(food);
-            food.addFood(quantity);
         }
+        food.addFood(quantity);
     }
 
     public void printPokemonList(boolean condensed) {
         int i = 1;
         for (Pokemon pokemon : playerPokemon) {
             if (condensed) {
-                System.out.println("[" + i + "]" + pokemon.toString(false));
-                i++;
+                Helper.print("[" + i + "]" + pokemon.toString(false));
             } else {
-                System.out.println("[" + i + "]" + pokemon.getBreed(false) + ", " + pokemon.getName() + " health: " + pokemon.getHealth());
-                i++;
+                Helper.print("[" + i + "]" + pokemon.getBreed(false) + ", " + pokemon.getName() + " health: " + pokemon.getHealth());
             }
+            i++;
         }
     }
 
     public void sellPokemon(int index) {
-        System.out.println(name + " " + playerPokemon.get(index).getValue() + " for selling " + getPokemon(index).getName());
+        Helper.print(name + " " + playerPokemon.get(index).getValue() + " for selling " + getPokemon(index).getName());
         money += playerPokemon.get(index).getValue();
         playerPokemon.remove(index);
     }

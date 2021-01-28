@@ -25,64 +25,80 @@ public class Menu implements Serializable {
     protected void mainMenu() {
         int choice = -1;
         while (choice != 1) {
-            GameHelper.clearScreen();
-            System.out.println("====== Welcome to THE POKEMON BREEDERS RACE ======");
+            Helper.clearScreen();
+            Helper.print("====== Welcome to THE POKEMON BREEDERS RACE ======");
             if (readHowTo) {
-                System.out.println("\n[" + PrintColors.ANSI_GREEN + 1 + PrintColors.ANSI_RESET + "]" + PrintColors.ANSI_GREEN + " New game" + PrintColors.ANSI_RESET);
+                Helper.print("\n[" + PrintColors.ANSI_GREEN + 1 + PrintColors.ANSI_RESET + "]" + PrintColors.ANSI_GREEN + " New game" + PrintColors.ANSI_RESET);
             } else {
-                System.out.println("\n[1] New game");
+                Helper.print("\n[1] New game");
             }
             if (readHowTo) {
-                System.out.println("[2] How to play");
+                Helper.print("[2] How to play");
 
             } else {
-                System.out.println("[" + PrintColors.ANSI_YELLOW + 2 + PrintColors.ANSI_RESET + "]" + PrintColors.ANSI_YELLOW + " How to play" + PrintColors.ANSI_RESET);
+                Helper.print("[" + PrintColors.ANSI_YELLOW + 2 + PrintColors.ANSI_RESET + "]" + PrintColors.ANSI_YELLOW + " How to play" + PrintColors.ANSI_RESET);
             }
-            System.out.println("\n[3] Load game");
-            System.out.println("\n[0] Exit game");
-            choice = GameHelper.getInt(0, 3);
+            Helper.print("\n[3] Load game");
+            Helper.print("\n[0] Exit game");
+            choice = Helper.getInt(0, 3);
             mainMenuChoice(choice);
         }
     }
 
     protected void gameMenu(Player player) throws IOException, UnsupportedAudioFileException, LineUnavailableException {
         playerDisplay(player);
-        System.out.println("===== GAME MENU =====");
-        System.out.println("[1] Buy Pokemon");
-        System.out.println("[2] Buy food");
-        System.out.println("[3] Feed Pokemon");
-        System.out.println("[4] Breed Pokemon");
-        System.out.println("[5] Sell Pokemon");
-        System.out.println("\n[8] Turn off/on music");
-        System.out.println("[9] Save and EXIT");
-        System.out.println("[0] - Finish round");
-        gameMenuChoice(GameHelper.getInt(0, 9), player);
+        Helper.print("===== GAME MENU =====");
+        Helper.print("[1] Buy Pokemon");
+        Helper.print("[2] Buy food");
+        Helper.print("[3] Feed Pokemon");
+        Helper.print("[4] Breed Pokemon");
+        Helper.print("[5] Sell Pokemon");
+        Helper.print("\n[8] Turn off/on music");
+        Helper.print("[9] Save and EXIT");
+        Helper.print("[0] - Finish round");
+        gameMenuChoice(Helper.getInt(0, 9), player);
     }
 
     protected void playerDisplay(Player player) {
-        GameHelper.clearScreen();
-        System.out.println(PrintColors.ANSI_RED + player.getName() + PrintColors.ANSI_RESET);
-        System.out.println("Money: " + player.getMoney());
-        System.out.println("Round: " + game.getRound() + "/" + game.getNumOfRounds());
-        System.out.println();
+        Helper.clearScreen();
+        Helper.print(PrintColors.ANSI_RED + player.getName() + PrintColors.ANSI_RESET);
+        Helper.print("Money: " + player.getMoney());
+        Helper.print("Round: " + game.getRound() + "/" + game.getNumOfRounds());
+        Helper.print("");
         if (player.getPlayerFood().size() != 0) {
             foodDisplay(player);
         }
         if (player.getPlayerPokemon().size() != 0) {
             pokeDisplay(player);
         }
-        System.out.println();
+        Helper.print("");
     }
 
     private void howToPlay() {
-        GameHelper.clearScreen();
+        Helper.clearScreen();
         readHowTo = true;
-        System.out.println("===== HOW TO PLAY =====\n\n" + "* This is a turn based game were players take tuns on " + "setting up\n" + "* their Pokemon for success. Players choose from buying or selling\n" + "* Pokemon," + " buying food or try to breed. Each Pokemon have a different\n" + "* value. Dont forget that " + "different Pokemon eat different food.\n" + "* When the last turn is finished the players " + "automatically sell\n" + "* their Pokemon and the winner is the one with most money left.\n\n" + "* A" + " player can only make a action in one of the categories per round.\n" + "* But is able eg. to buy " + "multiple Pokemon per round.\n\n" + "* A player that is unable to buy any Pokemon due to shortage of " + "money and\n" + "* dont have any pokemon in their party is eliminated.\n" + "* Each round your " + "Pokemon get 1 year older and is loosing a percentage\n" + "* of health. If you are unlucky one of " + "your Pokemon get sick....");
-        GameHelper.inputEnter();
+        Helper.print("""
+                ===== HOW TO PLAY =====
+
+                * This is a turn based game were players take tuns on setting up
+                * their Pokemon for success. Players choose from buying or selling
+                * Pokemon, buying food or try to breed. Each Pokemon have a different
+                * value. Dont forget that different Pokemon eat different food.
+                * When the last turn is finished the players automatically sell
+                * their Pokemon and the winner is the one with most money left.
+
+                * A player can only make a action in one of the categories per round.
+                * But is able eg. to buy multiple Pokemon per round.
+
+                * A player that is unable to buy any Pokemon due to shortage of money and
+                * dont have any pokemon in their party is eliminated.
+                * Each round your Pokemon get 1 year older and is loosing a percentage
+                * of health. If you are unlucky one of your Pokemon get sick....""");
+        Helper.inputEnter();
     }
 
     private void exitGame() {
-        System.out.println("Bye bye");
+        Helper.print("Bye bye");
         System.exit(0);
     }
 
@@ -91,25 +107,25 @@ public class Menu implements Serializable {
         int numOfPlayers;
         int numOfRounds;
         int startingMoney;
-        GameHelper.clearScreen();
-        System.out.println("====== Welcome to THE POKEMON BREEDERS RACE ======");
-        System.out.println("\nHow many players (1-4):");
-        numOfPlayers = GameHelper.getInt(1, 4);
-        GameHelper.clearScreen();
-        System.out.println("====== Welcome to THE POKEMON BREEDERS RACE ======");
-        System.out.println("\nHow many rounds (5-35): ");
-        numOfRounds = GameHelper.getInt(5, 35);
-        GameHelper.clearScreen();
-        System.out.println("====== Welcome to THE POKEMON BREEDERS RACE ======");
-        System.out.println("\nStarting money");
-        System.out.println("\n  [EASY]   [MEDIUM]    [HARD]");
-        System.out.println("[5 0 0 0]  [2 5 0 0]  [1 1 0 0]");
-        startingMoney = GameHelper.getInt(1100, 5000);
+        Helper.clearScreen();
+        Helper.print("====== Welcome to THE POKEMON BREEDERS RACE ======");
+        Helper.print("\nHow many players (1-4):");
+        numOfPlayers = Helper.getInt(1, 4);
+        Helper.clearScreen();
+        Helper.print("====== Welcome to THE POKEMON BREEDERS RACE ======");
+        Helper.print("\nHow many rounds (5-35): ");
+        numOfRounds = Helper.getInt(5, 35);
+        Helper.clearScreen();
+        Helper.print("====== Welcome to THE POKEMON BREEDERS RACE ======");
+        Helper.print("\nStarting money");
+        Helper.print("\n  [EASY]   [MEDIUM]    [HARD]");
+        Helper.print("[5 0 0 0]  [2 5 0 0]  [1 1 0 0]");
+        startingMoney = Helper.getInt(1100, 5000);
         for (int i = 1; i <= numOfPlayers; i++) {
-            GameHelper.clearScreen();
-            System.out.println("====== Welcome to THE POKEMON BREEDERS RACE ======");
+            Helper.clearScreen();
+            Helper.print("====== Welcome to THE POKEMON BREEDERS RACE ======");
             System.out.printf("\nPlayer %d name:\n", i);
-            players.add(new Player(GameHelper.input.nextLine(), startingMoney));
+            players.add(new Player(Helper.input.nextLine(), startingMoney));
         }
         game.setNumOfRounds(numOfRounds);
         game.setPlayers(players);
@@ -175,17 +191,17 @@ public class Menu implements Serializable {
 
     private void newSaveFile() {
         File f = new File("SaveFiles/");
-        System.out.println("Enter name on savefile:");
-        String fileName = GameHelper.input.nextLine() + ".ser";
+        Helper.print("Enter name on savefile:");
+        String fileName = Helper.input.nextLine() + ".ser";
         if (!Files.exists(Paths.get("SaveFile/" + fileName))) {
             if (!f.exists()) {
                 f.mkdir();
             }
             Serializer.serialize("SaveFiles/" + fileName, game);
         } else {
-            System.out.println("Filename already exist.");
-            System.out.println("[1] Overwrite existing savefile\n" + "[2] Create a new one");
-            if (GameHelper.getInt(1, 2) == 1) {
+            Helper.print("Filename already exist.");
+            Helper.print("[1] Overwrite existing savefile\n" + "[2] Create a new one");
+            if (Helper.getInt(1, 2) == 1) {
                 Serializer.serialize("SaveFile/" + fileName, game);
             }
         }
@@ -195,25 +211,20 @@ public class Menu implements Serializable {
     public void loadSavedFile() {
         String[] saveFiles;
         File f = new File("SaveFiles/");
-        FilenameFilter filter = new FilenameFilter() {
-            @Override
-            public boolean accept(File f, String name) {
-                return name.endsWith(".ser");
-            }
-        };
+        FilenameFilter filter = (f1, name) -> name.endsWith(".ser");
         saveFiles = f.list(filter);
         if (saveFiles == null || saveFiles.length == 0) {
-            System.out.println("No save files");
+            Helper.print("No save files");
         } else {
-            GameHelper.clearScreen();
-            System.out.println("====== Welcome to THE POKEMON BREEDERS RACE ======");
-            System.out.println("\nSaved files\n");
+            Helper.clearScreen();
+            Helper.print("====== Welcome to THE POKEMON BREEDERS RACE ======");
+            Helper.print("\nSaved files\n");
             int n = 1;
             for (String save : saveFiles) {
-                System.out.println("[" + n + "] " + save.replaceAll(".ser", ""));
+                Helper.print("[" + n + "] " + save.replaceAll(".ser", ""));
                 n++;
             }
-            int choice = GameHelper.getInt(1, saveFiles.length);
+            int choice = Helper.getInt(1, saveFiles.length);
             String saveString = "SaveFiles/" + saveFiles[choice - 1];
             try {
                 this.game = (Game) Serializer.deserialize(saveString);
@@ -222,29 +233,29 @@ public class Menu implements Serializable {
                 System.out.println(error);
             }
         }
-        GameHelper.inputEnter();
+        Helper.inputEnter();
     }
 
     protected void choiceMade(Player player) throws IOException, UnsupportedAudioFileException,
             LineUnavailableException {
         if (player.canBuyFood) {
-            System.out.println("You made your choice, you can only buy food this round");
+            Helper.print("You made your choice, you can only buy food this round");
         } else if (player.canBuyPokemon) {
-            System.out.println("You made your choice, you can only buy Pokemon this round");
+            Helper.print("You made your choice, you can only buy Pokemon this round");
         } else if (player.canSellPokemon) {
-            System.out.println("You made your choice, you can only sell Pokemon this round");
+            Helper.print("You made your choice, you can only sell Pokemon this round");
         } else if (player.canFeedPokemon) {
-            System.out.println("You made your choice, you can only feed your Pokemon this round");
+            Helper.print("You made your choice, you can only feed your Pokemon this round");
         } else {
-            System.out.println("You made your choice, you can only try or succeed breeding your Pokemon once per " +
+            Helper.print("You made your choice, you can only try or succeed breeding your Pokemon once per " +
                     "round");
         }
         Audio.soundEffect("audio/ahem.wav");
-        GameHelper.inputEnter();
+        Helper.inputEnter();
     }
 
     private void pokeDisplay(Player player) {
-        System.out.println("===== POKEMON =====");
+        Helper.print("===== POKEMON =====");
         for (Pokemon pokemon : player.getPlayerPokemon()) {
             // Cant get the padding right
             System.out.printf("%-11.11s %-10s %s%s/%-3s %s%s%s\n", pokemon.getBreed(true), pokemon.getName(), "Age: "
@@ -259,9 +270,9 @@ public class Menu implements Serializable {
                 player.getPlayerFood().remove(i);
             }
         }
-        System.out.println("===== FOOD =====");
+        Helper.print("===== FOOD =====");
         for (Food food : player.getPlayerFood()) {
-            System.out.println(food.getType() + ": " + food.getAmount() + "kg");
+            Helper.print(food.getType() + ": " + food.getAmount() + "kg");
 
         }
     }

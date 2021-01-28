@@ -20,62 +20,60 @@ public class Breed implements Serializable {
         this.game = game;
     }
 
-    public void printAvailablePokemon(Player player) throws IOException, UnsupportedAudioFileException,
-            LineUnavailableException {
+    public void printAvailablePokemon(Player player) throws IOException, UnsupportedAudioFileException, LineUnavailableException {
         game.menu.playerDisplay(player);
-        System.out.println("===== Breeding =====\n");
+        Helper.print("===== Breeding =====\n");
         if ((player.getPlayerPokemon().size() > 1)) {
             int i = 1;
             for (Pokemon pokemon : player.getPlayerPokemon()) {
-                System.out.println("[" + i + "]" + pokemon.toString(false));
+                Helper.print("[" + i + "]" + pokemon.toString(false));
                 i++;
             }
-            System.out.println("\n[0] Exit to game menu" + "\nSelect your first Pokemon");
-            int choice = GameHelper.getInt(0, player.getPlayerPokemon().size());
+            Helper.print("\n[0] Exit to game menu" + "\nSelect your first Pokemon");
+            int choice = Helper.getInt(0, player.getPlayerPokemon().size());
             if (choice != 0) {
                 printSuitableMate(getPokemon(choice, player), player);
             }
         } else {
-            System.out.println("You dont have enough Pokemon");
-            GameHelper.inputEnter();
+            Helper.print("You dont have enough Pokemon");
+            Helper.inputEnter();
         }
     }
 
     // containing list of suitable mates for selected pokemon
-    public void printSuitableMate(Pokemon pokemon, Player player) throws IOException, UnsupportedAudioFileException,
-            LineUnavailableException {
-        GameHelper.clearScreen();
+    public void printSuitableMate(Pokemon pokemon, Player player) throws IOException, UnsupportedAudioFileException, LineUnavailableException {
+        Helper.clearScreen();
         game.menu.playerDisplay(player);
-        System.out.println("===== Select your partner =====");
+        Helper.print("===== Select your partner =====");
         if (findSuitableMate(pokemon, player)) {
             ArrayList<Pokemon> tempMate = getMate(pokemon, player);
             int i = 1;
             for (Pokemon pokemonMate : tempMate) {
-                System.out.println("[" + i + "]" + pokemonMate.toString(false));
+                Helper.print("[" + i + "]" + pokemonMate.toString(false));
                 i++;
             }
-            System.out.println("\n[0] Exit to game menu");
-            int choice = GameHelper.getInt(0, tempMate.size());
+            Helper.print("\n[0] Exit to game menu");
+            int choice = Helper.getInt(0, tempMate.size());
             if (choice != 0) {
                 if (Math.random() > 0.5) {
                     pokemon.loveMakeing(player, getMate(choice, tempMate));
                     player.accessShops(false);
                 } else {
                     System.out.print("\n.");
-                    GameHelper.waitMilliSeconds(700);
+                    Helper.waitMilliSeconds(700);
                     System.out.print(".");
-                    GameHelper.waitMilliSeconds(700);
+                    Helper.waitMilliSeconds(700);
                     System.out.print(".");
-                    GameHelper.waitMilliSeconds(700);
+                    Helper.waitMilliSeconds(700);
                     Audio.soundEffect("audio/nextTime.wav");
-                    System.out.println("Unsuccessful breeding");
+                    Helper.print("Unsuccessful breeding");
                     player.accessShops(false);
-                    GameHelper.inputEnter();
+                    Helper.inputEnter();
                 }
             }
         } else {
-            System.out.println("No matching partner");
-            GameHelper.inputEnter();
+            Helper.print("No matching partner");
+            Helper.inputEnter();
         }
     }
 

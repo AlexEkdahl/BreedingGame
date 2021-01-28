@@ -45,18 +45,17 @@ public class Store implements Serializable {
             game.menu.playerDisplay(customer);
             fillPokeShelf();
             int n = 1;
-            System.out.println("===== Pokemon Shop =====\n");
+            Helper.print("===== Pokemon Shop =====\n");
             for (Pokemon pokemon : pokemonShelf) {
                 if (customer.getMoney() < pokemon.getPrice()) {
-                    System.out.printf("[%-1.2s]%-10.10s\t%3.4s$\t[to expensive]", n, pokemon.getBreed(false),
-                            pokemon.getPrice());
+                    System.out.printf("[%-1.2s]%-10.10s\t%3.4s$\t[to expensive]", n, pokemon.getBreed(false), pokemon.getPrice());
                 } else {
                     System.out.printf("[%-1.2s]%-10.10s\t%3.4s$%n", n, pokemon.getBreed(false), pokemon.getPrice());
                 }
                 n++;
             }
-            System.out.println("\n[0] Exit shop");
-            int answer = GameHelper.getInt(0, 5);
+            Helper.print("\n[0] Exit shop");
+            int answer = Helper.getInt(0, 5);
             if (answer == 0) {
                 break;
             }
@@ -67,18 +66,17 @@ public class Store implements Serializable {
     public void buyPokemon(Pokemon pokemon, Player customer) {
         if (enoughMoney(pokemon, customer)) {
             game.menu.playerDisplay(customer);
-            System.out.println(pokemon.toString(true));
-            System.out.println("\nWould you like to buy a " + pokemon.getBreed(false) + " for " + pokemon.getPrice() + "$?\n[y / n]");
-            String answer = GameHelper.validateString();
-            if (answer.equals("y") && customer.canBuyPokemon) {
+            Helper.print(pokemon.toString(true));
+            Helper.print("\nWould you like to buy a " + pokemon.getBreed(false) + " for " + pokemon.getPrice() + "$?\n[y / n]");
+            if (Helper.validateString() && customer.canBuyPokemon) {
                 customer.createPokemon(pokemon, false);
                 customer.handlePurchase(pokemon.getPrice());
                 customer.accessShops(false);
                 customer.canBuyPokemon = true;
             }
         } else {
-            System.out.println("Not enough money");
-            GameHelper.inputEnter();
+            Helper.print("Not enough money");
+            Helper.inputEnter();
         }
     }
 
@@ -86,19 +84,18 @@ public class Store implements Serializable {
         while (true) {
             game.menu.playerDisplay(customer);
             int n = 1;
-            System.out.println("===== PokeFood Shop =====\n");
+            Helper.print("===== PokeFood Shop =====\n");
             for (Food food : foodShelf) {
                 if (customer.getMoney() < food.getPrice()) {
-                    System.out.println("[" + n + "]" + food.getType() + "\t" + food.getPrice() + "$\t\t [too " +
-                            "expensive]");
+                    Helper.print("[" + n + "]" + food.getType() + "\t" + food.getPrice() + "$\t\t [too " + "expensive]");
                 } else {
-                    System.out.println("[" + n + "]" + food.getType() + "\t" + food.getPrice() + "$");
+                    Helper.print("[" + n + "]" + food.getType() + "\t" + food.getPrice() + "$");
                 }
-                System.out.println("-" + whichPokemon(food) + "\n");
+                Helper.print("-" + whichPokemon(food) + "\n");
                 n++;
             }
-            System.out.println("\n[0] Exit shop");
-            int answer = GameHelper.getInt(0, 4);
+            Helper.print("\n[0] Exit shop");
+            int answer = Helper.getInt(0, 4);
             if (answer == 0) {
                 break;
             }
@@ -108,10 +105,9 @@ public class Store implements Serializable {
 
     public void buyFood(Food food, Player customer) {
         game.menu.playerDisplay(customer);
-        System.out.println("===== PokeFood Shop =====\n");
-        System.out.println("Max " + food.getType() + " you can buy: " + maxFood(food, customer));
-        System.out.println("How many: ");
-        int number = GameHelper.getInt(0, maxFood(food, customer));
+        Helper.print("===== PokeFood Shop =====\n");
+        Helper.print("Max " + food.getType() + " you can buy: " + maxFood(food, customer) + "\nHow many: ");
+        int number = Helper.getInt(0, maxFood(food, customer));
         if (number != 0 && customer.canBuyFood) {
             customer.addFood(food, number);
             customer.handlePurchase((food.getPrice() * number));
@@ -131,25 +127,24 @@ public class Store implements Serializable {
     public void sellPokemon(Player customer) {
         while (true) {
             game.menu.playerDisplay(customer);
-            System.out.println("====== Sell your POKEMON ======");
+            Helper.print("====== Sell your POKEMON ======");
             if (customer.getPlayerPokemon().size() != 0) {
                 customer.printPokemonList(false);
-                System.out.println("\n[0] Exit to game menu");
-                int index = GameHelper.getInt(0, customer.getPlayerPokemon().size());
+                Helper.print("\n[0] Exit to game menu");
+                int index = Helper.getInt(0, customer.getPlayerPokemon().size());
                 if (index == 0) {
                     break;
                 }
                 game.menu.playerDisplay(customer);
-                System.out.println("Do you want to sell " + customer.getPokemon(index - 1).getName() + " for " + customer.getPokemon(index - 1).getValue() + "$?" + "\n[y / n]");
-                String answer = GameHelper.validateString();
-                if (answer.equals("y") && customer.canSellPokemon) {
+                Helper.print("Do you want to sell " + customer.getPokemon(index - 1).getName() + " for " + customer.getPokemon(index - 1).getValue() + "$?" + "\n[y / n]");
+                if (Helper.validateString() && customer.canSellPokemon) {
                     customer.sellPokemon(index - 1);
                     customer.accessShops(false);
                     customer.canSellPokemon = true;
                 }
             } else {
-                System.out.println("You have no Pokemon");
-                GameHelper.inputEnter();
+                Helper.print("You have no Pokemon");
+                Helper.inputEnter();
                 break;
             }
         }

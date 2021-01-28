@@ -41,17 +41,17 @@ public class Game implements Serializable {
         if (players.size() != 0) {
             pokemonAgeOrSell(true);
             printAllScores();
-            System.out.println("The winner is " + getWinner().getName());
+            Helper.print("The winner is " + getWinner().getName());
             PrintColors.startUp();
         } else {
-            System.out.println("No winners only losers!");
+            Helper.print("No winners only losers!");
         }
     }
 
     public void changePlayer() {
-        GameHelper.clearScreen();
-        System.out.println("Next player");
-        GameHelper.inputEnter();
+        Helper.clearScreen();
+        Helper.print("Next player");
+        Helper.inputEnter();
         // If the player is last in turn, then start over with player 1
         if (players.indexOf(currentPlayer) == players.size() - 1) {
             currentPlayer = players.get(0);
@@ -89,9 +89,9 @@ public class Game implements Serializable {
     private void playerLost() {
         for (int i = players.size() - 1; i >= 0; i--) {
             if (players.get(i).getPlayerPokemon().size() == 0 && players.get(i).getMoney() < 500) {
-                System.out.println(players.get(i).getName() + " ran out of Pokemon and money and is ELIMINATED");
+                Helper.print(players.get(i).getName() + " ran out of Pokemon and money and is ELIMINATED");
                 players.remove(i);
-                GameHelper.inputEnter();
+                Helper.inputEnter();
             }
         }
     }
@@ -102,19 +102,18 @@ public class Game implements Serializable {
             for (int i = player.getPlayerPokemon().size() - 1; i >= 0; i--) {
                 if (sellAll) {
                     player.sellPokemon(i);
-                    GameHelper.inputEnter();
+                    Helper.inputEnter();
                 } else {
                     player.getPokemon(i).aging();
                     player.getPokemon(i).reduceHealth();
                     if (player.getPokemon(i).getAge() > player.getPokemon(i).getMaxAge()) {
-                        System.out.println(player.getName() + "! " + player.getPokemon(i).getName() + " died of old " + "age");
+                        Helper.print(player.getName() + "! " + player.getPokemon(i).getName() + " died of old " + "age");
                         player.getPlayerPokemon().remove(i);
-                        GameHelper.inputEnter();
+                        Helper.inputEnter();
                     } else if (player.getPokemon(i).getHealth() <= 0) {
-                        System.out.println(player.getName() + "! " + player.getPokemon(i).getName() + " died because "
-                                + "health dropped below 0");
+                        Helper.print(player.getName() + "! " + player.getPokemon(i).getName() + " died because " + "health dropped below 0");
                         player.getPlayerPokemon().remove(i);
-                        GameHelper.inputEnter();
+                        Helper.inputEnter();
                     }
                 }
             }
@@ -126,19 +125,17 @@ public class Game implements Serializable {
             for (int i = currentPlayer.getPlayerPokemon().size() - 1; i >= 0; i--) {
                 if (Math.random() < 0.2) {
                     currentPlayer.getPokemon(i).isSick = false;
-                    System.out.println(currentPlayer.getName() + "! Your " + currentPlayer.getPokemon(i).toString(false) + " Got sick, pay the vet or let Pokemon die?");
-                    System.out.println("Cost: 300");
-                    System.out.println("\n[y / n]");
-                    String s = GameHelper.validateString();
-                    if (s.equals("n")) {
+                    Helper.print(currentPlayer.getName() + "! Your " + currentPlayer.getPokemon(i).toString(false) + " Got sick, pay the vet or let Pokemon die?");
+                    Helper.print("Cost: 300" + "\n\n[y / n]");
+                    if (Helper.validateString()) {
                         currentPlayer.getPlayerPokemon().remove(i);
-                        System.out.println("You let your Pokemon die...");
-                        GameHelper.inputEnter();
+                        Helper.print("You let your Pokemon die...");
+                        Helper.inputEnter();
                     } else {
                         if (currentPlayer.getMoney() > 300) {
                             currentPlayer.handlePurchase(300);
                         } else {
-                            System.out.println("You couldn't pay the price, you dont have enough founds");
+                            Helper.print("You couldn't pay the price, you don't have enough founds");
                         }
                     }
                 }
@@ -148,7 +145,7 @@ public class Game implements Serializable {
 
     public void printAllScores() {
         for (Player player : this.players) {
-            System.out.println(player.getName() + "\t\tgot:" + player.getMoney());
+            Helper.print(player.getName() + "\t\tgot:" + player.getMoney());
         }
     }
 

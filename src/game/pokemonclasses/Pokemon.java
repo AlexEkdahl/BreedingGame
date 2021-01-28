@@ -1,11 +1,11 @@
 package game.pokemonclasses;
 
 import game.foodclasses.Food;
-import game.GameHelper;
+import game.Helper;
 import game.Player;
 
 import java.io.Serializable;
-import java.util.Set;
+
 
 public abstract class Pokemon implements Serializable {
 
@@ -18,7 +18,6 @@ public abstract class Pokemon implements Serializable {
     protected Gender gender;
     protected int health = 100;
     protected int maxOffspring;
-    protected Set<Food> canEat;
     protected Food[] canEatFood;
     protected int age = 0;
     protected int maxAge;
@@ -107,25 +106,25 @@ public abstract class Pokemon implements Serializable {
     }
 
     public String foodToString() {
-        String s = "";
+        StringBuilder s = new StringBuilder();
         for (Food food : canEatFood) {
-            s = s + food.getClass().getSimpleName() + ", ";
+            s.append(food.getClass().getSimpleName()).append(", ");
         }
-        return s.trim().replaceFirst(".$", "");
+        return s.toString().trim().replaceFirst(".$", "");
     }
 
     public void loveMakeing(Player owner, Pokemon mate) {
         int offsprings = (int) (Math.random() * this.maxOffspring) + 1;
         for (int i = 0; i < offsprings; i++) {
             System.out.print(i + 1 + ".");
-            GameHelper.waitMilliSeconds(700);
+            Helper.waitMilliSeconds(700);
             System.out.print(".");
-            GameHelper.waitMilliSeconds(700);
+            Helper.waitMilliSeconds(700);
             System.out.print(".");
-            GameHelper.waitMilliSeconds(700);
+            Helper.waitMilliSeconds(700);
         }
         System.out.print(" " + offsprings + " new " + mate.getBreed(false) + "!");
-        System.out.println(" Congratulations, " + this.name + " and " + mate.getName() + " successfully mated");
+        Helper.print(" Congratulations, " + this.name + " and " + mate.getName() + " successfully mated");
         for (int j = 0; j < offsprings; j++) {
             switch (this.getBreed(false)) {
                 case "Pikachu" -> owner.createPokemon(new Pikachu(), true);
