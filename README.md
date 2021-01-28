@@ -9,6 +9,6 @@ The workspace contains two folder and three packages, where:
 - `src`: the folder to maintain sources
 - `audio`: the folder to maintain soundeffects
 
-- `Game`: main package
+- `game`: main package
 - `PokemonClasses`: contains classes regarding the Pokemon
 - `FoodClasses`: contains classes regarding the food 

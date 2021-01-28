@@ -1,4 +1,4 @@
-package Game.FoodClasses;
+package game.foodclasses;
 
 
 public class PokePuff extends Food {

@@ -1,4 +1,4 @@
-package Game.FoodClasses;
+package game.foodclasses;
 
 public class Berry extends Food {
 
@@ -7,5 +7,5 @@ public class Berry extends Food {
       healthValue = 5;
    }
 
-   
+
 }

@@ -1,4 +1,4 @@
-package Game.FoodClasses;
+package game.foodclasses;
 
 
 public class PokeBlock extends Food {
@@ -8,7 +8,5 @@ public class PokeBlock extends Food {
       healthValue = 10;
    }
 
-   
 
-   
 }

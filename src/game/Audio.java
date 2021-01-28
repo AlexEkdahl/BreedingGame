@@ -1,4 +1,4 @@
-package Game;
+package game;
 
 import javax.sound.sampled.*;
 import java.io.File;
@@ -6,19 +6,20 @@ import java.io.IOException;
 import java.io.Serializable;
 
 public class Audio implements Serializable {
+
     static Clip clip;
     static AudioInputStream stream;
 
-    public static void soundEffect(String filePath)
-            throws IOException, UnsupportedAudioFileException, LineUnavailableException {
+    public static void soundEffect(String filePath) throws IOException, UnsupportedAudioFileException,
+            LineUnavailableException {
         stream = AudioSystem.getAudioInputStream(new File(filePath));
         clip = AudioSystem.getClip();
         clip.open(stream);
         clip.start();
     }
 
-    public static void themeSong(String filePath)
-            throws IOException, UnsupportedAudioFileException, LineUnavailableException {
+    public static void themeSong(String filePath) throws IOException, UnsupportedAudioFileException,
+            LineUnavailableException {
         stream = AudioSystem.getAudioInputStream(new File(filePath));
         clip = AudioSystem.getClip();
         clip.open(stream);
@@ -38,4 +39,5 @@ public class Audio implements Serializable {
             clip.start();
         }
     }
+
 }
