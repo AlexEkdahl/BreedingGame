@@ -124,8 +124,8 @@ public class Game implements Serializable {
          for (int i = currentPlayer.getPlayerPokemon().size() - 1; i >= 0; i--) {
             if (Math.random() < 0.2) {
                currentPlayer.getPokemon(i).isSick = false;
-               System.out.println(
-                     currentPlayer.getPokemon(i).toString(false) + " Got sick, pay the vet or let Pokemon die?");
+               System.out.println(currentPlayer.getName() + "! Your " + currentPlayer.getPokemon(i).toString(false)
+                     + " Got sick, pay the vet or let Pokemon die?");
                System.out.println("Cost: 300");
                System.out.println("\n[y / n]");
                String s = GameHelper.validateString();
