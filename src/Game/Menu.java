@@ -5,8 +5,8 @@ import java.nio.file.*;
 import java.util.*;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
-import Game.FoodClasses.Food;
-import Game.PokemonClasses.Pokemon;
+import Game.FoodClasses.*;
+import Game.PokemonClasses.*;
 
 public class Menu implements Serializable {
    public boolean readHowTo = false;

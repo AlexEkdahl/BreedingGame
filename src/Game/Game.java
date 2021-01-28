@@ -19,9 +19,6 @@ public class Game implements Serializable {
 
    public Game() throws IOException, UnsupportedAudioFileException, LineUnavailableException {
       Audio.themeSong("audio/themesong.wav");
-      // PrintColors.startUp();
-      // GameHelper.waitMilliSeconds(2500);
-
       menu.setGame(this);
       store.setGame(this);
       breed.setGame(this);
@@ -45,6 +42,7 @@ public class Game implements Serializable {
          pokemonAgeOrSell(true);
          printAllScores();
          System.out.println("The winner is " + getWinner().getName());
+         PrintColors.startUp();
       } else {
          System.out.println("No winners only losers!");
       }

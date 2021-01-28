@@ -22,10 +22,7 @@ public class Store implements Serializable {
    // Pokemon have random max offsprings, so that player can buy different object
    // each time
    private void fillPokeShelf() {
-      if (pokemonShelf != null) {
-         pokemonShelf.clear();
-      }
-      assert pokemonShelf != null;
+      pokemonShelf.clear();
       pokemonShelf.add(new Bulbasur());
       pokemonShelf.add(new Charmander());
       pokemonShelf.add(new Squirtle());
@@ -34,10 +31,8 @@ public class Store implements Serializable {
    }
 
    private void fillFoodShelf() {
-      if (foodShelf != null) {
-         foodShelf.clear();
-      }
-      assert foodShelf != null;
+
+      foodShelf.clear();
       foodShelf.add(new Berry());
       foodShelf.add(new PokeBlock());
       foodShelf.add(new PokePuff());
