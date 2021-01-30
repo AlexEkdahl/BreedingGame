@@ -2,17 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4df2f8a8-faed-4a41-85e4-8649d368a292" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BreedingGame/audio/ahem.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BreedingGame/audio/listen.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BreedingGame/audio/nextTime.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BreedingGame/audio/themesong.wav" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/BreedingGame/game/Breed.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BreedingGame/game/Breed.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/BreedingGame/game/Game.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BreedingGame/game/Game.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/BreedingGame/game/Menu.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BreedingGame/game/Menu.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/audio/ahem.wav" beforeDir="false" afterPath="$PROJECT_DIR$/audio/ahem.wav" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/audio/listen.wav" beforeDir="false" afterPath="$PROJECT_DIR$/audio/listen.wav" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/audio/nextTime.wav" beforeDir="false" afterPath="$PROJECT_DIR$/audio/nextTime.wav" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/audio/themesong.wav" beforeDir="false" afterPath="$PROJECT_DIR$/audio/themesong.wav" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/Breed.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/Breed.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/game/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/Menu.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,6 +63,21 @@
       <option name="presentableId" value="Default" />
       <updated>1612005866441</updated>
     </task>
+    <task id="LOCAL-00001" summary="Fix">
+      <created>1612006069315</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1612006069315</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Fix">
+      <created>1612006079314</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1612006079314</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -78,5 +90,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix" />
   </component>
 </project>
