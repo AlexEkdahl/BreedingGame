@@ -65,7 +65,7 @@ public class Breed implements Serializable {
                     Helper.waitMilliSeconds(700);
                     System.out.print(".");
                     Helper.waitMilliSeconds(700);
-                    Audio.soundEffect("audio/nextTime.wav");
+                    Audio.soundEffect("src/audio/nextTime.wav");
                     Helper.print("Unsuccessful breeding");
                     player.accessShops(false);
                     Helper.inputEnter();
