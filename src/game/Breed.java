@@ -29,13 +29,13 @@ public class Breed implements Serializable {
                 Helper.print("[" + i + "]" + pokemon.toString(false));
                 i++;
             }
-            Helper.print("\n[0] Exit to game menu" + "\nSelect your first Pokemon");
+            Helper.print(Helper.exit + "\nSelect your first Pokemon");
             int choice = Helper.getInt(0, player.getPlayerPokemon().size());
             if (choice != 0) {
                 printSuitableMate(getPokemon(choice, player), player);
             }
         } else {
-            Helper.print("You dont have enough Pokemon");
+            Helper.print("You don't have enough Pokemon");
             Helper.inputEnter();
         }
     }
@@ -52,7 +52,7 @@ public class Breed implements Serializable {
                 Helper.print("[" + i + "]" + pokemonMate.toString(false));
                 i++;
             }
-            Helper.print("\n[0] Exit to game menu");
+            Helper.print(Helper.exit);
             int choice = Helper.getInt(0, tempMate.size());
             if (choice != 0) {
                 if (Math.random() > 0.5) {

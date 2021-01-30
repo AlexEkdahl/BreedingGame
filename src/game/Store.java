@@ -9,8 +9,8 @@ import java.util.ArrayList;
 public class Store implements Serializable {
 
     private Game game;
-    private ArrayList<Pokemon> pokemonShelf = new ArrayList<>();
-    private ArrayList<Food> foodShelf = new ArrayList<>();
+    private final ArrayList<Pokemon> pokemonShelf = new ArrayList<>();
+    private final ArrayList<Food> foodShelf = new ArrayList<>();
 
     public Store() {
         fillFoodShelf();
@@ -54,7 +54,7 @@ public class Store implements Serializable {
                 }
                 n++;
             }
-            Helper.print("\n[0] Exit shop");
+            Helper.print(Helper.exit);
             int answer = Helper.getInt(0, 5);
             if (answer == 0) {
                 break;
@@ -94,7 +94,7 @@ public class Store implements Serializable {
                 Helper.print("-" + whichPokemon(food) + "\n");
                 n++;
             }
-            Helper.print("\n[0] Exit shop");
+            Helper.print(Helper.exit);
             int answer = Helper.getInt(0, 4);
             if (answer == 0) {
                 break;
@@ -130,7 +130,7 @@ public class Store implements Serializable {
             Helper.print("====== Sell your POKEMON ======");
             if (customer.getPlayerPokemon().size() != 0) {
                 customer.printPokemonList(false);
-                Helper.print("\n[0] Exit to game menu");
+                Helper.print(Helper.exit);
                 int index = Helper.getInt(0, customer.getPlayerPokemon().size());
                 if (index == 0) {
                     break;
