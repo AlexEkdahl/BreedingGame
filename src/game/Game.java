@@ -18,7 +18,7 @@ public class Game implements Serializable {
     private Player currentPlayer;
 
     public Game() throws IOException, UnsupportedAudioFileException, LineUnavailableException {
-        Audio.themeSong("src/audio/themesong.wav");
+        Audio.themeSong("audio/themesong.wav");
         menu.setGame(this);
         store.setGame(this);
         breed.setGame(this);

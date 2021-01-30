@@ -246,7 +246,7 @@ public class Menu implements Serializable {
         } else {
             Helper.print("You made your choice, you can only try or succeed breeding your Pokemon once per " + "round");
         }
-        Audio.soundEffect("src/audio/ahem.wav");
+        Audio.soundEffect("audio/ahem.wav");
         Helper.inputEnter();
     }
 
