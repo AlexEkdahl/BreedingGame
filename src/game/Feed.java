@@ -26,13 +26,13 @@ public class Feed implements Serializable {
                 game.menu.playerDisplay(player);
                 System.out.println("===== Feed your Pokemon =====\n");
                 printPokemon(player);
-                System.out.println("\n[0] Exit to game menu" + "\nWhich Pokemon will you feed: ");
+                System.out.println(Helper.exit + "\nWhich Pokemon will you feed: ");
                 int pokeIndex = Helper.getInt(0, player.getPlayerPokemon().size());
                 if (pokeIndex != 0) {
                     game.menu.playerDisplay(player);
                     System.out.println("===== Feed your Pokemon =====\n");
                     printFood(player);
-                    System.out.println("\n[0] Exit to game menu" + "\n Choose food: ");
+                    System.out.println(Helper.exit + "\n Choose food: ");
 
                     int pokFood = Helper.getInt(0, player.getPlayerFood().size());
                     if (pokFood != 0 && isRightFood(player.getPokemon(pokeIndex - 1), player.getFood(pokFood - 1))) {
@@ -46,8 +46,8 @@ public class Feed implements Serializable {
                         player.accessShops(false);
                         player.canFeedPokemon = true;
                     } else {
-                        Audio.soundEffect("audio/listen.wav");
-                        System.out.println("Thats not a suitable food option for " + player.getPokemon(pokeIndex - 1).getBreed(false));
+                        Audio.soundEffect("src/audio/listen.wav");
+                        System.out.println("That's not a suitable food option for " + player.getPokemon(pokeIndex - 1).getBreed(false));
                         Helper.waitMilliSeconds(1500);
                     }
 

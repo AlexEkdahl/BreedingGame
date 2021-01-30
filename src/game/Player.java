@@ -17,8 +17,8 @@ public class Player implements Serializable {
     public boolean roundDone = false;
     protected Game game;
     private int money;
-    private ArrayList<Pokemon> playerPokemon;
-    private ArrayList<Food> playerFood;
+    private final ArrayList<Pokemon> playerPokemon;
+    private final ArrayList<Food> playerFood;
 
     public Player(String name, int money) {
         this.name = name;

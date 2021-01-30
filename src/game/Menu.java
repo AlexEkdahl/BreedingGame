@@ -34,7 +34,6 @@ public class Menu implements Serializable {
             }
             if (readHowTo) {
                 Helper.print("[2] How to play");
-
             } else {
                 Helper.print("[" + PrintColors.ANSI_YELLOW + 2 + PrintColors.ANSI_RESET + "]" + PrintColors.ANSI_YELLOW + " How to play" + PrintColors.ANSI_RESET);
             }
@@ -83,7 +82,7 @@ public class Menu implements Serializable {
                 * This is a turn based game were players take tuns on setting up
                 * their Pokemon for success. Players choose from buying or selling
                 * Pokemon, buying food or try to breed. Each Pokemon have a different
-                * value. Dont forget that different Pokemon eat different food.
+                * value. Don't forget that different Pokemon eat different food.
                 * When the last turn is finished the players automatically sell
                 * their Pokemon and the winner is the one with most money left.
 
@@ -91,7 +90,7 @@ public class Menu implements Serializable {
                 * But is able eg. to buy multiple Pokemon per round.
 
                 * A player that is unable to buy any Pokemon due to shortage of money and
-                * dont have any pokemon in their party is eliminated.
+                * don't have any pokemon in their party is eliminated.
                 * Each round your Pokemon get 1 year older and is loosing a percentage
                 * of health. If you are unlucky one of your Pokemon get sick....""");
         Helper.inputEnter();
@@ -140,8 +139,7 @@ public class Menu implements Serializable {
         }
     }
 
-    private void gameMenuChoice(int choice, Player player) throws IOException, UnsupportedAudioFileException,
-            LineUnavailableException {
+    private void gameMenuChoice(int choice, Player player) throws IOException, UnsupportedAudioFileException, LineUnavailableException {
         switch (choice) {
             case 1 -> {
                 if (player.canBuyPokemon) {
@@ -236,8 +234,7 @@ public class Menu implements Serializable {
         Helper.inputEnter();
     }
 
-    protected void choiceMade(Player player) throws IOException, UnsupportedAudioFileException,
-            LineUnavailableException {
+    protected void choiceMade(Player player) throws IOException, UnsupportedAudioFileException, LineUnavailableException {
         if (player.canBuyFood) {
             Helper.print("You made your choice, you can only buy food this round");
         } else if (player.canBuyPokemon) {
@@ -247,10 +244,9 @@ public class Menu implements Serializable {
         } else if (player.canFeedPokemon) {
             Helper.print("You made your choice, you can only feed your Pokemon this round");
         } else {
-            Helper.print("You made your choice, you can only try or succeed breeding your Pokemon once per " +
-                    "round");
+            Helper.print("You made your choice, you can only try or succeed breeding your Pokemon once per " + "round");
         }
-        Audio.soundEffect("audio/ahem.wav");
+        Audio.soundEffect("src/audio/ahem.wav");
         Helper.inputEnter();
     }
 
@@ -258,8 +254,7 @@ public class Menu implements Serializable {
         Helper.print("===== POKEMON =====");
         for (Pokemon pokemon : player.getPlayerPokemon()) {
             // Cant get the padding right
-            System.out.printf("%-11.11s %-10s %s%s/%-3s %s%s%s\n", pokemon.getBreed(true), pokemon.getName(), "Age: "
-                    , pokemon.getAge(), pokemon.getMaxAge(), "Health: ", pokemon.getHealth(), "%");
+            System.out.printf("%-11.11s %-10s %s%s/%-3s %s%s%s\n", pokemon.getBreed(true), pokemon.getName(), "Age: ", pokemon.getAge(), pokemon.getMaxAge(), "Health: ", pokemon.getHealth(), "%");
         }
     }
 
@@ -273,7 +268,6 @@ public class Menu implements Serializable {
         Helper.print("===== FOOD =====");
         for (Food food : player.getPlayerFood()) {
             Helper.print(food.getType() + ": " + food.getAmount() + "kg");
-
         }
     }
 

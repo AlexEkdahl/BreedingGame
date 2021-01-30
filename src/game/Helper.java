@@ -6,6 +6,8 @@ import java.util.Scanner;
 
 public class Helper implements Serializable {
 
+    public static String exit = "\n[0] Exit to game menu";
+
     // Scanner used for entire project
     public static Scanner input = new Scanner(System.in);
 
@@ -56,7 +58,7 @@ public class Helper implements Serializable {
 
     //Faster way of doing "\n".repeat(60)
     public static void clearScreen() {
-        Helper.print(System.lineSeparator().repeat(80));
+        System.out.println(System.lineSeparator().repeat(80));
     }
 
     // Work on terminal not in ide such as Intellij unless you active escape codes,
