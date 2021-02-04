@@ -20,29 +20,29 @@ public class Feed implements Serializable {
     }
 
     public void feedPokemon(Player player) throws IOException, UnsupportedAudioFileException, LineUnavailableException {
-        if (player.getPlayerPokemon().size() == 0 && (player.getPlayerFood().size() == 0)) {
-            notAbleToFeedPokemon(player);
-        }
-        while (true) {
-            whichPokemonToFeed(player);
-            int choiceOfPokemonToFeed = Helper.getInt(0, player.getPlayerPokemon().size());
-            if (choiceOfPokemonToFeed != 0) {
-                whichFoodToEat(player);
-                if (chooseAmountAndFed(player, choiceOfPokemonToFeed))
+        if (player.getPlayerPokemon().size() != 0 && (player.getPlayerFood().size() != 0)) {
+            while (true) {
+                whichPokemonToFeed(player);
+                int choiceOfPokemonToFeed = Helper.getInt(0, player.getPlayerPokemon().size());
+                if (choiceOfPokemonToFeed != 0) {
+                    whichFoodToEat(player);
+                    if (chooseAmountAndFed(player, choiceOfPokemonToFeed)) {
+                        break;
+                    }
+                } else {
                     break;
-            } else {
-                break;
+                }
             }
         }
+            notAbleToFeedPokemon(player);
     }
 
     private boolean chooseAmountAndFed(Player player, int choiceOfPokemonToFeed)
             throws UnsupportedAudioFileException, IOException, LineUnavailableException {
         int pokeFoodChoice = Helper.getInt(0, player.getPlayerFood().size());
         boolean pokemonCanEatThis = pokeFoodChoice != 0 && canPokemonEatThisFood(
-                player.getPokemon(
-                        choiceOfPokemonToFeed - 1), player.getFood(
-                        pokeFoodChoice - 1));
+                player.getPokemon(choiceOfPokemonToFeed - 1),
+                player.getFood(pokeFoodChoice - 1));
         if (pokemonCanEatThis) {
             int amountOfFood = getAmountOfFood(player, pokeFoodChoice);
             if (amountOfFood == 0) {

@@ -26,7 +26,7 @@ public class Breed implements Serializable {
         if ((player.getPlayerPokemon().size() > 1)) {
             printPokemonList(player.getPlayerPokemon());
             Helper.print(Helper.askExitToMenu + "\nSelect your first Pokemon");
-            int choiceOfFirstMate = getPokemonChoice(player.getPlayerPokemon());
+            int choiceOfFirstMate = getPokemonIndex(player.getPlayerPokemon());
             if (choiceOfFirstMate != 0) {
                 chooseSuitableMate(getPokemon(choiceOfFirstMate, player.getPlayerPokemon()), player);
             }
@@ -41,13 +41,13 @@ public class Breed implements Serializable {
         game.menu.playerDisplay(player);
         Helper.print("===== Select your partner =====");
         if (isThereSuitablePartners(pokemon, player)) {
-            ArrayList<Pokemon> tempMate = getSuitableMateList(pokemon, player);
-            printPokemonList(tempMate);
+            ArrayList<Pokemon> suitableMatesList = getSuitableMateList(pokemon, player);
+            printPokemonList(suitableMatesList);
             Helper.print(Helper.askExitToMenu);
-            int partnerChoice = getPokemonChoice(tempMate);
+            int partnerChoice = getPokemonIndex(suitableMatesList);
             if (partnerChoice != 0) {
                 if (Math.random() > 0.5) {
-                    pokemon.loveMakeing(player, getPokemon(partnerChoice, tempMate));
+                    pokemon.loveMakeing(player, getPokemon(partnerChoice, suitableMatesList));
                 } else {
                     unsuccessfulBreeding();
                 }
@@ -91,7 +91,7 @@ public class Breed implements Serializable {
                && pokemonMate.getGender() != pokemon.getGender();
     }
 
-    private int getPokemonChoice(ArrayList<Pokemon> pokemonList) {
+    private int getPokemonIndex(ArrayList<Pokemon> pokemonList) {
         return Helper.getInt(0, pokemonList.size());
     }
 
