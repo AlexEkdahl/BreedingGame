@@ -118,7 +118,6 @@ public class Game implements Serializable {
         currentPlayer.roundDone = false;
     }
 
-
     public void setPlayers(ArrayList<Player> players) {
         this.players = players;
     }
