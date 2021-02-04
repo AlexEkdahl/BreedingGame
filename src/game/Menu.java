@@ -143,7 +143,7 @@ public class Menu implements Serializable {
         switch (choice) {
             case 1 -> {
                 if (player.canBuyPokemon) {
-                    game.store.displayPokemon(player);
+                    game.store.buyPokemon(player);
                 } else {
                     playerDisplay(player);
                     choiceMade(player);
@@ -151,7 +151,7 @@ public class Menu implements Serializable {
             }
             case 2 -> {
                 if (player.canBuyFood) {
-                    game.store.displayFood(player);
+                    game.store.buyFood(player);
                 } else {
                     playerDisplay(player);
                     choiceMade(player);
@@ -167,7 +167,7 @@ public class Menu implements Serializable {
             }
             case 4 -> {
                 if (player.canBreed) {
-                    game.breed.printAvailablePokemon(player);
+                    game.breed.breedPokemon(player);
                 } else {
                     playerDisplay(player);
                     choiceMade(player);

@@ -16,8 +16,7 @@ public class Serializer {
             out.writeObject(data);
             out.close();
             file.close();
-            Helper.print("File saved");
-            Helper.inputEnter();
+            Helper.printAndWait("File saved");
         } catch (Exception error) {
             Helper.print("DID NOT WORK");
             System.out.println(error);

@@ -2,14 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4df2f8a8-faed-4a41-85e4-8649d368a292" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/out/production/BreedingGame/audio/ahem.wav" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BreedingGame/audio/listen.wav" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BreedingGame/audio/nextTime.wav" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BreedingGame/audio/themesong.wav" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BreedingGame/game/Breed.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BreedingGame/game/Breed.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BreedingGame/game/Game.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BreedingGame/game/Game.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BreedingGame/game/Menu.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BreedingGame/game/Menu.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/Breed.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/Breed.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/Feed.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/Feed.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/game/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/Helper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/Helper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/Menu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/Serializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/Serializer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/Store.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/Store.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/pokemonclasses/Pokemon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/pokemonclasses/Pokemon.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,6 +30,8 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="extract.method.default.visibility" value="private" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -90,6 +94,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Fix" />
