@@ -13,7 +13,6 @@ public class Feed implements Serializable {
     Game game;
 
     public Feed() {
-
     }
 
     public void setGame(Game game) {
@@ -21,50 +20,76 @@ public class Feed implements Serializable {
     }
 
     public void feedPokemon(Player player) throws IOException, UnsupportedAudioFileException, LineUnavailableException {
-        if (player.getPlayerPokemon().size() != 0 && (player.getPlayerFood().size() != 0)) {
-            while (true) {
-                game.menu.playerDisplay(player);
-                System.out.println("===== Feed your Pokemon =====\n");
-                printPokemon(player);
-                System.out.println(Helper.exit + "\nWhich Pokemon will you feed: ");
-                int pokeIndex = Helper.getInt(0, player.getPlayerPokemon().size());
-                if (pokeIndex != 0) {
-                    game.menu.playerDisplay(player);
-                    System.out.println("===== Feed your Pokemon =====\n");
-                    printFood(player);
-                    System.out.println(Helper.exit + "\n Choose food: ");
-
-                    int pokFood = Helper.getInt(0, player.getPlayerFood().size());
-                    if (pokFood != 0 && isRightFood(player.getPokemon(pokeIndex - 1), player.getFood(pokFood - 1))) {
-                        System.out.println("Max amount: " + player.getFood(pokFood - 1).getAmount());
-                        int amount = Helper.getInt(0, player.getFood(pokFood - 1).getAmount());
-                        if (amount == 0) {
-                            break;
-                        }
-                        player.getPokemon(pokeIndex - 1).eat(player.getFood(pokFood - 1), amount);
-                        player.getFood(pokFood - 1).removeFood(amount);
-                        player.accessShops(false);
-                        player.canFeedPokemon = true;
-                    } else {
-                        Audio.soundEffect("audio/listen.wav");
-                        System.out.println("That's not a suitable food option for " + player.getPokemon(pokeIndex - 1).getBreed(false));
-                        Helper.waitMilliSeconds(1500);
-                    }
-
-                } else {
-                    break;
-                }
-            }
-        } else {
-            game.menu.playerDisplay(player);
-            System.out.println("===== Feed your Pokemon =====\n");
-            if (player.getPlayerPokemon().size() == 0) {
-                System.out.println("You haven't got any Pokemon");
-            } else {
-                System.out.println("You have no food");
-            }
-            Helper.inputEnter();
+        if (player.getPlayerPokemon().size() == 0 && (player.getPlayerFood().size() == 0)) {
+            notAbleToFeedPokemon(player);
         }
+        while (true) {
+            whichPokemonToFeed(player);
+            int choiceOfPokemonToFeed = Helper.getInt(0, player.getPlayerPokemon().size());
+            if (choiceOfPokemonToFeed != 0) {
+                whichFoodToEat(player);
+                if (chooseAmountAndFed(player, choiceOfPokemonToFeed))
+                    break;
+            } else {
+                break;
+            }
+        }
+    }
+
+    private boolean chooseAmountAndFed(Player player, int choiceOfPokemonToFeed) throws IOException, UnsupportedAudioFileException, LineUnavailableException {
+        int pokeFoodChoice = Helper.getInt(0, player.getPlayerFood().size());
+        if (pokeFoodChoice != 0 && canPokemonEatThisFood(player.getPokemon(choiceOfPokemonToFeed - 1), player.getFood(pokeFoodChoice - 1))) {
+            Integer amount = getAmount(player, pokeFoodChoice);
+            if (amount == null)
+                return true;
+            successfullyFedPokemon(player, choiceOfPokemonToFeed, pokeFoodChoice, amount);
+        } else {
+            Audio.soundEffect("audio/listen.wav");
+            System.out.println("That's not a suitable food option for " + player.getPokemon(choiceOfPokemonToFeed - 1).getBreed(false));
+            Helper.waitMilliSeconds(1500);
+        }
+        return false;
+    }
+
+    private Integer getAmount(Player player, int pokeFoodChoice) {
+        System.out.println("Max amount: " + player.getFood(pokeFoodChoice - 1).getAmount());
+        int amount = Helper.getInt(0, player.getFood(pokeFoodChoice - 1).getAmount());
+        if (amount == 0) {
+            return null;
+        }
+        return amount;
+    }
+
+    private void notAbleToFeedPokemon(Player player) {
+        game.menu.playerDisplay(player);
+        System.out.println("===== Feed your Pokemon =====\n");
+        if (player.getPlayerPokemon().size() == 0) {
+            System.out.println("You haven't got any Pokemon");
+        } else {
+            System.out.println("You have no food");
+        }
+        Helper.inputEnter();
+    }
+
+    private void successfullyFedPokemon(Player player, int choiceOfPokemonToFeed, int pokeFoodChoice, int amount) {
+        player.getPokemon(choiceOfPokemonToFeed - 1).eat(player.getFood(pokeFoodChoice - 1), amount);
+        player.getFood(pokeFoodChoice - 1).removeFood(amount);
+        player.accessShops(false);
+        player.canFeedPokemon = true;
+    }
+
+    private void whichPokemonToFeed(Player player) {
+        game.menu.playerDisplay(player);
+        System.out.println("===== Feed your Pokemon =====\n");
+        printPokemon(player);
+        System.out.println(Helper.askExitToMenu + "\nWhich Pokemon will you feed: ");
+    }
+
+    private void whichFoodToEat(Player player) {
+        game.menu.playerDisplay(player);
+        System.out.println("===== Feed your Pokemon =====\n");
+        printFood(player);
+        System.out.println(Helper.askExitToMenu + "\n Choose food: ");
     }
 
     private void printPokemon(Player player) {
@@ -84,7 +109,7 @@ public class Feed implements Serializable {
         }
     }
 
-    public boolean isRightFood(Pokemon pokemon, Food food) {
+    public boolean canPokemonEatThisFood(Pokemon pokemon, Food food) {
         for (Food pokefood : pokemon.getCanEatFood()) {
             if (pokefood.getType().equals(food.getType())) {
                 return true;

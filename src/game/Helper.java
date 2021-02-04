@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class Helper implements Serializable {
 
-    public static String exit = "\n[0] Exit to game menu";
+    public static String askExitToMenu = "\n[0] Exit to game menu";
 
     // Scanner used for entire project
     public static Scanner input = new Scanner(System.in);
@@ -81,6 +81,11 @@ public class Helper implements Serializable {
         } else {
             System.out.println();
         }
+    }
+
+    public static void printAndWait(String s){
+        Helper.print(s);
+        inputEnter();
     }
 
 }

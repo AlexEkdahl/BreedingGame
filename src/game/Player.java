@@ -85,7 +85,7 @@ public class Player implements Serializable {
         food.addFood(quantity);
     }
 
-    public void printPokemonList(boolean condensed) {
+    public void printPlayerPokemonList(boolean condensed) {
         int i = 1;
         for (Pokemon pokemon : playerPokemon) {
             if (condensed) {

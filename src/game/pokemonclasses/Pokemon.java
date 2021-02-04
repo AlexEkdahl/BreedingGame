@@ -1,11 +1,10 @@
 package game.pokemonclasses;
 
-import game.foodclasses.Food;
 import game.Helper;
 import game.Player;
+import game.foodclasses.Food;
 
 import java.io.Serializable;
-
 
 public abstract class Pokemon implements Serializable {
 
@@ -13,7 +12,6 @@ public abstract class Pokemon implements Serializable {
         FEMALE, MALE,
     }
 
-    public boolean isSick = false;
     protected String name;
     protected Gender gender;
     protected int health = 100;
