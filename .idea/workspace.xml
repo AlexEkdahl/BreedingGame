@@ -5,23 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="226a3f99-9ddc-4eb9-88c8-b362162aa838" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/game/Breed.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/Breed.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/Feed.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/Feed.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/Helper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/Helper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/Menu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/Store.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/Store.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/foodclasses/Berry.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/foodclasses/Berry.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/foodclasses/Food.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/foodclasses/Food.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/foodclasses/PokeBlock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/foodclasses/PokeBlock.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/foodclasses/PokePuff.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/foodclasses/PokePuff.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/foodclasses/RareCandy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/foodclasses/RareCandy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/pokemonclasses/Bulbasur.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/pokemonclasses/Bulbasur.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/pokemonclasses/Charmander.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/pokemonclasses/Charmander.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/pokemonclasses/Ditto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/pokemonclasses/Ditto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/pokemonclasses/Pikachu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/pokemonclasses/Pikachu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/pokemonclasses/Pokemon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/pokemonclasses/Pokemon.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,6 +61,14 @@
       <option name="presentableId" value="Default" />
       <updated>1612439417403</updated>
     </task>
+    <task id="LOCAL-00001" summary="Final refactoring">
+      <created>1612441356502</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1612441356502</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TerminalProjectNonSharedOptionsProvider">
@@ -91,5 +85,14 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Final refactoring" />
+    <option name="LAST_COMMIT_MESSAGE" value="Final refactoring" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/BreedingGame$Main.ic" NAME="Main Coverage Results" MODIFIED="1612443709348" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>game.*</FILTER>
+    </SUITE>
   </component>
 </project>

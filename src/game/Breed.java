@@ -40,7 +40,7 @@ public class Breed implements Serializable {
             throws IOException, UnsupportedAudioFileException, LineUnavailableException {
         game.menu.playerDisplay(player);
         Helper.print("===== Select your partner =====");
-        if (findSuitableMate(pokemon, player)) {
+        if (isThereSuitablePartners(pokemon, player)) {
             ArrayList<Pokemon> tempMate = getSuitableMateList(pokemon, player);
             printPokemonList(tempMate);
             Helper.print(Helper.askExitToMenu);
@@ -66,10 +66,9 @@ public class Breed implements Serializable {
         }
     }
 
-    public boolean findSuitableMate(Pokemon pokemon, Player player) {
+    public boolean isThereSuitablePartners(Pokemon pokemon, Player player) {
         for (Pokemon pokemonMate : player.getPlayerPokemon()) {
-            if (pokemonMate != pokemon && pokemonMate.getClass() == pokemon.getClass()
-                && pokemonMate.getGender() != pokemon.getGender()) {
+            if (canMate(pokemon, pokemonMate)) {
                 return true;
             }
         }
@@ -80,15 +79,20 @@ public class Breed implements Serializable {
     private ArrayList<Pokemon> getSuitableMateList(Pokemon pokemon, Player player) {
         ArrayList<Pokemon> tempList = new ArrayList<>();
         for (Pokemon pokemonMate : player.getPlayerPokemon()) {
-            if (findSuitableMate(pokemon, player)) {
+            if (canMate(pokemon, pokemonMate)) {
                 tempList.add(pokemonMate);
             }
         }
         return tempList;
     }
 
-    private int getPokemonChoice(ArrayList<Pokemon> tempMate) {
-        return Helper.getInt(0, tempMate.size());
+    private boolean canMate(Pokemon pokemon, Pokemon pokemonMate) {
+        return pokemonMate != pokemon && pokemonMate.getClass() == pokemon.getClass()
+               && pokemonMate.getGender() != pokemon.getGender();
+    }
+
+    private int getPokemonChoice(ArrayList<Pokemon> pokemonList) {
+        return Helper.getInt(0, pokemonList.size());
     }
 
     private void unsuccessfulBreeding()
