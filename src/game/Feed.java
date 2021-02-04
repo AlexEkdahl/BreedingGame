@@ -36,28 +36,31 @@ public class Feed implements Serializable {
         }
     }
 
-    private boolean chooseAmountAndFed(Player player, int choiceOfPokemonToFeed) throws IOException, UnsupportedAudioFileException, LineUnavailableException {
+    private boolean chooseAmountAndFed(Player player, int choiceOfPokemonToFeed)
+            throws UnsupportedAudioFileException, IOException, LineUnavailableException {
         int pokeFoodChoice = Helper.getInt(0, player.getPlayerFood().size());
-        if (pokeFoodChoice != 0 && canPokemonEatThisFood(player.getPokemon(choiceOfPokemonToFeed - 1), player.getFood(pokeFoodChoice - 1))) {
-            Integer amount = getAmount(player, pokeFoodChoice);
-            if (amount == null)
+        boolean pokemonCanEatThis = pokeFoodChoice != 0 && canPokemonEatThisFood(
+                player.getPokemon(
+                        choiceOfPokemonToFeed - 1), player.getFood(
+                        pokeFoodChoice - 1));
+        if (pokemonCanEatThis) {
+            int amountOfFood = getAmountOfFood(player, pokeFoodChoice);
+            if (amountOfFood == 0) {
                 return true;
-            successfullyFedPokemon(player, choiceOfPokemonToFeed, pokeFoodChoice, amount);
+            }
+            successfullyFedPokemon(player, choiceOfPokemonToFeed, pokeFoodChoice, amountOfFood);
         } else {
             Audio.soundEffect("audio/listen.wav");
-            System.out.println("That's not a suitable food option for " + player.getPokemon(choiceOfPokemonToFeed - 1).getBreed(false));
+            System.out.println("That's not a suitable food option for "
+                               + player.getPokemon(choiceOfPokemonToFeed - 1).getBreed(false));
             Helper.waitMilliSeconds(1500);
         }
         return false;
     }
 
-    private Integer getAmount(Player player, int pokeFoodChoice) {
+    private int getAmountOfFood(Player player, int pokeFoodChoice) {
         System.out.println("Max amount: " + player.getFood(pokeFoodChoice - 1).getAmount());
-        int amount = Helper.getInt(0, player.getFood(pokeFoodChoice - 1).getAmount());
-        if (amount == 0) {
-            return null;
-        }
-        return amount;
+        return Helper.getInt(0, player.getFood(pokeFoodChoice - 1).getAmount());
     }
 
     private void notAbleToFeedPokemon(Player player) {
@@ -72,7 +75,7 @@ public class Feed implements Serializable {
     }
 
     private void successfullyFedPokemon(Player player, int choiceOfPokemonToFeed, int pokeFoodChoice, int amount) {
-        player.getPokemon(choiceOfPokemonToFeed - 1).eat(player.getFood(pokeFoodChoice - 1), amount);
+        player.getPokemon(choiceOfPokemonToFeed - 1).eat(amount);
         player.getFood(pokeFoodChoice - 1).removeFood(amount);
         player.accessShops(false);
         player.canFeedPokemon = true;
@@ -95,7 +98,9 @@ public class Feed implements Serializable {
     private void printPokemon(Player player) {
         int i = 1;
         for (Pokemon pokemon : player.getPlayerPokemon()) {
-            System.out.println("[" + i + "]" + pokemon.getBreed(false) + ", " + pokemon.getName() + ". Health: " + pokemon.getHealth() + " Age: " + pokemon.getAge());
+            System.out.println("[" + i + "]" + pokemon.getBreed(false) + ", "
+                               + pokemon.getName() + ". Health: " + pokemon.getHealth()
+                               + " Age: " + pokemon.getAge());
             System.out.println("\t- Eats: " + pokemon.foodToString() + "\n");
             i++;
         }

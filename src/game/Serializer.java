@@ -1,5 +1,4 @@
 package game;
-
 //Thomas helpingclass
 
 import java.io.FileInputStream;

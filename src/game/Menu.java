@@ -28,14 +28,16 @@ public class Menu implements Serializable {
             Helper.clearScreen();
             Helper.print("====== Welcome to THE POKEMON BREEDERS RACE ======");
             if (readHowTo) {
-                Helper.print("\n[" + PrintColors.ANSI_GREEN + 1 + PrintColors.ANSI_RESET + "]" + PrintColors.ANSI_GREEN + " New game" + PrintColors.ANSI_RESET);
+                Helper.print("\n[" + PrintColors.ANSI_GREEN + 1 + PrintColors.ANSI_RESET + "]"
+                             + PrintColors.ANSI_GREEN + " New game" + PrintColors.ANSI_RESET);
             } else {
                 Helper.print("\n[1] New game");
             }
             if (readHowTo) {
                 Helper.print("[2] How to play");
             } else {
-                Helper.print("[" + PrintColors.ANSI_YELLOW + 2 + PrintColors.ANSI_RESET + "]" + PrintColors.ANSI_YELLOW + " How to play" + PrintColors.ANSI_RESET);
+                Helper.print("[" + PrintColors.ANSI_YELLOW + 2 + PrintColors.ANSI_RESET + "]"
+                             + PrintColors.ANSI_YELLOW + " How to play" + PrintColors.ANSI_RESET);
             }
             Helper.print("\n[3] Load game");
             Helper.print("\n[0] Exit game");
@@ -139,7 +141,8 @@ public class Menu implements Serializable {
         }
     }
 
-    private void gameMenuChoice(int choice, Player player) throws IOException, UnsupportedAudioFileException, LineUnavailableException {
+    private void gameMenuChoice(int choice, Player player)
+            throws IOException, UnsupportedAudioFileException, LineUnavailableException {
         switch (choice) {
             case 1 -> {
                 if (player.canBuyPokemon) {
@@ -254,7 +257,9 @@ public class Menu implements Serializable {
         Helper.print("===== POKEMON =====");
         for (Pokemon pokemon : player.getPlayerPokemon()) {
             // Cant get the padding right
-            System.out.printf("%-11.11s %-10s %s%s/%-3s %s%s%s\n", pokemon.getBreed(true), pokemon.getName(), "Age: ", pokemon.getAge(), pokemon.getMaxAge(), "Health: ", pokemon.getHealth(), "%");
+            System.out.printf("%-11.11s %-10s %s%s/%-3s %s%s%s\n", pokemon.getBreed(true),
+                    pokemon.getName(), "Age: ", pokemon.getAge(),
+                    pokemon.getMaxAge(), "Health: ", pokemon.getHealth(), "%");
         }
     }
 

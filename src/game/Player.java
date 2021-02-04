@@ -9,6 +9,8 @@ import java.util.ArrayList;
 public class Player implements Serializable {
 
     private final String name;
+    private final ArrayList<Pokemon> playerPokemon;
+    private final ArrayList<Food> playerFood;
     public boolean canBuyPokemon = true;
     public boolean canSellPokemon = true;
     public boolean canBuyFood = true;
@@ -17,8 +19,6 @@ public class Player implements Serializable {
     public boolean roundDone = false;
     protected Game game;
     private int money;
-    private final ArrayList<Pokemon> playerPokemon;
-    private final ArrayList<Food> playerFood;
 
     public Player(String name, int money) {
         this.name = name;
@@ -91,7 +91,8 @@ public class Player implements Serializable {
             if (condensed) {
                 Helper.print("[" + i + "]" + pokemon.toString(false));
             } else {
-                Helper.print("[" + i + "]" + pokemon.getBreed(false) + ", " + pokemon.getName() + " health: " + pokemon.getHealth());
+                Helper.print("[" + i + "]" + pokemon.getBreed(false) + ", "
+                             + pokemon.getName() + " health: " + pokemon.getHealth());
             }
             i++;
         }

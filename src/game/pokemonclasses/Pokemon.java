@@ -88,7 +88,7 @@ public abstract class Pokemon implements Serializable {
         return (gender == Gender.FEMALE) ? "♀" : "♂";
     }
 
-    public void eat(Food food, int quantity) {
+    public void eat(int quantity) {
         for (int i = 0; i < quantity; i++) {
             health = health + (int) (health * 0.10);
         }
@@ -98,7 +98,9 @@ public abstract class Pokemon implements Serializable {
 
     public String toString(boolean forShop) {
         if (forShop) {
-            return "===== info =====\n" + getBreed(false) + "\n\nMax offsprings: " + maxOffspring + "\nMax age: " + getMaxAge() + "\nEat: " + foodToString() + "\n================";
+            return "===== info =====\n" + getBreed(false)
+                   + "\n\nMax offsprings: " + maxOffspring + "\nMax age: " + getMaxAge() + "\nEat: " + foodToString()
+                   + "\n================";
         }
         return getBreed(true) + " " + name + " Max offspring: " + maxOffspring;
     }

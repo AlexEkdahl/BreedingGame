@@ -9,7 +9,6 @@ public abstract class Food implements Serializable {
     protected int amount;
 
     public Food() {
-
     }
 
     public int getAmount() {
@@ -22,7 +21,6 @@ public abstract class Food implements Serializable {
 
     public void removeFood(int quantity) {
         this.amount -= quantity;
-
     }
 
     public int getPrice() {

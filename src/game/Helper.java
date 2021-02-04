@@ -71,7 +71,6 @@ public class Helper implements Serializable {
                 System.out.print("\033\143");
             }
         } catch (IOException | InterruptedException ignored) {
-
         }
     }
 
@@ -83,7 +82,7 @@ public class Helper implements Serializable {
         }
     }
 
-    public static void printAndWait(String s){
+    public static void printAndWait(String s) {
         Helper.print(s);
         inputEnter();
     }

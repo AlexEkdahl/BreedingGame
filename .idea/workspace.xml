@@ -5,30 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="226a3f99-9ddc-4eb9-88c8-b362162aa838" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BreedingGame/game/Audio.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BreedingGame/game/Breed.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BreedingGame/game/Feed.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BreedingGame/game/Game.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BreedingGame/game/Helper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BreedingGame/game/Main.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BreedingGame/game/Menu.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BreedingGame/game/Player.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BreedingGame/game/PrintColors.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BreedingGame/game/Serializer.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BreedingGame/game/Store.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BreedingGame/game/foodclasses/Berry.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BreedingGame/game/foodclasses/Food.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BreedingGame/game/foodclasses/PokeBlock.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BreedingGame/game/foodclasses/PokePuff.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BreedingGame/game/foodclasses/RareCandy.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BreedingGame/game/pokemonclasses/Bulbasur.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BreedingGame/game/pokemonclasses/Charmander.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BreedingGame/game/pokemonclasses/Ditto.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BreedingGame/game/pokemonclasses/Pikachu.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BreedingGame/game/pokemonclasses/Pokemon$Gender.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BreedingGame/game/pokemonclasses/Pokemon.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BreedingGame/game/pokemonclasses/Squirtle.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/Breed.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/Breed.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/Feed.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/Feed.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/Helper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/Helper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/Menu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/Store.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/Store.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/foodclasses/Berry.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/foodclasses/Berry.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/foodclasses/Food.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/foodclasses/Food.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/foodclasses/PokeBlock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/foodclasses/PokeBlock.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/foodclasses/PokePuff.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/foodclasses/PokePuff.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/foodclasses/RareCandy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/foodclasses/RareCandy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/pokemonclasses/Bulbasur.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/pokemonclasses/Bulbasur.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/pokemonclasses/Charmander.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/pokemonclasses/Charmander.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/pokemonclasses/Ditto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/pokemonclasses/Ditto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/pokemonclasses/Pikachu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/pokemonclasses/Pikachu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/pokemonclasses/Pokemon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/pokemonclasses/Pokemon.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,5 +90,6 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>

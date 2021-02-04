@@ -47,7 +47,9 @@ public class Game implements Serializable {
         if (players.size() != 0) {
             for (int i = currentPlayer.getPlayerPokemon().size() - 1; i >= 0; i--) {
                 if (Math.random() < 0.2) {
-                    Helper.print(currentPlayer.getName() + "! Your " + currentPlayer.getPokemon(i).toString(false) + " Got sick, pay the vet or let Pokemon die?");
+                    Helper.print(currentPlayer.getName() + "! Your "
+                                 + currentPlayer.getPokemon(i).toString(false)
+                                 + " Got sick, pay the vet or let Pokemon die?");
                     Helper.print("Cost: 300" + "\n\n[y / n]");
                     handleSickPokemon(currentPlayer, i);
                 }
@@ -150,11 +152,13 @@ public class Game implements Serializable {
                 player.getPokemon(i).aging();
                 player.getPokemon(i).reduceHealth();
                 if (player.getPokemon(i).getAge() > player.getPokemon(i).getMaxAge()) {
-                    Helper.print(player.getName() + "! " + player.getPokemon(i).getName() + " died of old " + "age");
+                    Helper.print(player.getName() + "! " + player.getPokemon(i).getName()
+                                 + " died of old " + "age");
                     player.getPlayerPokemon().remove(i);
                     Helper.inputEnter();
                 } else if (player.getPokemon(i).getHealth() <= 0) {
-                    Helper.print(player.getName() + "! " + player.getPokemon(i).getName() + " died because " + "health dropped below 0");
+                    Helper.print(player.getName() + "! " + player.getPokemon(i).getName()
+                                 + " died because " + "health dropped below 0");
                     player.getPlayerPokemon().remove(i);
                     Helper.inputEnter();
                 }

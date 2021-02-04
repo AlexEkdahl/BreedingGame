@@ -19,7 +19,8 @@ public class Breed implements Serializable {
         this.game = game;
     }
 
-    public void breedPokemon(Player player) throws IOException, UnsupportedAudioFileException, LineUnavailableException {
+    public void breedPokemon(Player player)
+            throws IOException, UnsupportedAudioFileException, LineUnavailableException {
         game.menu.playerDisplay(player);
         Helper.print("===== Breeding =====\n");
         if ((player.getPlayerPokemon().size() > 1)) {
@@ -35,7 +36,8 @@ public class Breed implements Serializable {
     }
 
     // containing list of suitable mates for selected pokemon
-    public void chooseSuitableMate(Pokemon pokemon, Player player) throws IOException, UnsupportedAudioFileException, LineUnavailableException {
+    public void chooseSuitableMate(Pokemon pokemon, Player player)
+            throws IOException, UnsupportedAudioFileException, LineUnavailableException {
         game.menu.playerDisplay(player);
         Helper.print("===== Select your partner =====");
         if (findSuitableMate(pokemon, player)) {
@@ -66,7 +68,8 @@ public class Breed implements Serializable {
 
     public boolean findSuitableMate(Pokemon pokemon, Player player) {
         for (Pokemon pokemonMate : player.getPlayerPokemon()) {
-            if (pokemonMate != pokemon && pokemonMate.getClass() == pokemon.getClass() && pokemonMate.getGender() != pokemon.getGender()) {
+            if (pokemonMate != pokemon && pokemonMate.getClass() == pokemon.getClass()
+                && pokemonMate.getGender() != pokemon.getGender()) {
                 return true;
             }
         }
@@ -88,7 +91,8 @@ public class Breed implements Serializable {
         return Helper.getInt(0, tempMate.size());
     }
 
-    private void unsuccessfulBreeding() throws IOException, UnsupportedAudioFileException, LineUnavailableException {
+    private void unsuccessfulBreeding()
+            throws IOException, UnsupportedAudioFileException, LineUnavailableException {
         System.out.print("\n.");
         Helper.waitMilliSeconds(700);
         System.out.print(".");
