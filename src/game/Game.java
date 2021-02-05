@@ -47,26 +47,38 @@ public class Game implements Serializable {
         if (players.size() != 0) {
             for (int i = currentPlayer.getPlayerPokemon().size() - 1; i >= 0; i--) {
                 if (Math.random() < 0.2) {
+                    Helper.print(PrintColors.ANSI_YELLOW + "Cost: " + currentPlayer.getPokemon(i).getValue()
+                                 + PrintColors.ANSI_RESET);
                     Helper.print(currentPlayer.getName() + "! Your "
                                  + currentPlayer.getPokemon(i).toString(false)
-                                 + " Got sick, pay the vet or let Pokemon die?");
-                    Helper.print("Cost: 300" + "\n\n[y / n]");
+                                 + " Age: " + currentPlayer.getPokemon(i).getAge()
+                                 + " Got sick, pay the vet or let Pokemon die?" + "\n[y / n]");
                     handleSickPokemon(currentPlayer, i);
                 }
             }
         }
     }
 
-    private void handleSickPokemon(Player currentPlayer, int i) {
+    private void handleSickPokemon(Player currentPlayer, int pokemonIndex) {
         if (!Helper.validateString()) {
-            currentPlayer.getPlayerPokemon().remove(i);
+            currentPlayer.getPlayerPokemon().remove(pokemonIndex);
             Helper.printAndWait("You let your Pokemon die...");
         } else {
-            if (currentPlayer.getMoney() > 300) {
-                currentPlayer.handlePurchase(300);
+            tryToHealPokemon(currentPlayer, pokemonIndex);
+        }
+    }
+
+    private void tryToHealPokemon(Player currentPlayer, int pokemonIndex) {
+        if (currentPlayer.getMoney() > currentPlayer.getPokemon(pokemonIndex).getValue()) {
+            if (Math.random() > 0.5) {
+                Helper.printAndWait(currentPlayer.getPokemon(pokemonIndex).getName() + "Is well and breathing");
+                currentPlayer.handlePurchase(currentPlayer.getPokemon(pokemonIndex).getValue());
             } else {
-                Helper.print("You couldn't pay the price, you don't have enough founds");
+                Helper.printAndWait("Unfortunately your pokemon didn't make it....");
+                currentPlayer.getPlayerPokemon().remove(pokemonIndex);
             }
+        } else {
+            Helper.print("You couldn't pay the price, you don't have enough founds");
         }
     }
 

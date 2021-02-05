@@ -12,7 +12,7 @@ public class Helper implements Serializable {
     public static Scanner input = new Scanner(System.in);
 
     public static boolean validateString() {
-        Helper.print("\nEnter here: ");
+        Helper.print(PrintColors.ANSI_YELLOW + "\nEnter here: " + PrintColors.ANSI_RESET);
         String answer = input.nextLine();
         if (!answer.equalsIgnoreCase("y") && !answer.equalsIgnoreCase("n")) {
             Helper.print("[y / n]");
@@ -23,7 +23,7 @@ public class Helper implements Serializable {
 
     // To make sure user choice is in range of what the menu/question is
     public static int getInt(int min, int max) {
-        Helper.print("\nEnter here: ");
+        Helper.print(PrintColors.ANSI_YELLOW + "\nEnter here: " + PrintColors.ANSI_RESET);
         int intReturn = -1;
         do {
             try {
@@ -48,7 +48,7 @@ public class Helper implements Serializable {
     }
 
     public static void inputEnter() {
-        Helper.print("\nPress Enter to continue...");
+        Helper.print(PrintColors.ANSI_YELLOW + "\nPress Enter to continue" + PrintColors.ANSI_RESET);
         try {
             System.in.read();
         } catch (IOException e) {
