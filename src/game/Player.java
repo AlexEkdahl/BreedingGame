@@ -59,6 +59,10 @@ public class Player implements Serializable {
         playerPokemon.add(newPokemon);
     }
 
+    public void setGame(Game game) {
+        this.game = game;
+    }
+
     // creates pokemon to playerPokemon
     public void createPokemon(Pokemon pokemon, boolean offspring) {
         if (offspring) {

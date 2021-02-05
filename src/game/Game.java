@@ -21,6 +21,9 @@ public class Game implements Serializable {
         breed.setGame(this);
         feed.setGame(this);
         menu.mainMenu();
+        for (var player: players){
+            player.setGame(this);
+        }
         currentPlayer = players.get(0);
         newGame();
     }
