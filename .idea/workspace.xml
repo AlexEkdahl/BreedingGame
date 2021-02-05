@@ -6,8 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="226a3f99-9ddc-4eb9-88c8-b362162aa838" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/Breed.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/Breed.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/Feed.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/Feed.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/game/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/Helper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/Helper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/Menu.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -85,7 +88,14 @@
       <option name="project" value="LOCAL" />
       <updated>1612469256983</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Refactor">
+      <created>1612516310577</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1612516310577</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TerminalProjectNonSharedOptionsProvider">
@@ -105,9 +115,9 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Final refactoring" />
-    <MESSAGE value="Refactor" />
     <MESSAGE value="Bug fix" />
-    <option name="LAST_COMMIT_MESSAGE" value="Bug fix" />
+    <MESSAGE value="Refactor" />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactor" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/BreedingGame$Main.ic" NAME="Main Coverage Results" MODIFIED="1612443709348" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">

@@ -2,9 +2,6 @@ package game;
 
 import game.pokemonclasses.Pokemon;
 
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
-import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -19,8 +16,7 @@ public class Breed implements Serializable {
         this.game = game;
     }
 
-    public void breedPokemon(Player player)
-            throws IOException, UnsupportedAudioFileException, LineUnavailableException {
+    public void breedPokemon(Player player) throws Exception {
         game.menu.playerDisplay(player);
         Helper.print("===== Breeding =====\n");
         if ((player.getPlayerPokemon().size() > 1)) {
@@ -36,8 +32,7 @@ public class Breed implements Serializable {
     }
 
     // containing list of suitable mates for selected pokemon
-    public void chooseSuitableMate(Pokemon pokemon, Player player)
-            throws IOException, UnsupportedAudioFileException, LineUnavailableException {
+    public void chooseSuitableMate(Pokemon pokemon, Player player) throws Exception {
         game.menu.playerDisplay(player);
         Helper.print("===== Select your partner =====");
         if (isThereSuitablePartners(pokemon, player)) {
@@ -95,8 +90,7 @@ public class Breed implements Serializable {
         return Helper.getInt(0, pokemonList.size());
     }
 
-    private void unsuccessfulBreeding()
-            throws IOException, UnsupportedAudioFileException, LineUnavailableException {
+    private void unsuccessfulBreeding() throws Exception {
         System.out.print("\n.");
         Helper.waitMilliSeconds(700);
         System.out.print(".");

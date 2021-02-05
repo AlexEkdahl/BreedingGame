@@ -3,9 +3,6 @@ package game;
 import game.foodclasses.Food;
 import game.pokemonclasses.Pokemon;
 
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
-import java.io.IOException;
 import java.io.Serializable;
 
 public class Feed implements Serializable {
@@ -19,7 +16,7 @@ public class Feed implements Serializable {
         this.game = game;
     }
 
-    public void feedPokemon(Player player) throws IOException, UnsupportedAudioFileException, LineUnavailableException {
+    public void feedPokemon(Player player) throws Exception {
         if (player.getPlayerPokemon().size() != 0 && (player.getPlayerFood().size() != 0)) {
             while (true) {
                 whichPokemonToFeed(player);
@@ -34,11 +31,10 @@ public class Feed implements Serializable {
                 }
             }
         }
-            notAbleToFeedPokemon(player);
+        notAbleToFeedPokemon(player);
     }
 
-    private boolean chooseAmountAndFed(Player player, int choiceOfPokemonToFeed)
-            throws UnsupportedAudioFileException, IOException, LineUnavailableException {
+    private boolean chooseAmountAndFed(Player player, int choiceOfPokemonToFeed) throws Exception {
         int pokeFoodChoice = Helper.getInt(0, player.getPlayerFood().size());
         boolean pokemonCanEatThis = pokeFoodChoice != 0 && canPokemonEatThisFood(
                 player.getPokemon(choiceOfPokemonToFeed - 1),

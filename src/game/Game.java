@@ -1,8 +1,5 @@
 package game;
 
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
-import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -17,21 +14,18 @@ public class Game implements Serializable {
     private int round = 1;
     private Player currentPlayer;
 
-    public Game() throws IOException, UnsupportedAudioFileException, LineUnavailableException {
+    public Game() throws Exception {
         Audio.themeSong("audio/themesong.wav");
         menu.setGame(this);
         store.setGame(this);
         breed.setGame(this);
         feed.setGame(this);
         menu.mainMenu();
-        for (Player player : players) {
-            player.game = this;
-        }
         currentPlayer = players.get(0);
         newGame();
     }
 
-    public void newGame() throws IOException, UnsupportedAudioFileException, LineUnavailableException {
+    public void newGame() throws Exception {
         while (round <= numOfRounds && players.size() != 0) {
             menu.gameMenu(currentPlayer);
             if (currentPlayer.roundDone) {

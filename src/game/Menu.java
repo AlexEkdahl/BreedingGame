@@ -3,11 +3,9 @@ package game;
 import game.foodclasses.Food;
 import game.pokemonclasses.Pokemon;
 
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
+
 import java.io.File;
 import java.io.FilenameFilter;
-import java.io.IOException;
 import java.io.Serializable;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -46,7 +44,7 @@ public class Menu implements Serializable {
         }
     }
 
-    protected void gameMenu(Player player) throws IOException, UnsupportedAudioFileException, LineUnavailableException {
+    protected void gameMenu(Player player) throws Exception {
         playerDisplay(player);
         Helper.print("===== GAME MENU =====");
         Helper.print("[1] Buy Pokemon");
@@ -141,8 +139,7 @@ public class Menu implements Serializable {
         }
     }
 
-    private void gameMenuChoice(int choice, Player player)
-            throws IOException, UnsupportedAudioFileException, LineUnavailableException {
+    private void gameMenuChoice(int choice, Player player) throws Exception {
         switch (choice) {
             case 1 -> {
                 if (player.canBuyPokemon) {
@@ -237,7 +234,7 @@ public class Menu implements Serializable {
         Helper.inputEnter();
     }
 
-    protected void choiceMade(Player player) throws IOException, UnsupportedAudioFileException, LineUnavailableException {
+    protected void choiceMade(Player player) throws Exception {
         if (player.canBuyFood) {
             Helper.print("You made your choice, you can only buy food this round");
         } else if (player.canBuyPokemon) {
