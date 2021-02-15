@@ -21,7 +21,7 @@ public class Game implements Serializable {
         breed.setGame(this);
         feed.setGame(this);
         menu.mainMenu();
-        for (var player: players){
+        for (var player : players) {
             player.setGame(this);
         }
         currentPlayer = players.get(0);
@@ -31,13 +31,19 @@ public class Game implements Serializable {
     public void newGame() throws Exception {
         while (round <= numOfRounds && players.size() != 0) {
             menu.gameMenu(currentPlayer);
-            if (currentPlayer.roundDone) {
-                changePlayer();
-                playerLost();
-                getSick(currentPlayer);
-            }
+            changingPlayersAndHandlingAllEvents();
         }
         endOfGame();
+    }
+
+    private void changingPlayersAndHandlingAllEvents() throws Exception {
+        if (currentPlayer.roundDone) {
+            do {
+                changePlayer();
+                getSick(currentPlayer);
+                pokemonAgeing(currentPlayer);
+            } while (playerLost());
+        }
     }
 
     private void getSick(Player currentPlayer) {
@@ -114,7 +120,6 @@ public class Game implements Serializable {
         // If the player is last in turn, then start over with player 1
         if (players.indexOf(currentPlayer) == players.size() - 1) {
             prepareNewPlayer(0);
-            pokemonAgeing();
             round++;
         } else {
             prepareNewPlayer(players.indexOf(currentPlayer) + 1);
@@ -143,33 +148,33 @@ public class Game implements Serializable {
         this.numOfRounds = numOfRounds;
     }
 
-    private void playerLost() {
+    private boolean playerLost() {
         for (int i = players.size() - 1; i >= 0; i--) {
             if (players.get(i).getPlayerPokemon().size() == 0 && players.get(i).getMoney() < 500) {
                 Helper.print(players.get(i).getName() + " ran out of Pokemon and money and is ELIMINATED");
                 players.remove(i);
                 Helper.inputEnter();
+                return true;
             }
         }
+        return false;
     }
 
     // Reverse loop, needed to remove pokemon from it
-    private void pokemonAgeing() {
-        for (Player player : players) {
-            for (int i = player.getPlayerPokemon().size() - 1; i >= 0; i--) {
-                player.getPokemon(i).aging();
-                player.getPokemon(i).reduceHealth();
-                if (player.getPokemon(i).getAge() > player.getPokemon(i).getMaxAge()) {
-                    Helper.print(player.getName() + "! " + player.getPokemon(i).getName()
-                                 + " died of old " + "age");
-                    player.getPlayerPokemon().remove(i);
-                    Helper.inputEnter();
-                } else if (player.getPokemon(i).getHealth() <= 0) {
-                    Helper.print(player.getName() + "! " + player.getPokemon(i).getName()
-                                 + " died because " + "health dropped below 0");
-                    player.getPlayerPokemon().remove(i);
-                    Helper.inputEnter();
-                }
+    private void pokemonAgeing(Player player) {
+        for (int i = player.getPlayerPokemon().size() - 1; i >= 0; i--) {
+            player.getPokemon(i).aging();
+            player.getPokemon(i).reduceHealth();
+            if (player.getPokemon(i).getAge() > player.getPokemon(i).getMaxAge()) {
+                Helper.print(player.getName() + "! " + player.getPokemon(i).getName()
+                             + " died of old " + "age");
+                player.getPlayerPokemon().remove(i);
+                Helper.inputEnter();
+            } else if (player.getPokemon(i).getHealth() <= 0) {
+                Helper.print(player.getName() + "! " + player.getPokemon(i).getName()
+                             + " died because " + "health dropped below 0");
+                player.getPlayerPokemon().remove(i);
+                Helper.inputEnter();
             }
         }
     }

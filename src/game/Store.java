@@ -74,7 +74,7 @@ public class Store implements Serializable {
         Helper.print("===== Pokemon Shop =====\n");
         for (Pokemon pokemon : pokemonShelf) {
             if (customer.getMoney() < pokemon.getPrice()) {
-                System.out.printf("[%-1.2s]%-10.10s\t%3.4s$\t[to expensive]", n,
+                System.out.printf("[%-1.2s]%-10.10s\t%3.4s$\t[to expensive]\n", n,
                         pokemon.getBreed(false), pokemon.getPrice());
             } else {
                 System.out.printf("[%-1.2s]%-10.10s\t%3.4s$%n", n,
