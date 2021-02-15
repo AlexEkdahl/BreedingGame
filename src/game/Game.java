@@ -42,8 +42,7 @@ public class Game implements Serializable {
                 changePlayer();
                 getSick(currentPlayer);
                 pokemonAgeing(currentPlayer);
-                if (players.size() == 1) {
-                    Helper.printAndWait("Only one player left");
+                if (players.size() == 9) {
                     endOfGame();
                 }
                 if (!playerLost(currentPlayer)) {
@@ -93,7 +92,8 @@ public class Game implements Serializable {
                 currentPlayer.getPlayerPokemon().remove(pokemonIndex);
             }
         } else {
-            Helper.print("You couldn't pay the price, you don't have enough founds");
+            Helper.printAndWait("You couldn't pay the price, you don't have enough founds");
+            currentPlayer.getPlayerPokemon().remove(pokemonIndex);
         }
     }
 
@@ -168,6 +168,9 @@ public class Game implements Serializable {
             Player temp = currentPlayer;
             changePlayer();
             players.remove(temp);
+            if (players.size() == 0){
+                endOfGame();
+            }
             return true;
         }
         return false;
