@@ -106,6 +106,7 @@ public class Game implements Serializable {
         } else {
             Helper.print("No winners only losers!");
         }
+        System.exit(0);
     }
 
     private Player getWinner() {
