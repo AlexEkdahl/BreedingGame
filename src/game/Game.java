@@ -38,11 +38,23 @@ public class Game implements Serializable {
 
     private void changingPlayersAndHandlingAllEvents() throws Exception {
         if (currentPlayer.roundDone) {
-            do {
+            while (true) {
                 changePlayer();
                 getSick(currentPlayer);
                 pokemonAgeing(currentPlayer);
-            } while (playerLost());
+                if (players.size() == 1) {
+                    Helper.printAndWait("Only one player left");
+                    endOfGame();
+                }
+                if (!playerLost(currentPlayer)) {
+                    break;
+                }
+                getSick(currentPlayer);
+                pokemonAgeing(currentPlayer);
+                if (!playerLost(currentPlayer)) {
+                    break;
+                }
+            }
         }
     }
 
@@ -148,14 +160,14 @@ public class Game implements Serializable {
         this.numOfRounds = numOfRounds;
     }
 
-    private boolean playerLost() {
-        for (int i = players.size() - 1; i >= 0; i--) {
-            if (players.get(i).getPlayerPokemon().size() == 0 && players.get(i).getMoney() < 500) {
-                Helper.print(players.get(i).getName() + " ran out of Pokemon and money and is ELIMINATED");
-                players.remove(i);
-                Helper.inputEnter();
-                return true;
-            }
+    private boolean playerLost(Player currentPlayer) {
+        if (currentPlayer.getPlayerPokemon().size() == 0 && currentPlayer.getMoney() < 500) {
+            Helper.print(currentPlayer.getName() + " ran out of Pokemon and money and is ELIMINATED");
+            Helper.inputEnter();
+            Player temp = currentPlayer;
+            changePlayer();
+            players.remove(temp);
+            return true;
         }
         return false;
     }
