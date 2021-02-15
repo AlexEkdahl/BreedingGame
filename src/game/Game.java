@@ -42,7 +42,7 @@ public class Game implements Serializable {
                 changePlayer();
                 getSick(currentPlayer);
                 pokemonAgeing(currentPlayer);
-                if (players.size() == 9) {
+                if (players.size() == 0) {
                     endOfGame();
                 }
                 if (!playerLost(currentPlayer)) {
