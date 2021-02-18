@@ -5,17 +5,44 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="226a3f99-9ddc-4eb9-88c8-b362162aa838" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/game/items/Item.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/game/Audio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/Audio.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/Breed.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/Breed.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/Feed.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/Feed.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/Helper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/Util.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/Menu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/Serializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/Serializer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/Store.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/Store.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/foodclasses/Berry.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/items/foods/Berry.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/foodclasses/Food.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/items/foods/Food.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/foodclasses/PokeBlock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/items/foods/PokeBlock.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/foodclasses/PokePuff.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/items/foods/PokePuff.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/foodclasses/RareCandy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/items/foods/RareCandy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/pokemonclasses/Bulbasur.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/items/pokemons/Bulbasur.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/pokemonclasses/Charmander.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/items/pokemons/Charmander.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/pokemonclasses/Ditto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/items/pokemons/Ditto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/pokemonclasses/Pikachu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/items/pokemons/Pikachu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/pokemonclasses/Pokemon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/items/pokemons/Pokemon.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/pokemonclasses/Squirtle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/items/pokemons/Squirtle.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="ProjectId" id="1o11jLzN3Sa6zQwt36jdB1D9ZNG" />
   <component name="ProjectViewState">
@@ -28,12 +55,20 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
     <property name="settings.editor.selected.configurable" value="application.passwordSafe" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="game.items.pokemons" />
+      <recent name="game.items.foods" />
+      <recent name="game.items" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -122,7 +157,14 @@
       <option name="project" value="LOCAL" />
       <updated>1613387119968</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Update Game.java">
+      <created>1613400744069</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1613400744069</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TerminalProjectNonSharedOptionsProvider">
@@ -144,7 +186,9 @@
     <MESSAGE value="Final refactoring" />
     <MESSAGE value="Bug fix" />
     <MESSAGE value="Refactor" />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactor" />
+    <MESSAGE value="Update Game.java" />
+    <MESSAGE value="Refactored and changed names" />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactored and changed names" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/BreedingGame$Main.ic" NAME="Main Coverage Results" MODIFIED="1612443709348" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">

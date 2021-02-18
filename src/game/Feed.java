@@ -1,7 +1,7 @@
 package game;
 
-import game.foodclasses.Food;
-import game.pokemonclasses.Pokemon;
+import game.items.foods.Food;
+import game.items.pokemons.Pokemon;
 
 import java.io.Serializable;
 
@@ -20,7 +20,7 @@ public class Feed implements Serializable {
         if (player.getPlayerPokemon().size() != 0 && (player.getPlayerFood().size() != 0)) {
             while (true) {
                 whichPokemonToFeed(player);
-                int choiceOfPokemonToFeed = Helper.getInt(0, player.getPlayerPokemon().size());
+                int choiceOfPokemonToFeed = Util.getInt(0, player.getPlayerPokemon().size());
                 if (choiceOfPokemonToFeed != 0) {
                     whichFoodToEat(player);
                     if (chooseAmountAndFed(player, choiceOfPokemonToFeed)) {
@@ -35,7 +35,7 @@ public class Feed implements Serializable {
     }
 
     private boolean chooseAmountAndFed(Player player, int choiceOfPokemonToFeed) throws Exception {
-        int pokeFoodChoice = Helper.getInt(0, player.getPlayerFood().size());
+        int pokeFoodChoice = Util.getInt(0, player.getPlayerFood().size());
         boolean pokemonCanEatThis = pokeFoodChoice != 0 && canPokemonEatThisFood(
                 player.getPokemon(choiceOfPokemonToFeed - 1),
                 player.getFood(pokeFoodChoice - 1));
@@ -49,14 +49,14 @@ public class Feed implements Serializable {
             Audio.soundEffect("audio/listen.wav");
             System.out.println("That's not a suitable food option for "
                                + player.getPokemon(choiceOfPokemonToFeed - 1).getBreed(false));
-            Helper.waitMilliSeconds(1500);
+            Util.waitMilliSeconds(1500);
         }
         return false;
     }
 
     private int getAmountOfFood(Player player, int pokeFoodChoice) {
         System.out.println("Max amount: " + player.getFood(pokeFoodChoice - 1).getAmount());
-        return Helper.getInt(0, player.getFood(pokeFoodChoice - 1).getAmount());
+        return Util.getInt(0, player.getFood(pokeFoodChoice - 1).getAmount());
     }
 
     private void notAbleToFeedPokemon(Player player) {
@@ -67,7 +67,7 @@ public class Feed implements Serializable {
         } else {
             System.out.println("You have no food");
         }
-        Helper.inputEnter();
+        Util.inputEnter();
     }
 
     private void successfullyFedPokemon(Player player, int choiceOfPokemonToFeed, int pokeFoodChoice, int amount) {
@@ -81,14 +81,14 @@ public class Feed implements Serializable {
         game.menu.playerDisplay(player);
         System.out.println("===== Feed your Pokemon =====\n");
         printPokemon(player);
-        System.out.println(Helper.askExitToMenu + "\nWhich Pokemon will you feed: ");
+        System.out.println(Util.askExitToMenu + "\nWhich Pokemon will you feed: ");
     }
 
     private void whichFoodToEat(Player player) {
         game.menu.playerDisplay(player);
         System.out.println("===== Feed your Pokemon =====\n");
         printFood(player);
-        System.out.println(Helper.askExitToMenu + "\n Choose food: ");
+        System.out.println(Util.askExitToMenu + "\n Choose food: ");
     }
 
     private void printPokemon(Player player) {

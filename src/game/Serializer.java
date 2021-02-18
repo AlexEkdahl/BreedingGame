@@ -15,11 +15,11 @@ public class Serializer {
             out.writeObject(data);
             out.close();
             file.close();
-            Helper.printAndWait("File saved");
+            Util.printAndWait("File saved");
         } catch (Exception error) {
-            Helper.print("DID NOT WORK");
+            Util.print("DID NOT WORK");
             System.out.println(error);
-            Helper.inputEnter();
+            Util.inputEnter();
         }
     }
 
@@ -32,7 +32,7 @@ public class Serializer {
             file.close();
             return data;
         } catch (Exception error) {
-            Helper.print("Load fail");
+            Util.print("Load fail");
             System.out.println(error);
             return false; // we couldn't complete deserialization
         }

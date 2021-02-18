@@ -1,4 +1,4 @@
-package game.foodclasses;
+package game.items.foods;
 
 public class RareCandy extends Food {
 

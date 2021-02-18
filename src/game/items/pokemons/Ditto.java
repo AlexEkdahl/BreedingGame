@@ -1,9 +1,9 @@
-package game.pokemonclasses;
+package game.items.pokemons;
 
-import game.foodclasses.Food;
-import game.foodclasses.PokeBlock;
-import game.foodclasses.PokePuff;
-import game.foodclasses.RareCandy;
+import game.items.foods.Food;
+import game.items.foods.PokeBlock;
+import game.items.foods.PokePuff;
+import game.items.foods.RareCandy;
 
 public class Ditto extends Pokemon {
 

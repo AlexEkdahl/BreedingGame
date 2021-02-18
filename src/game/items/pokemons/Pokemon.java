@@ -1,12 +1,13 @@
-package game.pokemonclasses;
+package game.items.pokemons;
 
-import game.Helper;
+import game.Util;
 import game.Player;
-import game.foodclasses.Food;
+import game.items.Item;
+import game.items.foods.Food;
 
 import java.io.Serializable;
 
-public abstract class Pokemon implements Serializable {
+public abstract class Pokemon extends Item implements Serializable {
 
     protected enum Gender {
         FEMALE, MALE,
@@ -19,7 +20,6 @@ public abstract class Pokemon implements Serializable {
     protected Food[] canEatFood;
     protected int age = 0;
     protected int maxAge;
-    protected int price;
 
     public int getMaxAge() {
         return maxAge;
@@ -117,14 +117,14 @@ public abstract class Pokemon implements Serializable {
         int offsprings = (int) (Math.random() * this.maxOffspring) + 1;
         for (int i = 0; i < offsprings; i++) {
             System.out.print(i + 1 + ".");
-            Helper.waitMilliSeconds(700);
+            Util.waitMilliSeconds(700);
             System.out.print(".");
-            Helper.waitMilliSeconds(700);
+            Util.waitMilliSeconds(700);
             System.out.print(".");
-            Helper.waitMilliSeconds(700);
+            Util.waitMilliSeconds(700);
         }
         System.out.print(" " + offsprings + " new " + mate.getBreed(false) + "!");
-        Helper.print(" Congratulations, " + this.name + " and " + mate.getName() + " successfully mated");
+        Util.print(" Congratulations, " + this.name + " and " + mate.getName() + " successfully mated");
         for (int j = 0; j < offsprings; j++) {
             switch (this.getBreed(false)) {
                 case "Pikachu" -> owner.createPokemon(new Pikachu(), true);

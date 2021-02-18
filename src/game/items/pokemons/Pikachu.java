@@ -1,9 +1,9 @@
-package game.pokemonclasses;
+package game.items.pokemons;
 
-import game.foodclasses.Berry;
-import game.foodclasses.Food;
-import game.foodclasses.PokeBlock;
-import game.foodclasses.RareCandy;
+import game.items.foods.Berry;
+import game.items.foods.Food;
+import game.items.foods.PokeBlock;
+import game.items.foods.RareCandy;
 
 public class Pikachu extends Pokemon {
 

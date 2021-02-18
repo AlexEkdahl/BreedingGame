@@ -1,6 +1,6 @@
 package game;
 
-import game.pokemonclasses.Pokemon;
+import game.items.pokemons.Pokemon;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -18,27 +18,27 @@ public class Breed implements Serializable {
 
     public void breedPokemon(Player player) throws Exception {
         game.menu.playerDisplay(player);
-        Helper.print("===== Breeding =====\n");
+        Util.print("===== Breeding =====\n");
         if ((player.getPlayerPokemon().size() > 1)) {
             printPokemonList(player.getPlayerPokemon());
-            Helper.print(Helper.askExitToMenu + "\nSelect your first Pokemon");
+            Util.print(Util.askExitToMenu + "\nSelect your first Pokemon");
             int choiceOfFirstMate = getPokemonIndex(player.getPlayerPokemon());
             if (choiceOfFirstMate != 0) {
                 chooseSuitableMate(getPokemon(choiceOfFirstMate, player.getPlayerPokemon()), player);
             }
         } else {
-            Helper.printAndWait("You don't have enough Pokemon");
+            Util.printAndWait("You don't have enough Pokemon");
         }
     }
 
     // containing list of suitable mates for selected pokemon
     public void chooseSuitableMate(Pokemon pokemon, Player player) throws Exception {
         game.menu.playerDisplay(player);
-        Helper.print("===== Select your partner =====");
+        Util.print("===== Select your partner =====");
         if (isThereSuitablePartners(pokemon, player)) {
             ArrayList<Pokemon> suitableMatesList = getSuitableMateList(pokemon, player);
             printPokemonList(suitableMatesList);
-            Helper.print(Helper.askExitToMenu);
+            Util.print(Util.askExitToMenu);
             int partnerChoice = getPokemonIndex(suitableMatesList);
             if (partnerChoice != 0) {
                 if (Math.random() > 0.5) {
@@ -49,14 +49,14 @@ public class Breed implements Serializable {
                 player.accessShops(false);
             }
         } else {
-            Helper.printAndWait("No matching partner");
+            Util.printAndWait("No matching partner");
         }
     }
 
     private void printPokemonList(ArrayList<Pokemon> pokemonList) {
         int i = 1;
         for (Pokemon pokemon : pokemonList) {
-            Helper.print("[" + i + "]" + pokemon.toString(false));
+            Util.print("[" + i + "]" + pokemon.toString(false));
             i++;
         }
     }
@@ -87,18 +87,18 @@ public class Breed implements Serializable {
     }
 
     private int getPokemonIndex(ArrayList<Pokemon> pokemonList) {
-        return Helper.getInt(0, pokemonList.size());
+        return Util.getInt(0, pokemonList.size());
     }
 
     private void unsuccessfulBreeding() throws Exception {
         System.out.print("\n.");
-        Helper.waitMilliSeconds(700);
+        Util.waitMilliSeconds(700);
         System.out.print(".");
-        Helper.waitMilliSeconds(700);
+        Util.waitMilliSeconds(700);
         System.out.print(".");
-        Helper.waitMilliSeconds(700);
+        Util.waitMilliSeconds(700);
         Audio.soundEffect("audio/nextTime.wav");
-        Helper.printAndWait("Unsuccessful breeding");
+        Util.printAndWait("Unsuccessful breeding");
     }
 
     private Pokemon getPokemon(int index, ArrayList<Pokemon> pokemonList) {

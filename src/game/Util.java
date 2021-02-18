@@ -4,18 +4,20 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.Scanner;
 
-public class Helper implements Serializable {
+public class Util implements Serializable {
 
     public static String askExitToMenu = "\n[0] Exit to game menu";
+    public static String pShop = "===== Pokemon Shop =====\n";
+    public static String fShop = "===== PokeFood Shop =====\n";
 
     // Scanner used for entire project
     public static Scanner input = new Scanner(System.in);
 
     public static boolean validateString() {
-        Helper.print(PrintColors.ANSI_YELLOW + "\nEnter here: " + PrintColors.ANSI_RESET);
+        Util.print(PrintColors.ANSI_YELLOW + "\nEnter here: " + PrintColors.ANSI_RESET);
         String answer = input.nextLine();
         if (!answer.equalsIgnoreCase("y") && !answer.equalsIgnoreCase("n")) {
-            Helper.print("[y / n]");
+            Util.print("[y / n]");
             validateString();
         }
         return (answer.equalsIgnoreCase("y"));
@@ -23,16 +25,16 @@ public class Helper implements Serializable {
 
     // To make sure user choice is in range of what the menu/question is
     public static int getInt(int min, int max) {
-        Helper.print(PrintColors.ANSI_YELLOW + "\nEnter here: " + PrintColors.ANSI_RESET);
+        Util.print(PrintColors.ANSI_YELLOW + "\nEnter here: " + PrintColors.ANSI_RESET);
         int intReturn = -1;
         do {
             try {
                 intReturn = Integer.parseInt(input.nextLine());
                 if (intReturn > max || intReturn < min) {
-                    Helper.print("A number between " + min + "-" + max);
+                    Util.print("A number between " + min + "-" + max);
                 }
             } catch (Exception e) {
-                Helper.print("An integer!");
+                Util.print("An integer!");
             }
         } while (intReturn == -1 || intReturn > max || intReturn < min);
         return intReturn;
@@ -48,7 +50,7 @@ public class Helper implements Serializable {
     }
 
     public static void inputEnter() {
-        Helper.print(PrintColors.ANSI_YELLOW + "\nPress Enter to continue" + PrintColors.ANSI_RESET);
+        Util.print(PrintColors.ANSI_YELLOW + "\nPress Enter to continue" + PrintColors.ANSI_RESET);
         try {
             System.in.read();
         } catch (IOException e) {
@@ -83,7 +85,7 @@ public class Helper implements Serializable {
     }
 
     public static void printAndWait(String s) {
-        Helper.print(s);
+        Util.print(s);
         inputEnter();
     }
 

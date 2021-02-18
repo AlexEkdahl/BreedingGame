@@ -1,10 +1,12 @@
-package game.foodclasses;
+package game.items.foods;
+
+import game.items.Item;
 
 import java.io.Serializable;
 
-public abstract class Food implements Serializable {
+public abstract class Food extends Item implements Serializable {
 
-    protected int price;
+
     protected int healthValue;
     protected int amount;
 
@@ -21,10 +23,6 @@ public abstract class Food implements Serializable {
 
     public void removeFood(int quantity) {
         this.amount -= quantity;
-    }
-
-    public int getPrice() {
-        return price;
     }
 
     public String getType() {

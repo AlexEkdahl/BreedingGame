@@ -61,12 +61,12 @@ public class Game implements Serializable {
         if (players.size() != 0) {
             for (int i = currentPlayer.getPlayerPokemon().size() - 1; i >= 0; i--) {
                 if (Math.random() < 0.2) {
-                    Helper.print(PrintColors.ANSI_YELLOW + "Cost: " + currentPlayer.getPokemon(i).getValue()
-                                 + PrintColors.ANSI_RESET);
-                    Helper.print(currentPlayer.getName() + "! Your "
-                                 + currentPlayer.getPokemon(i).toString(false)
-                                 + " Age: " + currentPlayer.getPokemon(i).getAge()
-                                 + " Got sick, pay the vet or let Pokemon die?" + "\n[y / n]");
+                    Util.print(PrintColors.ANSI_YELLOW + "Cost: " + currentPlayer.getPokemon(i).getValue()
+                               + PrintColors.ANSI_RESET);
+                    Util.print(currentPlayer.getName() + "! Your "
+                               + currentPlayer.getPokemon(i).toString(false)
+                               + " Age: " + currentPlayer.getPokemon(i).getAge()
+                               + " Got sick, pay the vet or let Pokemon die?" + "\n[y / n]");
                     handleSickPokemon(currentPlayer, i);
                 }
             }
@@ -74,9 +74,9 @@ public class Game implements Serializable {
     }
 
     private void handleSickPokemon(Player currentPlayer, int pokemonIndex) {
-        if (!Helper.validateString()) {
+        if (!Util.validateString()) {
             currentPlayer.getPlayerPokemon().remove(pokemonIndex);
-            Helper.printAndWait("You let your Pokemon die...");
+            Util.printAndWait("You let your Pokemon die...");
         } else {
             tryToHealPokemon(currentPlayer, pokemonIndex);
         }
@@ -85,14 +85,14 @@ public class Game implements Serializable {
     private void tryToHealPokemon(Player currentPlayer, int pokemonIndex) {
         if (currentPlayer.getMoney() > currentPlayer.getPokemon(pokemonIndex).getValue()) {
             if (Math.random() > 0.5) {
-                Helper.printAndWait(currentPlayer.getPokemon(pokemonIndex).getName() + "Is well and breathing");
+                Util.printAndWait(currentPlayer.getPokemon(pokemonIndex).getName() + "Is well and breathing");
                 currentPlayer.handlePurchase(currentPlayer.getPokemon(pokemonIndex).getValue());
             } else {
-                Helper.printAndWait("Unfortunately your pokemon didn't make it....");
+                Util.printAndWait("Unfortunately your pokemon didn't make it....");
                 currentPlayer.getPlayerPokemon().remove(pokemonIndex);
             }
         } else {
-            Helper.printAndWait("You couldn't pay the price, you don't have enough founds");
+            Util.printAndWait("You couldn't pay the price, you don't have enough founds");
             currentPlayer.getPlayerPokemon().remove(pokemonIndex);
         }
     }
@@ -101,10 +101,10 @@ public class Game implements Serializable {
         if (players.size() != 0) {
             sellAllPokemon(currentPlayer);
             printAllScores();
-            Helper.print("The winner is " + getWinner().getName());
+            Util.print("The winner is " + getWinner().getName());
             PrintColors.startUp();
         } else {
-            Helper.print("No winners only losers!");
+            Util.print("No winners only losers!");
         }
         System.exit(0);
     }
@@ -123,13 +123,13 @@ public class Game implements Serializable {
 
     private void printAllScores() {
         for (Player players : this.players) {
-            Helper.print(players.getName() + "\t\tgot:" + players.getMoney());
+            Util.print(players.getName() + "\t\tgot:" + players.getMoney());
         }
     }
 
     public void changePlayer() {
-        Helper.clearScreen();
-        Helper.printAndWait("Next player");
+        Util.clearScreen();
+        Util.printAndWait("Next player");
         // If the player is last in turn, then start over with player 1
         if (players.indexOf(currentPlayer) == players.size() - 1) {
             prepareNewPlayer(0);
@@ -163,8 +163,8 @@ public class Game implements Serializable {
 
     private boolean playerLost(Player currentPlayer) {
         if (currentPlayer.getPlayerPokemon().size() == 0 && currentPlayer.getMoney() < 500) {
-            Helper.print(currentPlayer.getName() + " ran out of Pokemon and money and is ELIMINATED");
-            Helper.inputEnter();
+            Util.print(currentPlayer.getName() + " ran out of Pokemon and money and is ELIMINATED");
+            Util.inputEnter();
             Player temp = currentPlayer;
             changePlayer();
             players.remove(temp);
@@ -182,15 +182,15 @@ public class Game implements Serializable {
             player.getPokemon(i).aging();
             player.getPokemon(i).reduceHealth();
             if (player.getPokemon(i).getAge() > player.getPokemon(i).getMaxAge()) {
-                Helper.print(player.getName() + "! " + player.getPokemon(i).getName()
-                             + " died of old " + "age");
+                Util.print(player.getName() + "! " + player.getPokemon(i).getName()
+                           + " died of old " + "age");
                 player.getPlayerPokemon().remove(i);
-                Helper.inputEnter();
+                Util.inputEnter();
             } else if (player.getPokemon(i).getHealth() <= 0) {
-                Helper.print(player.getName() + "! " + player.getPokemon(i).getName()
-                             + " died because " + "health dropped below 0");
+                Util.print(player.getName() + "! " + player.getPokemon(i).getName()
+                           + " died because " + "health dropped below 0");
                 player.getPlayerPokemon().remove(i);
-                Helper.inputEnter();
+                Util.inputEnter();
             }
         }
     }
@@ -198,7 +198,7 @@ public class Game implements Serializable {
     private void sellAllPokemon(Player player) {
         for (int i = player.getPlayerPokemon().size() - 1; i >= 0; i--) {
             player.sellPokemon(i);
-            Helper.inputEnter();
+            Util.inputEnter();
         }
     }
 
